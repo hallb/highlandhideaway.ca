@@ -5,7 +5,7 @@
 
 ## 🚧 Site Configuration
 
-- [ ] Add avatar image to `params.avatar`
+- [X] Add avatar image to `params.avatar`
 - [ ] Set up social media links in `params.social`
 - [ ] Add top navigation menu in `config/_default/menu.toml`  
   - [ ] Posts
@@ -69,8 +69,8 @@ Each post should include `summary`, `tags`, `categories`, optional `series`, `de
 
 ## 🎨 Branding & Design
 
-- [ ] Add `static/images/avatar.png` for avatar
-- [ ] Add favicon (`static/favicon.ico`)
+- [X] Add `static/images/avatar.png` for avatar
+- [X] Add favicon (`static/favicon.ico`)
 - [ ] Customize site title and description
 - [ ] Add footer content:
   - [ ] Airbnb link
