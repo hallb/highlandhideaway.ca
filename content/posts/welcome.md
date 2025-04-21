@@ -1,21 +1,10 @@
 ---
 title: "Welcome to Highland Hideaway"
-date: 2024-03-20
-draft: false
-description: "Welcome to our peaceful retreat in the highlands"
-categories: ["General"]
-tags: ["welcome", "introduction"]
+description: "Overview of our 4-season cottage nestled in Haliburton's natural beauty."
+date: 2025-04-18
+categories: ["Cottage Info"]
+tags: ["overview", "introduction"]
+featuredImage: "/images/welcome.jpg"
 ---
 
-Welcome to Highland Hideaway! This is our first post on our new website. We're excited to share our journey with you.
-
-## About Highland Hideaway
-
-Highland Hideaway is a peaceful retreat nestled in the heart of nature. Here you'll find:
-
-- Beautiful landscapes
-- Peaceful surroundings
-- Comfortable accommodations
-- Friendly atmosphere
-
-Stay tuned for more updates about our facilities and the experiences we offer!
+Your four-season retreat in Haliburton, Ontario. Find out what makes Highland Hideaway the perfect place to unwind, explore, and reconnect with nature. 
