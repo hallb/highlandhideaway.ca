@@ -33,6 +33,12 @@ languageCode = "en-us"
   # website description for RSS, SEO, Open Graph and Twitter Cards
   description = "Highland Hideaway - A peaceful retreat"
   
+  # Home profile config
+  [params.home.profile]
+    avatarURL = "/images/site-avatar.png"
+    title = "Highland Hideaway"
+    subtitle = "A peaceful retreat"
+  
   # Author config
   [params.author]
     name = "Highland Hideaway"

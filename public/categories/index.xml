@@ -6,13 +6,62 @@
     <description>Recent content in Categories on Highland Hideaway</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cottage Info</title>
+      <link>http://localhost:1313/categories/cottage-info/</link>
+      <pubDate>Fri, 18 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/cottage-info/</guid>
+      <description></description>
+    </item>
     <item>
       <title>General</title>
       <link>http://localhost:1313/categories/general/</link>
       <pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/categories/general/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Events</title>
+      <link>http://localhost:1313/categories/events/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/events/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Food &amp; Cooking</title>
+      <link>http://localhost:1313/categories/food--cooking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/food--cooking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>How-Tos</title>
+      <link>http://localhost:1313/categories/how-tos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/how-tos/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Local Activities</title>
+      <link>http://localhost:1313/categories/local-activities/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/local-activities/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Relaxation</title>
+      <link>http://localhost:1313/categories/relaxation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/relaxation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Seasonal</title>
+      <link>http://localhost:1313/categories/seasonal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/categories/seasonal/</guid>
       <description></description>
     </item>
   </channel>
