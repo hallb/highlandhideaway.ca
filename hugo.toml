@@ -57,20 +57,12 @@ languageCode = 'en-us'
 
   # Analytics config
   [params.analytics]
+    enable = true
     # Google Analytics
-    google = ""
-    # Fathom Analytics
-    fathom = ""
-    # Baidu Analytics
-    baidu = ""
-    # Umami Analytics
-    umami = ""
-    # Plausible Analytics
-    plausible = ""
-    # Cloudflare Web Analytics
-    cloudflare = ""
-    # Splitbee Analytics
-    splitbee = ""
+    [params.analytics.google]
+      id = "G-M21FZFQ5YJ"
+      # whether to anonymize IP
+      anonymizeIP = false
 
   # Comment config
   [params.comment]
