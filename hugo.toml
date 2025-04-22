@@ -1,10 +1,10 @@
-baseURL = "http://localhost:1313/"
-title = "Highland Hideaway"
-theme = "DoIt"
+baseURL = 'https://highlandhideaway.ca/'
+title = 'Highland Hideaway'
+theme = 'DoIt'
 
 # Language settings
 defaultContentLanguage = "en"
-languageCode = "en-us"
+languageCode = 'en-us'
 
 # Menu config
 [menu]
@@ -25,13 +25,14 @@ languageCode = "en-us"
   # DoIt theme version
   version = "0.4.0"
   # site default theme ("light", "dark", "auto")
-  defaultTheme = "auto"
+  defaultTheme = 'auto'
   # date format
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
   title = "Highland Hideaway"
   # website description for RSS, SEO, Open Graph and Twitter Cards
-  description = "Highland Hideaway - A peaceful retreat"
+  description = 'A peaceful retreat in the heart of the Highlands'
+  keywords = 'cottage, vacation, highlands, retreat'
   
   # Home profile config
   [params.home.profile]
@@ -164,3 +165,8 @@ languageCode = "en-us"
       imgUpload = true
       imgUploader = ""
       emoticons = ""
+
+[build]
+  writeStats = true
+  noChmod = true
+  noTimes = true
