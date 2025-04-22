@@ -36,7 +36,7 @@ languageCode = 'en-us'
   
   # Home profile config
   [params.home.profile]
-    avatarURL = "/images/site-avatar.png"
+    avatarURL = "/images/site-avatar-small.png"
     title = "Highland Hideaway"
     subtitle = "A peaceful retreat"
   
