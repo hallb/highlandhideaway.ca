@@ -14,7 +14,7 @@ toc: false
 
 ## Discover the Hideaway
 
-Our goal is to make your stay memorable and effortless. Whether you're planning a romantic getaway, a family vacation, or a creative retreat, we’ve got you covered.
+Our goal is to make your stay memorable and effortless. Whether you're planning a romantic getaway, a family vacation, or a creative retreat, we've got you covered.
 
 Explore our guides to get familiar before you arrive:
 
@@ -32,7 +32,7 @@ Explore our guides to get familiar before you arrive:
 
 ## Ready to Book?
 
-[**Book now on Airbnb ›**](https://airbnb.ca/h/hideaway-near-haliburton){ .button .button--primary }
+<a href="https://airbnb.ca/h/hideaway-near-haliburton" style="display: inline-block; padding: 10px 20px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; transition: background-color 0.2s;">Book now on Airbnb ›</a>
 
 Or just [reach out to us](/posts/contact/) with any questions.
 

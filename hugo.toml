@@ -170,3 +170,8 @@ languageCode = 'en-us'
   writeStats = true
   noChmod = true
   noTimes = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # This allows raw HTML in markdown files
