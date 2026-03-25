@@ -1,0 +1,19 @@
+{{- $resource := 0 -}}
+{{- $url := urls.Parse .Path -}}
+{{- if not (partial "function/isUrlRemote.html" $url) -}}
+    {{- $dest := strings.TrimPrefix "./"  $url.Path -}}
+    {{- if and $dest (ne $dest "/") -}}
+        {{- if .Resources -}}
+            {{- with .Resources.GetMatch $dest -}}
+                {{- $resource = . -}}
+            {{- end -}}
+        {{- end -}}
+        {{- if not $resource -}}
+            {{- with resources.Get $dest -}}
+                {{- $resource = . -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return $resource -}}

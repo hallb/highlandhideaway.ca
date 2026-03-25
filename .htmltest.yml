@@ -1,0 +1,6 @@
+# https://github.com/wjdp/htmltest
+DirectoryPath: public
+CheckExternal: false
+IgnoreURLs:
+  - "^/images/"
+IgnoreEmptyHref: true
