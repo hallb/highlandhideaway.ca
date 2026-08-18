@@ -1,0 +1,40 @@
+# Cloudflare project config for www.highlandhideaway.ca.
+#
+# Static assets are deployed as a Worker via `wrangler deploy` + [assets],
+# matching the pattern in ~/work/tools-portfolio/sites/rural/wrangler.toml
+# rather than classic Pages + `wrangler pages deploy`.
+#
+# Deliberate divergence from tools-portfolio: this repo does NOT use
+# Cloudflare's Git integration. GitHub Actions builds and deploys, because
+# .github/workflows/cloudflare.yml gates the deploy on htmltest via `needs:`.
+# With Git integration the deploy does not wait for CI and only branch
+# protection stands in front of production; here the gate is structural.
+# Two repo-specific reasons reinforce it: the DoIt theme is a git submodule
+# Cloudflare's builder would have to init, and there is no package.json, so
+# Hugo and htmltest would both need installing inside the build command.
+#
+# Dashboard configuration required (Workers & Pages → the Worker → Settings):
+#   Custom domain:   www.highlandhideaway.ca
+#   Build/deploy:    none — Actions deploys; leave Git integration disconnected
+#
+# Break-glass local deploy from the repo root:
+#   hugo --minify && npx wrangler deploy
+name = "highlandhideaway"
+main = "src/worker.js"
+compatibility_date = "2026-08-18"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+# Only the booking redirect needs the Worker; everything else is served
+# straight from the asset store without invoking it.
+run_worker_first = ["/go/*"]
+# Serve Hugo's generated 404.html for unknown paths.
+not_found_handling = "404-page"
+
+[vars]
+BOOKING_URL = "https://airbnb.ca/h/hideaway-near-haliburton"
+
+[[analytics_engine_datasets]]
+binding = "CLICKS"
+dataset = "booking_clicks"

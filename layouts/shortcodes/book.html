@@ -1,8 +1,17 @@
-{{- /* Booking CTA. Every outbound link to the listing goes through here so the
-       destination (and any click-tracking path) is changed in one place:
-       set params.booking.url in hugo.toml. */ -}}
+{{- /* Booking CTA. Every outbound link to the listing goes through here, so
+       the destination changes in one place: params.booking.url in hugo.toml.
+
+       Set it to the absolute Airbnb URL to link straight out, or to "/go/airbnb"
+       to route through the Worker in src/worker.js that counts the click. A
+       local path also gets ?src= so conversions can be attributed to the page
+       they came from. */ -}}
 {{- $url := site.Params.booking.url | default "https://airbnb.ca/h/hideaway-near-haliburton" -}}
 {{- $text := .Get "text" | default (site.Params.booking.text | default "Book now on Airbnb") -}}
+{{- if hasPrefix $url "/" -}}
+  {{- $src := .Page.RelPermalink | default "/" -}}
+  {{- $sep := cond (strings.Contains $url "?") "&" "?" -}}
+  {{- $url = printf "%s%ssrc=%s" $url $sep (urlquery $src) -}}
+{{- end -}}
 <p class="book-cta">
   <a class="book-cta__link" href="{{ $url }}" data-cta="booking" rel="noopener">{{ $text }}<span aria-hidden="true"> &rsaquo;</span></a>
 </p>
