@@ -23,6 +23,16 @@ name = "highlandhideaway"
 main = "src/worker.js"
 compatibility_date = "2026-08-18"
 
+# Custom domains, attached on deploy. Declared here rather than clicked into
+# the dashboard so the hostnames live in version control. Both are needed:
+# the apex must resolve to Cloudflare for the apex->www Redirect Rule to fire
+# at the edge, and redirect rules run before Workers, so apex traffic is
+# 301'd and never reaches this Worker.
+routes = [
+  { pattern = "www.highlandhideaway.ca", custom_domain = true },
+  { pattern = "highlandhideaway.ca", custom_domain = true },
+]
+
 [assets]
 directory = "./public"
 binding = "ASSETS"
