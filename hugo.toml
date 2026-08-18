@@ -1,4 +1,6 @@
-baseURL = 'https://highlandhideaway.ca/'
+# Must match the custom domain in ./CNAME, or canonical URLs, the sitemap,
+# and Open Graph tags will all point at a host the site is not served from.
+baseURL = 'https://www.highlandhideaway.ca/'
 title = 'Highland Hideaway'
 theme = 'DoIt'
 
@@ -33,6 +35,11 @@ languageCode = 'en-us'
   # website description for RSS, SEO, Open Graph and Twitter Cards
   description = 'A peaceful retreat in the heart of the Highlands'
   keywords = 'cottage, vacation, highlands, retreat'
+  # Default share image. Hugo's _internal/opengraph.html and
+  # _internal/twitter_cards.html (which DoIt calls) read params.images —
+  # NOT params.seo.images — and twitter:card is upgraded to
+  # summary_large_image automatically once an image is present.
+  images = ["/images/dock-autumn.jpg"]
   
   # Home profile config
   [params.home.profile]
@@ -40,6 +47,12 @@ languageCode = 'en-us'
     title = "Highland Hideaway"
     subtitle = "A peaceful retreat"
   
+  # Booking / conversion target. The whole site funnels here, so it is
+  # defined once and used via the {{< book >}} shortcode.
+  [params.booking]
+    url = "https://airbnb.ca/h/hideaway-near-haliburton"
+    text = "Book now on Airbnb"
+
   # Author config
   [params.author]
     name = "Highland Hideaway"
@@ -49,11 +62,11 @@ languageCode = 'en-us'
   # SEO config
   [params.seo]
     # images for Open Graph and Twitter Cards
-    images = []
+    images = ["/images/dock-autumn.jpg"]
     # Twitter Cards config
     [params.seo.twitter]
       # Twitter Card type ("summary", "summary_large_image")
-      card = "summary"
+      card = "summary_large_image"
 
   # Analytics config
   [params.analytics]
@@ -62,7 +75,7 @@ languageCode = 'en-us'
     [params.analytics.google]
       id = "G-M21FZFQ5YJ"
       # whether to anonymize IP
-      anonymizeIP = false
+      anonymizeIP = true
 
   # Comment config
   [params.comment]
