@@ -30,6 +30,9 @@ env:
   # Keep in step with .github/workflows/hugo.yml and the local toolchain.
   HUGO_VERSION: "0.159.0"
   HTMLTEST_VERSION: "0.17.0"
+  # wrangler-action defaults to a 3.x wrangler, which silently drops
+  # [assets] run_worker_first and not_found_handling from wrangler.toml.
+  WRANGLER_VERSION: "4.124.0"
 
 jobs:
   build:
@@ -106,4 +109,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: ${{ env.WRANGLER_VERSION }}
           command: deploy --config wrangler.toml
