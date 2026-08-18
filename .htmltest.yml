@@ -2,3 +2,9 @@
 DirectoryPath: public
 CheckExternal: false
 IgnoreEmptyHref: true
+
+# /go/* is served by the Worker in src/worker.js, not by a file, so there is
+# no file for it in public/ and htmltest cannot resolve it. This is unlike the
+# old "^/images/" ignore, which was hiding genuinely missing files.
+IgnoreURLs:
+  - "^/go/"

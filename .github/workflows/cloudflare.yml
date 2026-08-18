@@ -1,0 +1,109 @@
+# Build, link-check, and deploy to Cloudflare.
+#
+# Static assets ship as a Worker via `wrangler deploy` + [assets] (see
+# wrangler.toml), matching ~/work/tools-portfolio/sites/rural. Unlike that
+# repo, Cloudflare's Git integration is NOT used: the deploy job below
+# depends on the build job, so nothing reaches production unless htmltest
+# passed. That makes the gate structural rather than a branch-protection
+# setting maintained outside the repo.
+#
+# The build/test job runs on every push and pull request and needs no secrets,
+# so this workflow is green before the Cloudflare move happens. The deploy job
+# only runs on main, and skips itself cleanly until CLOUDFLARE_API_TOKEN and
+# CLOUDFLARE_ACCOUNT_ID exist as repository secrets.
+name: Cloudflare
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: cf-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  # Keep in step with .github/workflows/hugo.yml and the local toolchain.
+  HUGO_VERSION: "0.159.0"
+  HTMLTEST_VERSION: "0.17.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Install htmltest
+        run: |
+          set -euo pipefail
+          curl -sSL "https://github.com/wjdp/htmltest/releases/download/v${HTMLTEST_VERSION}/htmltest_${HTMLTEST_VERSION}_linux_amd64.tar.gz" \
+            | tar xz -C /tmp
+          mkdir -p "$HOME/.local/bin"
+          mv /tmp/htmltest "$HOME/.local/bin/htmltest"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Check links and images
+        run: htmltest
+
+      - name: Upload site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: public
+          retention-days: 7
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: public
+
+      # Secrets cannot be referenced in a job-level `if`, so the presence
+      # check happens here and gates the step below.
+      - name: Are Cloudflare credentials configured?
+        id: creds
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$CF_TOKEN" ] && [ -n "$CF_ACCOUNT" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Cloudflare secrets not set yet; skipping deploy."
+          fi
+
+      # wrangler.toml points [assets] at ./public, which the download step
+      # above restored, and main at src/worker.js from the checkout.
+      - name: Deploy to Cloudflare
+        if: steps.creds.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy --config wrangler.toml
