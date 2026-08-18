@@ -51,7 +51,9 @@ languageCode = 'en-us'
   # Booking / conversion target. The whole site funnels here, so it is
   # defined once and used via the {{< book >}} shortcode.
   [params.booking]
-    url = "https://airbnb.ca/h/hideaway-near-haliburton"
+    # Routed through the Worker in src/worker.js, which counts the click and
+    # 302s to the listing. The shortcode appends ?src= with the page path.
+    url = "/go/airbnb"
     text = "Book now on Airbnb"
 
   # Author config
