@@ -1,0 +1,8 @@
+{{- /* Booking CTA. Every outbound link to the listing goes through here so the
+       destination (and any click-tracking path) is changed in one place:
+       set params.booking.url in hugo.toml. */ -}}
+{{- $url := site.Params.booking.url | default "https://airbnb.ca/h/hideaway-near-haliburton" -}}
+{{- $text := .Get "text" | default (site.Params.booking.text | default "Book now on Airbnb") -}}
+<p class="book-cta">
+  <a class="book-cta__link" href="{{ $url }}" data-cta="booking" rel="noopener">{{ $text }}<span aria-hidden="true"> &rsaquo;</span></a>
+</p>

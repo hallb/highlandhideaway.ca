@@ -19,4 +19,18 @@ hugo.linux
 # htmltest cache
 /tmp/.htmltest/
 
+### Photo working files (not published) ###
+# Camera originals and intermediate conversions live here; only the
+# resized copies under static/images/ are part of the site.
+/AmazonPhotos/
+/AmazonPhotos.zip
+/IMG_*.jpg
+/PXL_*.jpg
+# WSL "downloaded from the internet" markers
+*:Zone.Identifier
+
+### Node / test toolchain ###
+node_modules/
+/tmp/
+
 # End of https://www.toptal.com/developers/gitignore/api/hugo

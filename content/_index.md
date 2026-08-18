@@ -1,8 +1,8 @@
 ---
-title: "Welcome to the Highland Hideaway"
-description: "A cozy four-season cottage retreat nestled in 23 acres of forest, just minutes from Haliburton, Ontario."
-featuredImage: "images/welcome.jpg"
-featuredImagePreview: "images/welcome-preview.jpg"
+title: "Highland Hideaway"
+description: "A three-bedroom cottage on 23 acres of forest near Haliburton, Ontario."
+featuredImage: "/images/dock-autumn.jpg"
+featuredImagePreview: "/images/dock-autumn-preview.jpg"
 draft: false
 hiddenFromHomePage: false
 lightgallery: false
@@ -10,32 +10,33 @@ comment: false
 toc: false
 ---
 
-> Escape to the Highlands. Breathe in the fresh forest air, curl up by the wood stove, or paddle across the still waters of Drag Lake.
+Highland Hideaway is a cottage on 23 acres of forest near Haliburton, Ontario.
+Three bedrooms, one bathroom, a wood stove, and a fire pit with benches.
 
-## Discover the Hideaway
+The guides below cover the things guests usually ask about before they arrive:
+where to park, which bed is which, and how to get the stove going on the first
+try.
 
-Our goal is to make your stay memorable and effortless. Whether you're planning a romantic getaway, a family vacation, or a creative retreat, we've got you covered.
+{{< book >}}
 
-Explore our guides to get familiar before you arrive:
+## Before you arrive
 
-- [Welcome & Overview](/posts/welcome/)
-- [Getting Here & Parking](/posts/getting-here-and-parking/)
-- [Sleeping Arrangements](/posts/sleeping-arrangements/)
-- [What to Bring](/posts/what-to-bring/)
-- [Guest Access](/posts/guest-access/)
-- [Cooking at the Cottage](/posts/cooking-at-the-cottage/)
-- [What's Nearby](/posts/whats-nearby/)
-- [Contact Us](/posts/contact/)
+- [Welcome and overview](/posts/welcome/)
+- [Getting here and parking](/posts/getting-here-and-parking/)
+- [Sleeping arrangements](/posts/sleeping-arrangements/)
+- [What to bring](/posts/what-to-bring/)
 
----
+## While you are here
 
+- [Guest access](/posts/guest-access/)
+- [Cooking at the cottage](/posts/cooking-at-the-cottage/)
+- [Lighting the wood stove](/posts/lighting-the-wood-stove/)
+- [The grounds](/posts/the-grounds/)
 
-## Ready to Book?
+## The area
 
-<a href="https://airbnb.ca/h/hideaway-near-haliburton" style="display: inline-block; padding: 10px 20px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; transition: background-color 0.2s;">Book now on Airbnb ›</a>
+- [What is nearby](/posts/whats-nearby/)
+- [Hidden gems nearby](/posts/hidden-gems-nearby/)
+- [Photos](/photos/)
 
-Or just [reach out to us](/posts/contact/) with any questions.
-
----
-
-*The Highland Hideaway is a peaceful, private retreat designed for comfort, creativity, and connection with nature.*
+Questions before you book? [Get in touch](/posts/contact/).
