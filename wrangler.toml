@@ -1,4 +1,4 @@
-# Cloudflare project config for www.highlandhideaway.ca.
+# Cloudflare project config for highlandhideaway.ca.
 #
 # Static assets are deployed as a Worker via `wrangler deploy` + [assets],
 # matching the pattern in ~/work/tools-portfolio/sites/rural/wrangler.toml
@@ -14,7 +14,7 @@
 # Hugo and htmltest would both need installing inside the build command.
 #
 # Dashboard configuration required (Workers & Pages → the Worker → Settings):
-#   Custom domain:   www.highlandhideaway.ca
+#   Custom domain:   highlandhideaway.ca and www.highlandhideaway.ca
 #   Build/deploy:    none — Actions deploys; leave Git integration disconnected
 #
 # Break-glass local deploy from the repo root:
@@ -24,10 +24,10 @@ main = "src/worker.js"
 compatibility_date = "2026-08-18"
 
 # Custom domains, attached on deploy. Declared here rather than clicked into
-# the dashboard so the hostnames live in version control. Both are needed:
-# the apex must resolve to Cloudflare for the apex->www Redirect Rule to fire
-# at the edge, and redirect rules run before Workers, so apex traffic is
-# 301'd and never reaches this Worker.
+# the dashboard so the hostnames live in version control. The apex serves the
+# site; www must stay listed so it still resolves to Cloudflare, which is what
+# lets the www->apex Redirect Rule fire at the edge. Removing the www route
+# would stop www resolving at all, and the redirect with it.
 routes = [
   { pattern = "www.highlandhideaway.ca", custom_domain = true },
   { pattern = "highlandhideaway.ca", custom_domain = true },
