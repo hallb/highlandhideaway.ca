@@ -1,6 +1,7 @@
-# Must match the custom domain in ./CNAME, or canonical URLs, the sitemap,
-# and Open Graph tags will all point at a host the site is not served from.
-baseURL = 'https://www.highlandhideaway.ca/'
+# The apex is canonical: a Cloudflare Redirect Rule 301s www -> apex.
+# This must match the hostname that actually serves, or canonical URLs, the
+# sitemap, and Open Graph tags all point at a host that redirects away.
+baseURL = 'https://highlandhideaway.ca/'
 title = 'Highland Hideaway'
 theme = 'DoIt'
 
