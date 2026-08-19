@@ -7,9 +7,19 @@ tags: ["thanksgiving", "autumn", "wood stove", "arrival"]
 draft: true
 ---
 
-<!-- Draft. An outline for this post exists in a Claude AI chat transcript;
-     merge it in before filling the sections below. Keep draft: true until the
-     sections are written and a photograph exists. -->
+<!-- DRAFT, and not covered by docs/fall_2026_content_brief.md.
+
+     The brief confirms the date (Thu 26 Nov 2026) and nothing else about
+     this post: it briefs the Studio Tour and Canadian Thanksgiving in
+     detail, lists fall colours as backlog, and doesn't mention this one.
+     So the outline below is still mine, not the brief's.
+
+     Worth deciding whether this post is wanted at all before writing it.
+     The brief's argument for separate posts is separate search intent,
+     and the intent here is a US long weekend rather than anything local.
+
+     Keep draft: true until that's settled, the sections are written, and
+     a photograph exists. -->
 
 American Thanksgiving is Thursday 26 November in 2026, and late November here
 is a different cottage from the one in the photographs.
