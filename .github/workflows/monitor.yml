@@ -35,7 +35,7 @@ permissions:
   contents: read
 
 env:
-  LYCHEE_VERSION: "0.15.1"
+  LYCHEE_VERSION: "0.24.2"
 
 jobs:
   endpoints:
@@ -85,9 +85,20 @@ jobs:
       - name: Install lychee
         run: |
           set -euo pipefail
-          curl -sSL "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/lychee-x86_64-unknown-linux-gnu.tar.gz" \
-            | tar xz -C /tmp
-          sudo install /tmp/lychee /usr/local/bin/lychee
+          base="https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}"
+          asset="lychee-x86_64-unknown-linux-gnu.tar.gz"
+          # --fail matters: without it curl happily saves GitHub's 404 page and
+          # tar reports a gzip error, which reads like a corrupt download rather
+          # than a version that does not exist.
+          curl -sSL --fail -o /tmp/lychee.tar.gz "$base/$asset"
+          curl -sSL --fail -o /tmp/lychee.sha256 "$base/$asset.sha256"
+          (cd /tmp && sha256sum -c <(awk '{print $1 "  lychee.tar.gz"}' lychee.sha256))
+          # The tarball unpacks into a directory named after the target, not
+          # a bare binary.
+          mkdir -p /tmp/lychee-dist
+          tar xz -C /tmp/lychee-dist --strip-components=1 -f /tmp/lychee.tar.gz
+          sudo install /tmp/lychee-dist/lychee /usr/local/bin/lychee
+          lychee --version
 
       - name: Crawl the live sitemap
         run: |
@@ -104,7 +115,6 @@ jobs:
             --retry-wait-time 5 \
             --max-retries 2 \
             --accept 200,206,301,302,403,429 \
-            --exclude-mail \
             --no-progress \
             https://highlandhideaway.ca/sitemap.xml
 
