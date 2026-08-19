@@ -1,0 +1,131 @@
+# Production monitoring: is the live site healthy, and is it still counting?
+#
+# CI in cloudflare.yml checks ./public before it ships. This checks the thing
+# that actually exists afterwards, which can rot without any commit: a route
+# detaching, an external link dying, a listing URL changing, an Analytics
+# Engine binding that stopped writing.
+#
+# The canary job is the one that earned this workflow. src/worker.js swallows
+# write failures deliberately, so a broken binding is indistinguishable from a
+# quiet week -- an outage you find out about by noticing an absence, which is
+# to say months later. A synthetic click knows a row is owed, so the failure
+# becomes an email instead of a silence.
+#
+# Cadence: endpoints daily, links weekly. Both crons fire on Sunday; the links
+# job filters itself to the weekly one.
+#
+# Secrets. CLOUDFLARE_ACCOUNT_ID already exists for the deploy. CF_AE_TOKEN is
+# new and must be scoped Account - Account Analytics - Read; CLOUDFLARE_API_TOKEN
+# is Workers Scripts:Edit and 403s against the SQL API. The canary job skips
+# itself cleanly until CF_AE_TOKEN is set, so this workflow is green before the
+# token exists rather than nagging.
+name: Monitor
+
+on:
+  schedule:
+    - cron: "17 13 * * *"    # daily  13:17 UTC
+    - cron: "17 13 * * 0"    # weekly Sunday, adds the link crawl
+  workflow_dispatch:
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  LYCHEE_VERSION: "0.15.1"
+
+jobs:
+  endpoints:
+    name: Redirect and listing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the booking redirect and the listing
+        run: |
+          script/monitor redirect
+          script/monitor listing
+
+  canary:
+    name: Booking-clicks canary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the token exists
+        id: token
+        env:
+          CF_AE_TOKEN: ${{ secrets.CF_AE_TOKEN }}
+        run: |
+          if [ -z "${CF_AE_TOKEN}" ]; then
+            echo "CF_AE_TOKEN is not set; skipping the canary." >> "$GITHUB_STEP_SUMMARY"
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Click our own button, then insist on the row
+        if: steps.token.outputs.present == 'true'
+        env:
+          CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CF_AE_TOKEN: ${{ secrets.CF_AE_TOKEN }}
+        run: script/monitor canary
+
+  links:
+    name: Link crawl
+    runs-on: ubuntu-latest
+    # Weekly only. On Sunday both crons fire as separate runs; this keeps the
+    # crawl on one of them. Manual runs always include it.
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 13 * * 0'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lychee
+        run: |
+          set -euo pipefail
+          curl -sSL "https://github.com/lycheeverse/lychee/releases/download/lychee-v${LYCHEE_VERSION}/lychee-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz -C /tmp
+          sudo install /tmp/lychee /usr/local/bin/lychee
+
+      - name: Crawl the live sitemap
+        run: |
+          set -euo pipefail
+          # 403 and 429 are accepted because Airbnb and other consumer sites
+          # block datacenter IPs on sight. Treating those as broken would
+          # produce a weekly false alarm and train everyone to ignore this
+          # job; script/monitor listing covers the booking URL specifically,
+          # where only a 404/410 counts as gone.
+          lychee \
+            --user-agent "highlandhideaway-monitor (+https://github.com/${{ github.repository }})" \
+            --max-concurrency 4 \
+            --timeout 30 \
+            --retry-wait-time 5 \
+            --max-retries 2 \
+            --accept 200,206,301,302,403,429 \
+            --exclude-mail \
+            --no-progress \
+            https://highlandhideaway.ca/sitemap.xml
+
+  # A dead man's switch, for the failure this workflow cannot report on its
+  # own: not running at all. GitHub disables scheduled workflows after 60 days
+  # without repo activity, which for a site touched a few times a year is a
+  # realistic way to lose monitoring silently. The ping only happens when
+  # everything above passed; the absence of a ping is what alerts.
+  heartbeat:
+    name: Heartbeat
+    runs-on: ubuntu-latest
+    needs: [endpoints, canary]
+    if: success()
+    steps:
+      - name: Ping the dead man's switch
+        env:
+          HEARTBEAT_URL: ${{ secrets.HEARTBEAT_URL }}
+        run: |
+          if [ -z "${HEARTBEAT_URL}" ]; then
+            echo "HEARTBEAT_URL is not set; nothing to ping." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          curl -sS --max-time 15 --retry 3 "$HEARTBEAT_URL" > /dev/null
+          echo "Pinged the heartbeat." >> "$GITHUB_STEP_SUMMARY"
