@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+#
+# Production monitoring for highlandhideaway.ca.
+#
+# Three checks, each answering a question CI on ./public cannot:
+#
+#   redirect  Does /go/airbnb still 302 to the listing, from Cloudflare?
+#   canary    Does a click actually land a row in booking_clicks?
+#   listing   Does the Airbnb listing URL still resolve to something live?
+#
+# The canary is the reason this exists. src/worker.js swallows write
+# failures on purpose so a broken binding can never cost a booking, which
+# means a silently failing write looks exactly like a quiet week. Waiting
+# for real traffic cannot tell those apart; a synthetic click can, because
+# it knows a row is owed.
+#
+# Usage: script/monitor [redirect|canary|listing|all]
+#
+# Environment:
+#   CF_ACCOUNT_ID  Cloudflare account ID            (canary only)
+#   CF_AE_TOKEN    token with Account Analytics:Read (canary only)
+#   SITE           base URL, default https://highlandhideaway.ca
+#   CANARY_WAIT    seconds to wait for ingestion, default 120
+set -euo pipefail
+
+SITE="${SITE:-https://highlandhideaway.ca}"
+CANARY_WAIT="${CANARY_WAIT:-120}"
+CANARY_SRC="/canary/"
+REDIRECT_TRIES=5
+UA="highlandhideaway-monitor (+https://github.com/hallb/highlandhideaway.ca)"
+
+repo_root() { cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd; }
+
+# The expected destination comes from wrangler.toml rather than a constant
+# here, so changing BOOKING_URL and deploying updates the check with it.
+expected_location() {
+  sed -n 's/^BOOKING_URL[[:space:]]*=[[:space:]]*"\(.*\)"[[:space:]]*$/\1/p' \
+    "$(repo_root)/wrangler.toml" | head -1
+}
+
+fail() { echo "FAIL: $*" >&2; return 1; }
+ok()   { echo "ok: $*"; }
+
+# --- redirect ---------------------------------------------------------------
+# Catches a detached route, a Worker that stopped deploying, and a listing
+# URL that drifted from wrangler.toml. Also catches being served by anything
+# that is not Cloudflare, which is how the GitHub Pages overlap presented.
+check_redirect() {
+  local want; want="$(expected_location)"
+  [ -n "$want" ] || fail "could not read BOOKING_URL from wrangler.toml"
+
+  local i headers status location server
+  for i in $(seq 1 "$REDIRECT_TRIES"); do
+    headers="$(curl -sS -I -A "$UA" --max-time 20 "$SITE/go/airbnb?src=%2Fmonitor%2F")"
+    status="$(printf '%s' "$headers" | awk 'NR==1{print $2}')"
+    location="$(printf '%s' "$headers" | awk 'tolower($1)=="location:"{print $2}' | tr -d '\r')"
+    server="$(printf '%s' "$headers" | awk 'tolower($1)=="server:"{print $2}' | tr -d '\r')"
+
+    [ "$status" = "302" ] || fail "request $i: expected 302, got ${status:-no status}"
+    [ "$location" = "$want" ] || fail "request $i: redirects to '$location', wrangler.toml says '$want'"
+    [ "$server" = "cloudflare" ] || fail "request $i: served by '${server:-unknown}', not cloudflare"
+  done
+  ok "$REDIRECT_TRIES/$REDIRECT_TRIES requests 302 to $want via cloudflare"
+}
+
+# --- canary -----------------------------------------------------------------
+# Click our own button, then insist on finding the row. Analytics Engine
+# ingestion lags by roughly a minute, so a query that runs too soon returns
+# an empty result that is indistinguishable from a failed write -- hence the
+# wait, which is deliberately generous.
+check_canary() {
+  : "${CF_ACCOUNT_ID:?CF_ACCOUNT_ID is required for the canary}"
+  : "${CF_AE_TOKEN:?CF_AE_TOKEN is required for the canary}"
+
+  local before status
+  before="$(date -u +'%Y-%m-%d %H:%M:%S')"
+
+  status="$(curl -sS -o /dev/null -w '%{http_code}' -A "$UA" --max-time 20 \
+    -H "Referer: $SITE$CANARY_SRC" \
+    "$SITE/go/airbnb?src=$(printf '%s' "$CANARY_SRC" | sed 's|/|%2F|g')")"
+  [ "$status" = "302" ] || fail "canary click returned $status, expected 302"
+
+  echo "canary click sent at ${before}Z; waiting ${CANARY_WAIT}s for ingestion"
+  sleep "$CANARY_WAIT"
+
+  local rows
+  rows="$(ae_query "SELECT timestamp FROM booking_clicks
+                    WHERE blob1 = '$CANARY_SRC' AND timestamp >= toDateTime('$before')
+                    FORMAT JSONEachRow")"
+
+  # An empty body here is the whole point of the check: the redirect worked,
+  # the visitor reached Airbnb, and nothing was counted.
+  [ -n "$rows" ] || fail "no booking_clicks row for the canary click -- the redirect works but the write is not landing"
+  ok "canary row present ($(printf '%s\n' "$rows" | grep -c .) row(s) since ${before}Z)"
+}
+
+ae_query() {
+  curl -sS --max-time 30 \
+    "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/analytics_engine/sql" \
+    -H "Authorization: Bearer $CF_AE_TOKEN" --data "$1"
+}
+
+# --- listing ----------------------------------------------------------------
+# Airbnb bot-blocks datacenter IPs, so a 403 from a GitHub runner says
+# nothing about the listing and must not page anyone. Only a 404 or 410 --
+# the listing genuinely gone -- is treated as a failure.
+check_listing() {
+  local url status
+  url="$(expected_location)"
+  status="$(curl -sS -o /dev/null -w '%{http_code}' -A "$UA" --max-time 30 -L "$url" || echo 000)"
+
+  case "$status" in
+    2*|3*)     ok "listing $url responds $status" ;;
+    404|410)   fail "listing $url is gone ($status)" ;;
+    000)       echo "inconclusive: $url did not respond in time (network, not necessarily the listing)" ;;
+    *)         echo "inconclusive: $url returned $status -- Airbnb blocks datacenter IPs, so this is not proof of rot" ;;
+  esac
+}
+
+main() {
+  local target="${1:-all}" rc=0
+  case "$target" in
+    redirect) check_redirect ;;
+    canary)   check_canary ;;
+    listing)  check_listing ;;
+    all)
+      check_redirect || rc=1
+      check_listing  || rc=1
+      check_canary   || rc=1
+      return $rc
+      ;;
+    *) echo "usage: script/monitor [redirect|canary|listing|all]" >&2; return 2 ;;
+  esac
+}
+
+main "$@"
