@@ -62,33 +62,58 @@ Each post should include `summary`, `tags`, `categories`, optional `series`, `de
 
 ## 🍁 Upcoming Posts — Autumn 2026
 
-Four seasonal posts to draft next. An outline for these exists in a Claude AI
-chat transcript; fold it in here when it's to hand.
+Full brief: [`fall_2026_content_brief.md`](fall_2026_content_brief.md). All four
+posts exist in `content/posts/` as drafts (`draft: true`) with TODOs in the
+files. Read the brief before touching any of them.
 
-- [ ] `haliburton-studio-tour.md` – Haliburton County Studio Tour
-  - Runs Thanksgiving weekend; confirm the 2026 dates and link the official map/schedule rather than restating stops.
-  - Angle: what a guest can realistically fit into one day from the cottage.
-  - Cross-link and de-duplicate with the existing `haliburton-gallery-tour.md` draft, which has an empty "Studio tours" TODO — decide whether that post absorbs this one or points to it.
-  - Publish: late September, ahead of the weekend.
+**Verified dates (per brief, Aug 2026):**
 
-- [ ] `canadian-thanksgiving.md` – Thanksgiving at the Hideaway (Mon 12 Oct 2026)
-  - **Mention the thrifting platter** — the serving platter picked up thrifting, and how it ends up on the table.
-  - Cooking for a group in the cottage kitchen; link [cooking at the cottage](/posts/cooking-at-the-cottage/) and the [one-week meal plan](/posts/one-week-cottage-meal-plan/).
-  - Overlaps the studio tour weekend and near-peak colour — cross-link both.
-  - Publish: mid/late September.
+| Item | Date |
+|---|---|
+| Studio Tour, weekend 1 | Sat 3 – Sun 4 Oct 2026, 10am–5pm |
+| Studio Tour, weekend 2 | Sat 10 – Sun 11 Oct 2026, 10am–5pm |
+| Canadian Thanksgiving | Mon 12 Oct 2026 (long weekend Sat 10 – Mon 12) |
+| American Thanksgiving | Thu 26 Nov 2026 |
+| Artist Exhibition, The Space | 18 Sept – 18 Oct 2026 |
 
-- [ ] `american-thanksgiving.md` – For US guests (Thu 26 Nov 2026)
-  - Late-November reality check: leaves down, cold, early dark, wood stove season. Link [lighting the wood stove](/posts/lighting-the-wood-stove/) and [cozy night in](/posts/cozy-night-in/).
-  - Practical notes for cross-border guests — driving up, the steep driveway, snow tires/AWD, grocery stops before arrival.
-  - Publish: early November.
+The second tour weekend *is* the Thanksgiving long weekend. That overlap is the
+weekend worth selling.
 
-- [ ] `fall-colours.md` – Fall colours on the property
-  - **Include some silvics** — the species doing the colouring (sugar maple, red maple, birch, aspen, oak) and why each turns when and what colour it does; how aspect, elevation, and soil moisture on the 23 acres stagger the turn.
-  - Peak timing in the Highlands and how much it moves year to year; where to look from — the grounds, the tracks into the forest, the lake.
-  - Needs photographs before it publishes.
+**Rules from the brief:** first person and genuinely lived — invent nothing,
+including shop names and meals. Re-verify every fact at draft time; several
+figures come from sources that disagree. CTA is narrative, not a banner.
+
+- [ ] `haliburton-studio-tour.md` – bottom of funnel, highest intent
+  - Opens on the glass blowing studio Ben visited last year. **Ben has to write that opening** — the draft leaves it deliberately thin.
+  - Hedged school history is in the draft (1967 start, Royal View Lodge, Fleming extension division 1967 *or* 1969, Glebe Park in 2004). Resolve or keep the hedge.
+  - Verify studio and artist counts against thestudiotour.ca; link the map rather than restating stops.
+  - Publish: mid-September, before the first weekend.
+
+- [ ] `canadian-thanksgiving.md` – middle of funnel
+  - Opens on the Turkish platter found thrifting. **Ben to fill in the story and photograph the platter.**
+  - Angle is Thanksgiving without the hosting, not a recipe post.
+  - Name the thrift shops only if Ben can supply real ones.
+  - Publish: late September.
+
+- [ ] `fall-colours.md` – top of funnel, **backlog and not properly briefed**
+  - Light science, a stated peak projection, an outbound link to the Ontario Parks colour tracker, and heavy original photography.
+  - Silvics section is scaffolded but unwritten. Verify species behaviour before publishing rather than writing from memory.
+  - Does not work without photographs.
   - Publish: mid-September, before peak.
 
----
+- [ ] `american-thanksgiving.md` – **not in the brief at all**
+  - The brief confirms the date and nothing else. Decide whether this post is wanted before writing it.
+  - Publish: early November, if it goes ahead.
+
+**Do not merge the Studio Tour and Thanksgiving posts.** Different search
+intent is the whole reason they're separate. They cross-link instead — that's
+already wired up in both drafts.
+
+Open question: `haliburton-gallery-tour.md` is a separate empty stub with a
+"Studio tours" TODO that the studio tour post now covers. Point it at the new
+post, or drop it.
+
+Out of scope: Haliburton Forest Trail Race (12 Sept) — that weekend is booked.
 
 ## 💡 CTA Integration
 
