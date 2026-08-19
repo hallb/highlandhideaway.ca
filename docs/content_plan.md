@@ -60,6 +60,36 @@ Each post should include `summary`, `tags`, `categories`, optional `series`, `de
 
 ---
 
+## 🍁 Upcoming Posts — Autumn 2026
+
+Four seasonal posts to draft next. An outline for these exists in a Claude AI
+chat transcript; fold it in here when it's to hand.
+
+- [ ] `haliburton-studio-tour.md` – Haliburton County Studio Tour
+  - Runs Thanksgiving weekend; confirm the 2026 dates and link the official map/schedule rather than restating stops.
+  - Angle: what a guest can realistically fit into one day from the cottage.
+  - Cross-link and de-duplicate with the existing `haliburton-gallery-tour.md` draft, which has an empty "Studio tours" TODO — decide whether that post absorbs this one or points to it.
+  - Publish: late September, ahead of the weekend.
+
+- [ ] `canadian-thanksgiving.md` – Thanksgiving at the Hideaway (Mon 12 Oct 2026)
+  - **Mention the thrifting platter** — the serving platter picked up thrifting, and how it ends up on the table.
+  - Cooking for a group in the cottage kitchen; link [cooking at the cottage](/posts/cooking-at-the-cottage/) and the [one-week meal plan](/posts/one-week-cottage-meal-plan/).
+  - Overlaps the studio tour weekend and near-peak colour — cross-link both.
+  - Publish: mid/late September.
+
+- [ ] `american-thanksgiving.md` – For US guests (Thu 26 Nov 2026)
+  - Late-November reality check: leaves down, cold, early dark, wood stove season. Link [lighting the wood stove](/posts/lighting-the-wood-stove/) and [cozy night in](/posts/cozy-night-in/).
+  - Practical notes for cross-border guests — driving up, the steep driveway, snow tires/AWD, grocery stops before arrival.
+  - Publish: early November.
+
+- [ ] `fall-colours.md` – Fall colours on the property
+  - **Include some silvics** — the species doing the colouring (sugar maple, red maple, birch, aspen, oak) and why each turns when and what colour it does; how aspect, elevation, and soil moisture on the 23 acres stagger the turn.
+  - Peak timing in the Highlands and how much it moves year to year; where to look from — the grounds, the tracks into the forest, the lake.
+  - Needs photographs before it publishes.
+  - Publish: mid-September, before peak.
+
+---
+
 ## 💡 CTA Integration
 
 - [ ] Create `layouts/shortcodes/booknow.html`
