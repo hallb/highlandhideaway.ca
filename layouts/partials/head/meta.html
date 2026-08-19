@@ -1,0 +1,40 @@
+{{- /*
+    Copy of themes/DoIt/layouts/partials/head/meta.html with one addition at the
+    end: noindex on taxonomy pages. Overriding the partial is what forces the
+    copy -- Hugo replaces a partial wholesale rather than extending it -- so if
+    the theme submodule is updated, diff this against the theme's version.
+    See ISS-5 for the theme-update process.
+*/ -}}
+{{- $params := .Scratch.Get "params" -}}
+
+<meta name="Description" content="{{ $params.description | default .Site.Params.description }}">
+
+{{- template "_internal/opengraph.html" . -}}
+{{- template "_internal/twitter_cards.html" . -}}
+
+<meta name="application-name" content="{{ .Site.Params.app.title | default .Site.Title }}">
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Params.app.title | default .Site.Title }}">
+
+<meta name="theme-color" content="#f8f8f8">
+
+{{- with .Site.Params.app.tileColor -}}
+    <meta name="msapplication-TileColor" content="{{ . }}">
+{{- end -}}
+
+{{- with .Site.Params.social.Twitter -}}
+<meta name="twitter:creator" content="@{{ . }}" />
+{{- end -}}
+
+{{- /*
+    Tag and category pages are navigation, not destinations. There are 50 of
+    them against 23 real pages, all auto-generated, none of them anything a
+    person searches for -- indexed, they dilute the site rather than add to it.
+    "follow" keeps the link equity flowing through to the posts they list.
+
+    This is a second robots meta alongside the noodp one in the theme's
+    baseof.html, which is fine: search engines combine the directives they find
+    and the most restrictive wins.
+*/ -}}
+{{- if in (slice "taxonomy" "term") .Kind -}}
+<meta name="robots" content="noindex, follow">
+{{- end -}}
