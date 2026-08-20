@@ -84,6 +84,9 @@ you want them live.
 The second tour weekend *is* the Thanksgiving long weekend. That overlap is the
 weekend worth selling.
 
+The brief's studio and artist counts are stale — see the Studio Tour entry
+below for the verified figures.
+
 **Rules from the brief:** first person and genuinely lived — invent nothing,
 including shop names and meals. Re-verify every fact at draft time; several
 figures come from sources that disagree. CTA is narrative, not a banner.
@@ -91,11 +94,10 @@ figures come from sources that disagree. CTA is narrative, not a banner.
 - [X] `haliburton-studio-tour.md` – bottom of funnel, highest intent. **Published 19 Aug 2026.**
   - Opens on Artech Studios. Placeholder featuredImage: `forest-road-autumn.jpg`.
   - Still to check, carried over from the draft comments:
-    - [ ] Studio count. The post says "over twenty-five studios"; the brief said ~21 studios and 29–37 artists. Confirm against thestudiotour.ca.
-    - [ ] Confirm the 10am–5pm hours and the Tory Hill to Carnarvon range.
-    - [ ] The Fleming date reads "shortly after", which sidesteps the 1967-vs-1969 conflict. Resolve it or leave the hedge deliberately.
+    - [X] Studio count, dates, 10am–5pm hours, and the Tory Hill to Carnarvon range — **Ben verified against thestudiotour.ca, 19 Aug 2026.** The post's "over twenty-five studios" stands; the brief's ~21 studios and 29–37 artists are superseded.
+    - [X] Fleming date — Ben cut the 1967-vs-1969 hedge; the post now reads "shortly after", which is true under either version.
+    - [X] "Halls Lakes" — Ben's spelling, left as written.
     - [ ] Confirm the 10–12 Oct weekend is still open for booking.
-    - [ ] Check "Hall's Lake" and "Boshkung" against local usage.
     - [ ] Swap in a photo of Artech if one exists.
 
 - [X] `canadian-thanksgiving.md` – middle of funnel. **Published 19 Aug 2026.**
