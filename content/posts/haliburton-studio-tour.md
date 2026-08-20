@@ -57,7 +57,7 @@ jewellery, textile and fabric art, painting, leatherwork, photography,
 quilting, and metal art.
 
 Some of these studios are only open to visitors on these two weekends of the
-year, so that worth planning around.
+year, so that's worth planning around.
 
 For the map, the studio and artist list, and the latest information, see
 [thestudiotour.ca](https://www.thestudiotour.ca/).
