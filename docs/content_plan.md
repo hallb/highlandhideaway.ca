@@ -62,9 +62,14 @@ Each post should include `summary`, `tags`, `categories`, optional `series`, `de
 
 ## 🍁 Upcoming Posts — Autumn 2026
 
-Full brief: [`fall_2026_content_brief.md`](fall_2026_content_brief.md). All four
-posts exist in `content/posts/` as drafts (`draft: true`) with TODOs in the
-files. Read the brief before touching any of them.
+Full brief: [`fall_2026_content_brief.md`](fall_2026_content_brief.md). The
+Studio Tour and Thanksgiving posts are **published**; fall colours and American
+Thanksgiving are still `draft: true` with TODOs in the files. Read the brief
+before touching any of them.
+
+Note on dates: `buildFuture` is not set in `hugo.toml`, so a post dated in the
+future will not build even with `draft: false`. Date posts on or before the day
+you want them live.
 
 **Verified dates (per brief, Aug 2026):**
 
@@ -83,17 +88,22 @@ weekend worth selling.
 including shop names and meals. Re-verify every fact at draft time; several
 figures come from sources that disagree. CTA is narrative, not a banner.
 
-- [ ] `haliburton-studio-tour.md` – bottom of funnel, highest intent
-  - Opens on the glass blowing studio Ben visited last year. **Ben has to write that opening** — the draft leaves it deliberately thin.
-  - Hedged school history is in the draft (1967 start, Royal View Lodge, Fleming extension division 1967 *or* 1969, Glebe Park in 2004). Resolve or keep the hedge.
-  - Verify studio and artist counts against thestudiotour.ca; link the map rather than restating stops.
-  - Publish: mid-September, before the first weekend.
+- [X] `haliburton-studio-tour.md` – bottom of funnel, highest intent. **Published 19 Aug 2026.**
+  - Opens on Artech Studios. Placeholder featuredImage: `forest-road-autumn.jpg`.
+  - Still to check, carried over from the draft comments:
+    - [ ] Studio count. The post says "over twenty-five studios"; the brief said ~21 studios and 29–37 artists. Confirm against thestudiotour.ca.
+    - [ ] Confirm the 10am–5pm hours and the Tory Hill to Carnarvon range.
+    - [ ] The Fleming date reads "shortly after", which sidesteps the 1967-vs-1969 conflict. Resolve it or leave the hedge deliberately.
+    - [ ] Confirm the 10–12 Oct weekend is still open for booking.
+    - [ ] Check "Hall's Lake" and "Boshkung" against local usage.
+    - [ ] Swap in a photo of Artech if one exists.
 
-- [ ] `canadian-thanksgiving.md` – middle of funnel
-  - Opens on the Turkish platter found thrifting. **Ben to fill in the story and photograph the platter.**
-  - Angle is Thanksgiving without the hosting, not a recipe post.
-  - Name the thrift shops only if Ben can supply real ones.
-  - Publish: late September.
+- [X] `canadian-thanksgiving.md` – middle of funnel. **Published 19 Aug 2026.**
+  - Opens on the turkey platter (the brief said "Turkish" — that was wrong). Placeholder featuredImage: `dining-area.jpg`.
+  - Still to check:
+    - [ ] Photograph the platter and use it as the featured image.
+    - [ ] Confirm "Redmans Records" and "McFaddens" apostrophes against the shops' own usage.
+    - [ ] Confirm the long weekend is still open for booking.
 
 - [ ] `fall-colours.md` – top of funnel, **backlog and not properly briefed**
   - Light science, a stated peak projection, an outbound link to the Ontario Parks colour tracker, and heavy original photography.
@@ -109,9 +119,9 @@ figures come from sources that disagree. CTA is narrative, not a banner.
 intent is the whole reason they're separate. They cross-link instead — that's
 already wired up in both drafts.
 
-Open question: `haliburton-gallery-tour.md` is a separate empty stub with a
-"Studio tours" TODO that the studio tour post now covers. Point it at the new
-post, or drop it.
+`haliburton-gallery-tour.md` has been renamed to `haliburton-galleries.md` and
+is still a `draft: true` stub. Its "Studio tours" section is now covered by the
+published studio tour post, so it should link there rather than repeat it.
 
 Out of scope: Haliburton Forest Trail Race (12 Sept) — that weekend is booked.
 
