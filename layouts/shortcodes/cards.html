@@ -1,0 +1,13 @@
+{{- /* Grid wrapper for {{< card >}}. Use it around two or more cards:
+
+         {{< cards >}}
+           {{< card title="Kate's Burger Counter" href="https://..." meta="Casual · $$" >}}
+           {{< card title="Post House" href="https://..." meta="Fine dining · $$$$" >}}
+         {{< /cards >}}
+
+       Two columns above 900px, one below. Styled by .hh-cards in
+       assets/css/_hh.scss, which sits outside .hh-post so this also works on
+       the home page and on pages using the default single layout. */ -}}
+<div class="hh-cards">
+    {{- .Inner -}}
+</div>

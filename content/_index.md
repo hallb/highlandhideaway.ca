@@ -21,22 +21,28 @@ try.
 
 ## Before you arrive
 
-- [Welcome and overview](/posts/welcome/)
-- [Getting here and parking](/posts/getting-here-and-parking/)
-- [Sleeping arrangements](/posts/sleeping-arrangements/)
-- [What to bring](/posts/what-to-bring/)
+{{< cards >}}
+{{< card title="Welcome and overview" href="/posts/welcome/" meta="What the cottage is, and who it suits" >}}
+{{< card title="Getting here and parking" href="/posts/getting-here-and-parking/" meta="The driveway is steep — read this one" >}}
+{{< card title="Sleeping arrangements" href="/posts/sleeping-arrangements/" meta="Three queens, plus a cot and a trundle" >}}
+{{< card title="What to bring" href="/posts/what-to-bring/" meta="Bedding and towels are not provided" >}}
+{{< /cards >}}
 
 ## While you are here
 
-- [Guest access](/posts/guest-access/)
-- [Cooking at the cottage](/posts/cooking-at-the-cottage/)
-- [Lighting the wood stove](/posts/lighting-the-wood-stove/)
-- [The grounds](/posts/the-grounds/)
+{{< cards >}}
+{{< card title="Guest access" href="/posts/guest-access/" meta="What is yours, and the two locked closets" >}}
+{{< card title="Cooking at the cottage" href="/posts/cooking-at-the-cottage/" meta="A well-equipped kitchen, and what is in it" >}}
+{{< card title="Lighting the wood stove" href="/posts/lighting-the-wood-stove/" meta="Step by step, for the first night" >}}
+{{< card title="The grounds" href="/posts/the-grounds/" meta="Fire pit, swing, trails, and the red shed" >}}
+{{< /cards >}}
 
 ## The area
 
-- [What is nearby](/posts/whats-nearby/)
-- [Hidden gems nearby](/posts/hidden-gems-nearby/)
-- [Photos](/photos/)
+{{< cards >}}
+{{< card title="What is nearby" href="/posts/whats-nearby/" meta="Haliburton, Minden, and Algonquin" >}}
+{{< card title="Hidden gems nearby" href="/posts/hidden-gems-nearby/" meta="The quieter places worth the drive" >}}
+{{< card title="The property" href="/photos/" meta="Photographs, inside and out" >}}
+{{< /cards >}}
 
 Questions before you book? [Get in touch](/posts/contact/).

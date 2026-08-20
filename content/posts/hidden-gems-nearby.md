@@ -5,6 +5,9 @@ date: 2026-06-14
 categories: ["Area"]
 tags: ["nearby", "hidden gems", "area"]
 featuredImage: "/images/trillium-white-closeup.jpg"
+# The featured image is a macro shot; any 3:1 hero crop of it is an
+# unreadable leaf. hero: overrides the source for the hero only.
+hero: "/images/dock-autumn.jpg"
 draft: false
 ---
 
@@ -28,8 +31,10 @@ In addition to swimming at the dock across the road, we recommend two other loca
 
 Two very different places that are right next to each other
 
-* [Kate's Burger Counter](https://maps.app.goo.gl/HTMNGvFUvuumsV1o9) $$
-* [Post House](https://haliburtonposthouse.ca/dining/) $$$$
+{{< cards >}}
+{{< card title="Kate's Burger Counter" href="https://maps.app.goo.gl/HTMNGvFUvuumsV1o9" meta="Casual · $$" >}}
+{{< card title="Post House" href="https://haliburtonposthouse.ca/dining/" meta="Fine dining · $$$$" >}}
+{{< /cards >}}
 
 ## On the property
 
