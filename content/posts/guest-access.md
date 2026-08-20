@@ -5,6 +5,8 @@ date: 2024-11-03
 categories: ["Cottage Info"]
 tags: ["access", "arrival", "practical"]
 featuredImage: "/images/exterior-front.jpg"
+# exterior-front.jpg is only 720x960, so the hero would upscale it.
+hero: "/images/exterior-porch-spring.jpg"
 draft: false
 ---
 

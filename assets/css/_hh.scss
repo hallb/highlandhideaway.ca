@@ -1,0 +1,262 @@
+/* ============================================================
+   Highland Hideaway — editorial post + booking rail
+   Light = design 1a · [theme=dark] = design 2a
+   ============================================================ */
+
+// ---- Palette: 1a (light) ----
+:root {
+  --hh-bg:        #f6f4ef;
+  --hh-surface:   #fbfaf6;
+  --hh-border:    #e4ded2;
+  --hh-ink:       #26221c;
+  --hh-ink-soft:  #3a352d;
+  --hh-body:      #4a453c;
+  --hh-muted:     #6f6a5e;   // deviation: was #8a8478 = 3.55:1 on --hh-surface,
+                             // below AA for the 12-14px text this drives. Now 5.15:1.
+  --hh-accent:    #9a4a2f;   // terracotta
+  --hh-accent-ln: #d8b8ab;   // link underline
+  --hh-btn-bg:    #9a4a2f;
+  --hh-btn-fg:    #fdf6f2;
+  --hh-hero-tint: rgba(20, 17, 12, 0.55);
+  --hh-hero-eyebrow: #efe0d2;   // deviation: was --hh-eyebrow #9a4a2f, which is
+                                // near-invisible against --hh-hero-tint. The mockup
+                                // reads as light cream.
+  --hh-img-filter: none;
+}
+
+// ---- Palette: 2a (warm charcoal / cabin at night) ----
+[theme="dark"] {
+  --hh-bg:        #1d1913;
+  --hh-surface:   #26211a;
+  --hh-border:    rgba(236, 229, 216, 0.14);
+  --hh-ink:       #f4ede1;
+  --hh-ink-soft:  #d9d1c2;
+  --hh-body:      rgba(236, 229, 216, 0.72);
+  --hh-muted:     rgba(236, 229, 216, 0.6);   // deviation: 0.5 was 4.25:1 on
+                                              // --hh-surface, below AA. 0.6 is 5.5:1.
+  --hh-accent:    #e0a582;
+  --hh-accent-ln: rgba(224, 165, 130, 0.4);
+  --hh-btn-bg:    #c9744d;
+  --hh-btn-fg:    #1d1913;
+  --hh-hero-tint: rgba(20, 16, 10, 0.75);
+  --hh-hero-eyebrow: #e0a582;   // deviation: renamed with the light value above.
+  --hh-img-filter: brightness(0.82) saturate(0.95);
+}
+
+$serif: "Newsreader", Georgia, serif;
+$sans:  "Public Sans", system-ui, -apple-system, sans-serif;
+
+// ============================================================
+//  Post shell
+// ============================================================
+.hh-post {
+  background: var(--hh-bg);
+  color: var(--hh-ink);
+  font-family: $sans;
+
+  // ---- Hero ----
+  .hh-hero {
+    position: relative;
+    height: 420px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: var(--hh-img-filter);
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent, var(--hh-hero-tint));
+    }
+    &__caption {
+      position: absolute;
+      left: 48px;
+      right: 48px;
+      bottom: 40px;
+      z-index: 1;
+    }
+    &__eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hh-hero-eyebrow);
+      margin-bottom: 14px;
+    }
+    &__title {
+      font-family: $serif;
+      font-weight: 500;
+      font-size: 56px;
+      line-height: 1.05;
+      margin: 0;
+      max-width: 620px;
+      text-wrap: balance;
+      color: #f6efe4;
+    }
+  }
+
+  // ---- Body grid: article + sticky rail ----
+  .hh-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 48px;
+    padding: 48px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  // ---- Article typography ----
+  .hh-body {
+    min-width: 0;
+
+    .hh-lead {
+      font-family: $serif;
+      font-size: 22px;
+      line-height: 1.55;
+      color: var(--hh-ink-soft);
+      margin: 0 0 36px;
+    }
+    h2 {
+      font-family: $serif;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 1.2;
+      color: var(--hh-ink);
+      margin: 0 0 12px;
+    }
+    p, li {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--hh-body);
+    }
+    p { margin: 0 0 32px; }
+
+    a {
+      color: var(--hh-accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--hh-accent-ln);
+      &:hover { border-bottom-color: var(--hh-accent); }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      li {
+        position: relative;
+        padding-left: 18px;
+        margin: 0;
+        &::before { content: "·"; position: absolute; left: 0; color: var(--hh-accent); }
+      }
+    }
+
+    img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      margin: 0 0 8px;
+      filter: var(--hh-img-filter);
+    }
+    figcaption, .hh-caption {
+      font-size: 12px;
+      color: var(--hh-muted);
+    }
+  }
+}
+
+// ============================================================
+//  Cards
+// ============================================================
+// deviation: lifted out of .hh-post. The {{< cards >}} shortcode is also used on
+// the home page and photos.md, which render through index.html and
+// _default/single.html and so never get a .hh-post ancestor.
+.hh-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 0 0 32px;
+
+  .hh-card {
+    border: 1px solid var(--hh-border);
+    background: var(--hh-surface);
+    padding: 18px;
+    .name  { font-family: $serif; font-size: 19px; color: var(--hh-ink); }
+    // .meta is the general-purpose alias; .price is the design file's name for it.
+    .price,
+    .meta  { font-size: 13px; color: var(--hh-muted); margin-top: 4px; }
+  }
+}
+
+// ============================================================
+//  Sticky booking rail
+// ============================================================
+.hh-book {
+  align-self: start;
+  position: sticky;
+  top: 24px;
+
+  &__card {
+    border: 1px solid var(--hh-border);
+    background: var(--hh-surface);
+    padding: 24px;
+  }
+  &__title {
+    font-family: $serif;
+    font-size: 22px;
+    line-height: 1.25;
+    color: var(--hh-ink);
+    margin-bottom: 6px;
+  }
+  &__pitch {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--hh-muted);
+    margin: 0 0 18px;
+  }
+  &__btn {
+    display: block;
+    text-align: center;
+    background: var(--hh-btn-bg);
+    color: var(--hh-btn-fg);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px;
+    text-decoration: none;
+    border: 0;
+    &:hover { filter: brightness(1.05); }
+  }
+  &__meta {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--hh-muted);
+  }
+  &__ask {
+    font-size: 12px;
+    color: var(--hh-muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+    a { color: inherit; border-bottom: 1px solid var(--hh-border); text-decoration: none; }
+  }
+}
+
+// ============================================================
+//  Responsive: collapse rail below the article
+// ============================================================
+@media (max-width: 900px) {
+  .hh-post {
+    .hh-grid { grid-template-columns: 1fr; gap: 32px; padding: 28px; }
+    .hh-hero { height: 300px; &__title { font-size: 38px; } &__caption { left: 24px; right: 24px; bottom: 28px; } }
+  }
+  .hh-cards { grid-template-columns: 1fr; }   // deviation: follows .hh-cards out of .hh-post
+  .hh-book { position: static; }
+}

@@ -13,20 +13,64 @@ theme = 'DoIt'
 defaultContentLanguage = "en"
 languageCode = 'en-us'
 
-# Menu config
+# Menu config. The URLs are unchanged -- only the labels moved -- so existing
+# internal links, the sitemap and htmltest are unaffected.
 [menu]
   [[menu.main]]
     weight = 1
     identifier = "posts"
-    name = "Posts"
+    name = "Guides"
     url = "/posts/"
     title = ""
   [[menu.main]]
     weight = 2
+    identifier = "photos"
+    name = "The Property"
+    url = "/photos/"
+    title = ""
+  [[menu.main]]
+    weight = 3
     identifier = "about"
     name = "About"
     url = "/about/"
     title = ""
+
+# Hugo Pipes can only process files it sees under assets/. The images live in
+# static/ and are referenced as plain "/images/foo.jpg" from featuredImage front
+# matter, from {{< image >}}, and -- crucially -- raw from head/seo.html,
+# rss/item.html, plugin/share.html and the params.images / seo.images /
+# home.profile.avatarURL settings below. Moving them would 404 every JSON-LD,
+# RSS and Open Graph image, so the same directory is mounted twice instead: once
+# as static (published verbatim) and once as assets (resources.Get resolves it,
+# so params.image.optimise below can generate WebP srcsets).
+#
+# Declaring any mount replaces ALL of Hugo's defaults, hence the seven
+# re-declarations before the one that actually does the work.
+[module]
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "i18n"
+    target = "i18n"
+  [[module.mounts]]
+    source = "archetypes"
+    target = "archetypes"
+  [[module.mounts]]
+    source = "static/images"
+    target = "assets/images"
 
 [params]
   # DoIt theme version
@@ -40,12 +84,29 @@ languageCode = 'en-us'
   # website description for RSS, SEO, Open Graph and Twitter Cards
   description = 'A peaceful retreat in the heart of the Highlands'
   keywords = 'cottage, vacation, highlands, retreat'
+  # Second half of the post hero eyebrow; the first half is the category.
+  region = "Haliburton Highlands"
   # Default share image. Hugo's _internal/opengraph.html and
   # _internal/twitter_cards.html (which DoIt calls) read params.images —
   # NOT params.seo.images — and twitter:card is upgraded to
   # summary_large_image automatically once an image is present.
   images = ["/images/dock-autumn.jpg"]
   
+  # Turn on the theme's image pipeline. Combined with the static/images ->
+  # assets/images mount above, every featuredImage and {{< image >}} gains an
+  # 800/1200/1600w WebP srcset and intrinsic width/height.
+  [params.image]
+    optimise = true
+
+  # Header wordmark. Setting header.title at all skips the theme's .Site.Title
+  # fallback, so name has to be spelled out or the wordmark disappears.
+  # partials/header.html renders logo through plugin/image.html at 32x32 in both
+  # the desktop and mobile headers; _custom.scss rounds it.
+  [params.header]
+    [params.header.title]
+      logo = "/images/site-avatar-small.png"
+      name = "Highland Hideaway"
+
   # Home profile config
   [params.home.profile]
     avatarURL = "/images/site-avatar-small.png"
@@ -56,9 +117,21 @@ languageCode = 'en-us'
   # defined once and used via the {{< book >}} shortcode.
   [params.booking]
     # Routed through the Worker in src/worker.js, which counts the click and
-    # 302s to the listing. The shortcode appends ?src= with the page path.
+    # 302s to the listing. partials/booking-url.html appends ?src= with the page
+    # path and &pos= with the placement.
     url = "/go/airbnb"
     text = "Book now on Airbnb"
+    # The sticky rail card on every post. Figures are from docs/current_content.md.
+    railText = "Check dates on Airbnb"
+    railTitle = "Your basecamp for all of this"
+    pitch = "A three-bedroom cottage on 23 private acres, dock across the road. Sleeps up to six."
+    bedrooms = 3
+    bathrooms = 1
+    guests = 6
+    acres = 23
+    askText = "Prefer to ask first?"
+    askLinkText = "Contact us"
+    askURL = "/posts/contact/"
 
   # Author config
   [params.author]

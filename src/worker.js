@@ -17,7 +17,7 @@
  */
 const FALLBACK_URL = "https://airbnb.ca/h/hideaway-near-haliburton";
 
-function recordClick(env, request, source) {
+function recordClick(env, request, source, position) {
   if (!env.CLICKS) return;
   try {
     env.CLICKS.writeDataPoint({
@@ -26,6 +26,10 @@ function recordClick(env, request, source) {
         source.slice(0, 96),
         request.headers.get("referer") || "",
         request.cf?.country || "",
+        // blob4 is appended rather than inserted: rows written before the
+        // sticky rail existed carry three blobs, and every Grafana panel reads
+        // blob1-3, so adding one on the end costs no history.
+        position.slice(0, 16),
       ],
       doubles: [1],
     });
@@ -40,7 +44,10 @@ export default {
 
     if (url.pathname === "/go/airbnb") {
       const source = url.searchParams.get("src") || "unknown";
-      recordClick(env, request, source);
+      // Which CTA on the page: "inline" for the {{< book >}} shortcode,
+      // "rail" for the sticky card on every post.
+      const position = url.searchParams.get("pos") || "unknown";
+      recordClick(env, request, source, position);
       return new Response(null, {
         status: 302,
         headers: {

@@ -1,0 +1,23 @@
+{{- /* Builds the outbound booking URL. Every link to the listing goes through
+       here, so the destination changes in one place: params.booking.url.
+
+       Set it to the absolute Airbnb URL to link straight out, or to "/go/airbnb"
+       to route through the Worker in src/worker.js that counts the click. A
+       local path also gets:
+         ?src=  the page the click came from, which is what the Grafana
+                dashboard groups on (blob1) -- it must stay exactly the page
+                path or every existing panel loses its history.
+         &pos=  where on the page the link was, so the inline shortcode and the
+                sticky rail can be told apart (blob4).
+
+       Call with a dict: {"Page" $page "Position" "rail"} */ -}}
+{{- $url := site.Params.booking.url | default "https://airbnb.ca/h/hideaway-near-haliburton" -}}
+{{- if hasPrefix $url "/" -}}
+  {{- $src := .Page.RelPermalink | default "/" -}}
+  {{- $sep := cond (strings.Contains $url "?") "&" "?" -}}
+  {{- $url = printf "%s%ssrc=%s" $url $sep (urlquery $src) -}}
+  {{- with .Position -}}
+    {{- $url = printf "%s&pos=%s" $url (urlquery .) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}

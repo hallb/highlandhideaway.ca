@@ -1,0 +1,25 @@
+{{- /* One card. All parameters are named; there is no inner content, so it is
+       always self-contained:
+
+         {{< card title="Post House" href="https://..." meta="Fine dining · $$$$" >}}
+
+         title  required, the card's heading
+         href   optional, makes the title a link. External hrefs get
+                target=_blank rel=noopener, matching the theme's link handling.
+         meta   optional, the small line under it -- price, distance, category */ -}}
+{{- $title := .Get "title" -}}
+{{- $href := .Get "href" -}}
+{{- $meta := .Get "meta" -}}
+{{- if not $title -}}
+    {{- errorf "card shortcode needs a title (%s)" .Position -}}
+{{- end -}}
+<div class="hh-card">
+    <div class="name">
+        {{- with $href -}}
+            <a href="{{ . }}"{{ if not (hasPrefix . "/") }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $title }}</a>
+        {{- else -}}
+            {{ $title }}
+        {{- end -}}
+    </div>
+    {{- with $meta }}<div class="meta">{{ . }}</div>{{ end -}}
+</div>
