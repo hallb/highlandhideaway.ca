@@ -50,6 +50,11 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      # Cheap and dependency-free, so it runs before the build rather than
+      # after: a broken bot classifier writes wrong analytics silently.
+      - name: Test the Worker
+        run: node script/test
+
       - name: Build
         run: hugo --minify
 

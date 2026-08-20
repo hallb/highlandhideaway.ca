@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+//
+// Tests for src/worker.js.
+//
+// No framework and no package.json on purpose: this repo has neither, and a
+// dependency-free file that `node script/test` runs is worth more than a
+// proper harness nobody installs. If a testing toolchain lands (ISS-17), fold
+// this into it.
+//
+// It covers classifyAgent, which decides whether a booking click came from a
+// browser or from automation (ISS-36). That rule is a regex, and a regex is
+// exactly the kind of thing that looks right and is not: the first draft of it
+// missed lychee, which is our own weekly link crawler and therefore one of the
+// bots most likely to hit the booking redirect.
+//
+// Usage: node script/test
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+const source = readFileSync(join(root, "src/worker.js"), "utf8");
+
+// The Worker is a module with a default export bound to Cloudflare's runtime,
+// so it cannot simply be imported here. Lift the two declarations under test.
+const match = source.match(/const BOT_UA =[\s\S]*?\nfunction classifyAgent[\s\S]*?\n}\n/);
+if (!match) {
+  console.error("could not find BOT_UA / classifyAgent in src/worker.js");
+  process.exit(1);
+}
+const { classifyAgent } = await import(
+  "data:text/javascript," +
+    encodeURIComponent(match[0] + "\nexport { classifyAgent };")
+);
+
+const cases = [
+  // Real browsers. A false "bot" here silently deletes real conversions.
+  ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36", "human"],
+  ["Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15", "human"],
+  ["Mozilla/5.0 (iPhone; CPU iPhone OS 17_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Mobile/15E148 Safari/604.1", "human"],
+  ["Mozilla/5.0 (Android 14; Mobile; rv:129.0) Gecko/129.0 Firefox/129.0", "human"],
+  ["Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0", "human"],
+  ["Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0", "human"],
+
+  // Our own tooling. script/monitor sends the first; the weekly link crawl in
+  // .github/workflows/monitor.yml sends the second, and it follows every
+  // /go/airbnb link on the site.
+  ["highlandhideaway-monitor (+https://github.com/hallb/highlandhideaway.ca)", "bot"],
+  ["lychee/0.24.2", "bot"],
+
+  // Search engines and social unfurlers.
+  ["Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", "bot"],
+  ["Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)", "bot"],
+  ["Mozilla/5.0 (compatible; AhrefsBot/7.0; +http://ahrefs.com/robot/)", "bot"],
+  ["Mozilla/5.0 (compatible; SemrushBot/7~bl; +http://www.semrush.com/bot.html)", "bot"],
+  ["facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)", "bot"],
+  ["Twitterbot/1.0", "bot"],
+  ["WhatsApp/2.23.20.0", "bot"],
+
+  // Scripted clients and headless browsers.
+  ["curl/8.5.0", "bot"],
+  ["Wget/1.21.4", "bot"],
+  ["python-requests/2.32.3", "bot"],
+  ["Go-http-client/2.0", "bot"],
+  ["axios/1.7.2", "bot"],
+  ["Mozilla/5.0 (Linux; Android 6.0.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/Headless Safari/537.36", "bot"],
+
+  // Every browser sends a User-Agent. Nothing that omits one is a person.
+  ["", "bot"],
+  [null, "bot"],
+  [undefined, "bot"],
+];
+
+let failures = 0;
+for (const [ua, want] of cases) {
+  const got = classifyAgent(ua);
+  if (got !== want) {
+    failures++;
+    console.error(`FAIL want=${want} got=${got}  ${JSON.stringify(ua ?? null)}`);
+  }
+}
+
+if (failures) {
+  console.error(`\n${failures} of ${cases.length} failed`);
+  process.exit(1);
+}
+console.log(`classifyAgent: ${cases.length} cases pass`);
+
+// A determined scraper sending a browser string still reads as "human" here,
+// and that is why the row also carries the raw user agent and the network
+// operator. The verdict is a convenience; those two are the evidence.
