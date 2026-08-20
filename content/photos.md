@@ -1,5 +1,5 @@
 ---
-title: "Photos"
+title: "The Property"
 description: "The cottage, the grounds, and the surrounding forest through the seasons."
 featuredImage: "/images/exterior-front.jpg"
 draft: false

@@ -1,0 +1,30 @@
+{{- /* The sticky booking card in the post rail. Every value comes from
+       params.booking so the pitch and the room counts are stated once.
+
+       The markup is the contract assets/css/_hh.scss expects: .hh-book is the
+       grid child that sticks, .hh-book__card is the bordered box, and
+       .hh-book__ask sits outside the card but inside the sticky element. */ -}}
+{{- $b := site.Params.booking -}}
+{{- $url := dict "Page" . "Position" "rail" | partial "booking-url.html" -}}
+<aside class="hh-book">
+    <div class="hh-book__card">
+        <h2 class="hh-book__title">{{ $b.railTitle | default "Your basecamp for all of this" }}</h2>
+        {{- with $b.pitch }}
+        <p class="hh-book__pitch">{{ . }}</p>
+        {{- end }}
+        <a class="hh-book__btn" href="{{ $url }}" data-cta="booking" rel="noopener">
+            {{- $b.railText | default $b.text | default "Check dates on Airbnb" -}}
+        </a>
+        <div class="hh-book__meta">
+            {{- with $b.bedrooms }}<span>{{ . }} bed</span>{{ end -}}
+            {{- with $b.bathrooms }}<span>{{ . }} bath</span>{{ end -}}
+            {{- with $b.guests }}<span>Sleeps {{ . }}</span>{{ end -}}
+        </div>
+    </div>
+    {{- with $b.askURL }}
+    <p class="hh-book__ask">
+        {{ $b.askText | default "Prefer to ask first?" }}<br>
+        <a href="{{ . | relURL }}">{{ $b.askLinkText | default "Contact us" }}</a>
+    </p>
+    {{- end }}
+</aside>

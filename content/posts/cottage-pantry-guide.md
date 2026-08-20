@@ -5,6 +5,8 @@ date: 2025-02-09
 categories: ["Food"]
 tags: ["pantry", "groceries", "cooking"]
 featuredImage: "/images/kitchen-to-dining.jpg"
+# kitchen-to-dining.jpg is only 720x480, so the hero would upscale it.
+hero: "/images/kitchen-dining.jpg"
 draft: false
 ---
 

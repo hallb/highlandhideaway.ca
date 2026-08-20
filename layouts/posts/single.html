@@ -1,0 +1,106 @@
+{{- /*
+    Editorial post layout. This is NOT a copy of themes/DoIt/layouts/posts/single.html
+    and should not be diffed against it -- it is a purpose-built replacement, so
+    the usual "re-diff after a submodule bump" rule (see head/meta.html) does not
+    apply. What to check after a theme update is the list of partials it calls
+    and the class contract below. Recorded against ISS-5.
+
+    The markup is a contract with assets/css/_hh.scss, which came from Claude
+    Design as a standalone shell: it styles .hh-post / .hh-hero / .hh-grid /
+    .hh-body / .hh-book and never touches DoIt's .page, .single or .content.
+    Keeping those theme classes off the markup is deliberate -- it is what stops
+    DoIt's .dark .single .content a (0,3,1) from beating the design's link
+    colours in dark mode.
+
+    Deliberately not rendered, and why:
+      - the auto/static TOC and #toc-dialog: inert. There is no [params.page]
+        block in hugo.toml, so $toc.enable is falsy on every page.
+      - the series nav: no post sets `series`.
+      - single/sponsor.html: unconfigured.
+      - the .post-meta line (author, date, word count, reading time): replaced
+        by the hero eyebrow.
+      - single/footer.html: tags, share buttons and prev/next. All of it is
+        styled for a .page.single context this layout no longer provides, and
+        none of it is in the design. Tag pages already carry noindex from
+        head/meta.html, so dropping the tag links costs no SEO.
+*/ -}}
+{{- define "title" }}{{ .Title }} - {{ .Site.Title }}{{ end -}}
+
+{{- define "content" -}}
+    {{- .Page.Scratch.Set "enableTablesort" true -}}
+    {{- $params := .Scratch.Get "params" -}}
+
+    <div class="hh-post">
+        {{- /* Hero. `hero` in front matter overrides the featured image; the
+               theme lowercases front matter keys, hence $params.featuredimage. */ -}}
+        {{- $image := $params.hero | default $params.featuredimage -}}
+
+        {{- /* "Category · Region", e.g. "Area · Haliburton Highlands". Computed
+               out here because inside the `with` below the dot is the image. */ -}}
+        {{- $parts := slice -}}
+        {{- with index (.Params.categories | default slice) 0 -}}
+            {{- $parts = $parts | append . -}}
+        {{- end -}}
+        {{- with site.Params.region -}}
+            {{- $parts = $parts | append . -}}
+        {{- end -}}
+        {{- $eyebrow := delimit $parts " · " -}}
+
+        {{- with $image -}}
+            {{- /* .hh-hero is 420px tall (300px under 900px) with object-fit:
+                   cover, so the sources are filled to ~3:1 -- cover then trims
+                   the sides on wide screens instead of letterboxing. Smart is
+                   Hugo's entropy anchor, which is what keeps the portrait
+                   featured images usable as a landscape hero. */ -}}
+            {{- $anchor := $params.heroanchor | default "Smart" -}}
+            {{- $optim := slice
+                (dict "Process" (printf "fill 800x267 %v webp q80" $anchor) "descriptor" "800w")
+                (dict "Process" (printf "fill 1200x400 %v webp q80" $anchor) "descriptor" "1200w")
+                (dict "Process" (printf "fill 1600x533 %v webp q80" $anchor) "descriptor" "1600w")
+            -}}
+            {{- /* Height/Width are passed explicitly: plugin/image.html otherwise
+                   reports the *source* dimensions, which are the wrong aspect
+                   once the sources have been filled to 3:1, and the browser
+                   would reserve the wrong box. */ -}}
+            <div class="hh-hero">
+                {{- dict "Src" . "Alt" $.Description "Resources" $.Resources "Loading" "eager" "Sizes" "100vw" "Width" "1600" "Height" "533" "OptimConfig" $optim | partial "plugin/image.html" -}}
+                <div class="hh-hero__caption">
+                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
+                    <h1 class="hh-hero__title">{{ $.Title }}</h1>
+                </div>
+            </div>
+        {{- else -}}
+            {{- /* No image to fall back on, so the title still needs a home.
+                   _custom.scss gives --textonly a warm band and ink-on-paper
+                   colours in place of the photo and its gradient. */ -}}
+            <div class="hh-hero hh-hero--textonly">
+                <div class="hh-hero__caption">
+                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
+                    <h1 class="hh-hero__title">{{ .Title }}</h1>
+                </div>
+            </div>
+        {{- end -}}
+
+        <div class="hh-grid">
+            {{- /* id="content" is kept for initLightGallery(), which binds to it
+                   by id, and data-pagefind-body for the search index. */ -}}
+            <div class="hh-body" id="content" data-pagefind-body>
+                {{- with .Description -}}
+                    <p class="hh-lead">{{ . }}</p>
+                {{- end -}}
+                {{- partial "single/outdatedArticleReminder.html" . -}}
+                {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+
+                {{- /* Related Content */ -}}
+                {{- if $params.related.enable -}}
+                    {{- partial "related.html" . -}}
+                {{- end -}}
+
+                {{- /* Comment */ -}}
+                {{- partial "comment.html" . -}}
+            </div>
+
+            {{- partial "booking-cta.html" . -}}
+        </div>
+    </div>
+{{- end -}}

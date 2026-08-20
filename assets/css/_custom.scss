@@ -1,6 +1,288 @@
-// Booking call-to-action.
-// Colours are checked against WCAG AA for normal text:
-// #1d4ed8 on #ffffff = 7.0:1, and #ffffff on #1d4ed8 = 7.0:1.
+// Project styles. DoIt imports this last from themes/DoIt/assets/css/style.scss,
+// after the pre-built Tailwind bundle (css/main.css) that head/link.html loads
+// first -- so everything here wins on cascade order without touching the theme.
+
+// The editorial post shell, as authored by Claude Design. Kept as close to the
+// delivered file as possible so a palette revision is a near-clean overwrite;
+// the handful of edits are marked "deviation:" in place.
+@import "hh";
+
+// ==============================
+// Fonts
+// ==============================
+// Self-hosted rather than linked from fonts.googleapis.com: no third-party
+// origin, no render-blocking request, and nothing to disclose in a consent
+// banner. Google serves both families as a single variable woff2 covering the
+// whole weight range, so one file each is enough (88 KB total). Latin subset
+// only -- the site is English and every character it uses is inside U+0000-00FF
+// plus the U+2000-206F punctuation the latin subset carries.
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/newsreader-var-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/public-sans-var-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// ==============================
+// Integration: not in target.scss
+// ==============================
+// target.scss styles the post shell only. These rules connect it to the theme
+// around it and cover the cases the design file did not have to think about.
+
+// -- Page chrome ---------------------------------------------------------
+// --hh-bg only reaches inside .hh-post, so without this the header, footer and
+// body stay on DoIt's white/blue-grey while the article is warm. The mapping is
+// written out in both blocks on purpose: a var() inside a custom property is
+// substituted on the element the declaration lands on, so a single :root copy
+// would bake in the light values and never follow the theme switch.
+:root {
+  --global-background-color: var(--hh-bg);
+  --global-font-color: var(--hh-ink);
+  --global-font-secondary-color: var(--hh-muted);
+  --global-border-color: var(--hh-border);
+  --global-link-color: var(--hh-ink);
+  --global-link-hover-color: var(--hh-accent);
+  --header-background-color: var(--hh-surface);
+  --header-hover-color: var(--hh-accent);
+  --single-link-color: var(--hh-accent);
+  --single-link-hover-color: var(--hh-accent);
+  --related-background-color: var(--hh-surface);
+  --related-color: var(--hh-ink);
+  --related-hover-color: var(--hh-accent);
+}
+
+// DoIt sets theme on <body> (partials/theme.html), which is why this selector
+// works and why it beats the theme's own html.dark block: custom properties
+// resolve per element, and body is nearer than html to everything on the page.
+[theme="dark"] {
+  --global-background-color: var(--hh-bg);
+  --global-font-color: var(--hh-ink);
+  --global-font-secondary-color: var(--hh-muted);
+  --global-border-color: var(--hh-border);
+  --global-link-color: var(--hh-ink);
+  --global-link-hover-color: var(--hh-accent);
+  --header-background-color: var(--hh-surface);
+  --header-hover-color: var(--hh-accent);
+  --single-link-color: var(--hh-accent);
+  --single-link-hover-color: var(--hh-accent);
+  --related-background-color: var(--hh-surface);
+  --related-color: var(--hh-ink);
+  --related-hover-color: var(--hh-accent);
+}
+
+body {
+  font-family: "Public Sans", system-ui, -apple-system, sans-serif;
+}
+
+// The logo mark next to the wordmark. The theme renders it from
+// params.header.title.logo but gives it no shape of its own.
+.header-title a img {
+  border-radius: 50%;
+}
+
+// .header-title is nowrap with text-overflow: ellipsis and capped at 80% of the
+// bar, so the 32px mark plus its margin is enough to clip "Highland Hideaway"
+// on a 375px screen. The selector matches the theme's own depth
+// (#header-mobile .header-container .header-wrapper .header-title) because a
+// shorter one loses to it.
+@media only screen and (max-width: 680px) {
+  #header-mobile .header-container .header-wrapper .header-title {
+    font-size: 1.2rem;
+    max-width: 88%;
+  }
+}
+
+// -- Hero placement ------------------------------------------------------
+// .hh-post replaces DoIt's .page, so it inherits neither the clearance under
+// the fixed header nor a way out of <main class="tw-mx-4">. Without both, the
+// hero slides under the header and stops an inch short of each edge.
+.hh-post {
+  padding-top: 3.5rem; // $header-height
+  margin-inline: -1rem; // cancel main's tw-mx-4
+}
+
+// The gradient carries most of the burden, but a hero photo that is bright at
+// the bottom would otherwise swallow the overlaid text.
+.hh-post .hh-hero {
+  &__eyebrow,
+  &__title {
+    text-shadow: 0 1px 3px rgba(20, 16, 10, 0.45);
+  }
+}
+
+// Four pages carry no featured image (contact, and the three autumn drafts).
+// Without this they get .hh-hero's 420px box with nothing in it and the tint
+// gradient painting over blank space -- a grey slab. Give them a shorter, warm
+// band and put the light-on-photo colours back to ink-on-paper.
+.hh-post .hh-hero--textonly {
+  height: auto;
+  background: var(--hh-surface);
+  border-bottom: 1px solid var(--hh-border);
+
+  &::after {
+    display: none;
+  }
+
+  .hh-hero__caption {
+    position: static;
+    padding: 56px 48px 40px;
+  }
+
+  .hh-hero__eyebrow {
+    color: var(--hh-accent);
+    text-shadow: none;
+  }
+
+  .hh-hero__title {
+    color: var(--hh-ink);
+    text-shadow: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hh-post .hh-hero--textonly .hh-hero__caption {
+    padding: 36px 24px 28px;
+  }
+}
+
+// -- Focus and motion ----------------------------------------------------
+// target.scss ships no focus styles. --hh-ink is dark on the light palette and
+// light on the dark one, and the 3px offset puts the ring on --hh-surface
+// rather than on the terracotta fill, so it stays visible in both.
+.hh-book__btn:focus-visible,
+.hh-body a:focus-visible,
+.hh-card a:focus-visible {
+  outline: 3px solid var(--hh-ink);
+  outline-offset: 3px;
+}
+
+// Two problems with the rail button, both only visible in dark mode.
+//
+// DoIt emits `.dark a { color: var(--global-link-color) }` (0,1,1), which beats
+// target.scss's `.hh-book__btn` (0,1,0) -- so the button text took the page ink
+// instead of --hh-btn-fg and fell to 2.96:1 on the terracotta fill. The extra
+// class here is what wins it back. (.hh-body a is (0,2,1) and was never at risk.)
+//
+// And brightness(1.05) on hover lightens the fill, which costs contrast against
+// the text; darkening keeps the ratio going the right way.
+//
+// Contrast, WCAG AA for normal text:
+//   light  #fdf6f2 on #9a4a2f = 6.0:1
+//   dark   #1d1913 on #c9744d = 5.1:1
+.hh-book .hh-book__btn {
+  color: var(--hh-btn-fg);
+
+  &:hover,
+  &:active {
+    color: var(--hh-btn-fg);
+    filter: brightness(0.92);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hh-book__btn,
+  .hh-body a,
+  .book-cta__link {
+    transition: none;
+  }
+}
+
+// -- Content the design file did not have in front of it -----------------
+// Dropping .content also drops DoIt's table styling. One table on the site,
+// in posts/one-week-cottage-meal-plan.md.
+.hh-body {
+  table {
+    width: 100%;
+    margin: 0 0 32px;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+
+  th,
+  td {
+    padding: 10px 12px;
+    border: 1px solid var(--hh-border);
+    text-align: left;
+    color: var(--hh-body);
+  }
+
+  th {
+    background: var(--hh-surface);
+    color: var(--hh-ink);
+    font-weight: 600;
+  }
+}
+
+// {{< image >}} wraps any captioned image in <a class="lightgallery">, which
+// would otherwise pick up the terracotta underline meant for text links.
+.hh-body a.lightgallery,
+.hh-body a:has(img) {
+  border-bottom: 0;
+}
+
+.hh-body figure {
+  margin: 0 0 32px;
+}
+
+// DoIt's caption grey is a hardcoded #969696 -- 2.7:1 on warm paper, and it was
+// no better on the theme's own white. --hh-muted is the palette's checked
+// equivalent. The selector matches the depth of the theme's own
+// (.single .content figure .image-caption:not(:empty)), which is what it takes.
+.image-caption,
+.single .content figure .image-caption:not(:empty) {
+  color: var(--hh-muted);
+}
+
+// Outside .hh-post -- the home page, about, and the property -- prose links are
+// still DoIt's, distinguished by colour alone, which fails WCAG 1.4.1. Scoped to
+// paragraphs and lists so category chips and card links keep their own shape.
+.content > p a,
+.content li a {
+  border-bottom: 1px solid var(--hh-accent-ln);
+
+  &:hover {
+    border-bottom-color: var(--hh-accent);
+  }
+}
+
+// A card title is a link, but .hh-body a would paint it terracotta and underline
+// it, which turns a grid of cards into a wall of link colour. Ink with a quiet
+// rule under it reads as the mockup and still shows it is clickable.
+.hh-card .name a {
+  color: var(--hh-ink);
+  border-bottom-color: transparent;
+
+  &:hover {
+    border-bottom-color: var(--hh-accent);
+  }
+}
+
+// ==============================
+// Inline booking CTA
+// ==============================
+// The {{< book >}} shortcode, still used on 11 pages -- including _index.md,
+// about.md and photos.md, none of which are posts and so none of which get the
+// .hh-post shell. Repainted in the same tokens so one blue button does not
+// survive into a terracotta site.
+//
+// Contrast, WCAG AA for normal text:
+//   light  #fdf6f2 on #9a4a2f = 6.0:1
+//   dark   #1d1913 on #c9744d = 5.1:1
 .book-cta {
   margin: 1.6rem 0;
   text-align: center;
@@ -8,27 +290,22 @@
   &__link {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    border-radius: 2rem;
-    background-color: #1d4ed8;
-    color: #ffffff !important;
+    background-color: var(--hh-btn-bg);
+    color: var(--hh-btn-fg) !important;
+    font-family: "Public Sans", system-ui, -apple-system, sans-serif;
     font-weight: 700;
     text-decoration: none;
-    transition: background-color 0.2s ease;
+    transition: filter 0.2s ease;
 
     &:hover,
     &:active {
-      background-color: #1735a8;
-      color: #ffffff !important;
+      filter: brightness(0.92);
+      color: var(--hh-btn-fg) !important;
     }
 
-    // Keyboard focus must stay visible against the blue fill.
     &:focus-visible {
-      outline: 3px solid #111827;
+      outline: 3px solid var(--hh-ink);
       outline-offset: 3px;
     }
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .book-cta__link { transition: none; }
 }
