@@ -13,9 +13,31 @@
 # Cloudflare's builder would have to init, and there is no package.json, so
 # Hugo and htmltest would both need installing inside the build command.
 #
-# Dashboard configuration required (Workers & Pages → the Worker → Settings):
-#   Custom domain:   highlandhideaway.ca and www.highlandhideaway.ca
-#   Build/deploy:    none — Actions deploys; leave Git integration disconnected
+# Dashboard configuration required. This list exists because configuration
+# that lives only in the dashboard is invisible to code review, and this
+# project has already lost one item that way -- see the Redirect Rule below.
+# Add to it rather than relying on memory.
+#
+#   Custom domain    (Workers & Pages → the Worker → Settings)
+#       highlandhideaway.ca and www.highlandhideaway.ca. Also declared in
+#       `routes` below, and attached on deploy.
+#
+#   Build/deploy     (Workers & Pages → the Worker → Settings)
+#       none. Actions deploys; leave Git integration disconnected.
+#
+#   Redirect Rule    (Rules → Redirect Rules)
+#       www → apex, 301, preserving path and query. *** NOT CREATED ***
+#       Both this file and the header of hugo.toml have described this rule
+#       as though it existed since 2026-08-18. It does not: www currently
+#       returns 200 and serves the site. Tracked in ISS-27.
+#
+#   Web Analytics    (Analytics → Web analytics)
+#       Automatic injection ON for highlandhideaway.ca, site token
+#       2e7e343f80d04a2d9f9d49013c3c2d92. The token is public; it ships in
+#       page source. Cloudflare injects the beacon at the edge, so it does
+#       not appear in ./public and hugo.toml sets no beacon of its own --
+#       setting one would double-count. Injection only fires for requests
+#       that look like a browser.
 #
 # Break-glass local deploy from the repo root:
 #   hugo --minify && npx wrangler deploy
