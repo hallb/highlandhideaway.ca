@@ -77,6 +77,20 @@ not_found_handling = "404-page"
 [vars]
 BOOKING_URL = "https://airbnb.ca/h/hideaway-near-haliburton"
 
+# booking_clicks columns, in write order. Append only: every Grafana panel
+# reads blobs positionally, so inserting a field silently reinterprets every
+# row already written.
+#
+#   blob1  ?src=   the page the click came from
+#   blob2  referer
+#   blob3  country          (request.cf.country)
+#   blob4  ?pos=   which CTA: inline, rail          added 2026-08-20
+#   blob5  bot verdict: "bot" or "human"            added 2026-08-20, ISS-36
+#   blob6  user agent, first 128 chars              added 2026-08-20, ISS-36
+#   blob7  network operator (request.cf.asOrganization)  added 2026-08-20
+#
+# Rows written before a field existed carry fewer blobs, so filter with
+# care -- blob5 = '' means "written before we classified", not "human".
 [[analytics_engine_datasets]]
 binding = "CLICKS"
 dataset = "booking_clicks"
