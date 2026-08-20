@@ -42,7 +42,7 @@ jobs:
     name: Redirect and listing
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check the booking redirect and the listing
         run: |
           script/monitor redirect
@@ -52,7 +52,7 @@ jobs:
     name: Booking-clicks canary
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check the token exists
         id: token
@@ -80,7 +80,7 @@ jobs:
     # crawl on one of them. Manual runs always include it.
     if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 13 * * 0'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install lychee
         run: |
