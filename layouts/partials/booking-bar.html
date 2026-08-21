@@ -1,0 +1,29 @@
+{{- /* The mobile booking bar: a slim strip that rides the bottom of the
+       viewport on every post below 900px, where the rail card in
+       booking-cta.html collapses out of the grid and lands at the foot of the
+       page. Measured before this existed, the first booking control on a 390px
+       viewport sat 75-86% down every post, and on the fourteen posts with no
+       inline {{< book >}} it was the only one. Recorded against ISS-33.
+
+       It is position: sticky, not fixed, and it is the last child of .hh-post
+       on purpose -- see the .hh-bookbar block in assets/css/_hh.scss for why.
+
+       Position "bar" is a third ?pos= value alongside "inline" and "rail", and
+       reusing either of those would have been the one thing that breaks this:
+       the clicks dashboard groups on blob4, so a bar reporting as "rail" could
+       not be told apart from the desktop card, which is the comparison this
+       placement exists to make. Named for the control rather than for the
+       viewport, matching "inline" and "rail".
+
+       Values come from params.booking, so the room counts are stated once. */ -}}
+{{- $b := site.Params.booking -}}
+{{- $url := dict "Page" . "Position" "bar" | partial "booking-url.html" -}}
+<div class="hh-bookbar">
+    <p class="hh-bookbar__meta">
+        {{- with $b.bedrooms }}<span>{{ . }} bed</span>{{ end -}}
+        {{- with $b.guests }}<span>Sleeps {{ . }}</span>{{ end -}}
+    </p>
+    <a class="hh-bookbar__btn" href="{{ $url }}" data-cta="booking" rel="noopener">
+        {{- $b.barText | default $b.railText | default $b.text | default "Check dates" -}}
+    </a>
+</div>
