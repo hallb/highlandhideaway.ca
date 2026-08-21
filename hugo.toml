@@ -118,6 +118,19 @@ languageCode = 'en-us'
     avatarURL = "/images/site-avatar-small.png"
     title = "Highland Hideaway"
     subtitle = "A peaceful retreat"
+
+  # ISS-34. DoIt's home layout renders content/_index.md and then paginates the
+  # posts beneath it, one <h1> per post: eleven <h1> on the page most likely to
+  # rank for the brand, and ~8300px of blogroll under 900px of curated cards.
+  # The cards in content/_index.md already link every post worth linking, in
+  # three edited groups, so the list is duplication at ten times the height.
+  #
+  # Turned off through the theme's own flag rather than a layouts/index.html
+  # override: the override would be a copy of the theme's home to keep in step
+  # with it forever (see the note at the top of layouts/posts/single.html for
+  # what that costs), and this is the whole of the change.
+  [params.home.posts]
+    enable = false
   
   # Booking / conversion target. The whole site funnels here, so it is
   # defined once and used via the {{< book >}} shortcode.
