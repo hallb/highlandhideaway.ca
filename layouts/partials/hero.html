@@ -1,0 +1,50 @@
+{{- /* The full-bleed hero: a photograph, a gradient, an eyebrow and the page's
+       one <h1>. Lifted out of layouts/posts/single.html when the home page
+       needed the same treatment (ISS-35), so the two cannot drift apart -- the
+       same reason booking-url.html exists.
+
+       Call with a dict:
+         Page     the page, for .Resources
+         Image    the image path, or empty for the text-only variant
+         Eyebrow  the small line above the title; omitted when empty
+         Title    the <h1> text
+         Alt      alt text for the photograph
+         Anchor   Hugo crop anchor, default Smart
+
+       .hh-hero is 420px tall (300px under 900px) with object-fit: cover, so the
+       sources are filled to ~3:1 -- cover then trims the sides on wide screens
+       instead of letterboxing. Smart is Hugo's entropy anchor, which is what
+       keeps the portrait featured images usable as a landscape hero. */ -}}
+{{- $page := .Page -}}
+{{- $eyebrow := .Eyebrow -}}
+{{- $title := .Title -}}
+{{- $alt := .Alt -}}
+{{- $anchor := .Anchor | default "Smart" -}}
+{{- with .Image -}}
+    {{- $optim := slice
+        (dict "Process" (printf "fill 800x267 %v webp q80" $anchor) "descriptor" "800w")
+        (dict "Process" (printf "fill 1200x400 %v webp q80" $anchor) "descriptor" "1200w")
+        (dict "Process" (printf "fill 1600x533 %v webp q80" $anchor) "descriptor" "1600w")
+    -}}
+    {{- /* Height/Width are passed explicitly: plugin/image.html otherwise
+           reports the *source* dimensions, which are the wrong aspect once the
+           sources have been filled to 3:1, and the browser would reserve the
+           wrong box. */ -}}
+            <div class="hh-hero">
+                {{- dict "Src" . "Alt" $alt "Resources" $page.Resources "Loading" "eager" "Sizes" "100vw" "Width" "1600" "Height" "533" "OptimConfig" $optim | partial "plugin/image.html" -}}
+                <div class="hh-hero__caption">
+                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
+                    <h1 class="hh-hero__title">{{ $title }}</h1>
+                </div>
+            </div>
+{{- else -}}
+    {{- /* No image to fall back on, so the title still needs a home.
+           _custom.scss gives --textonly a warm band and ink-on-paper colours in
+           place of the photo and its gradient. */ -}}
+            <div class="hh-hero hh-hero--textonly">
+                <div class="hh-hero__caption">
+                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
+                    <h1 class="hh-hero__title">{{ $title }}</h1>
+                </div>
+            </div>
+{{- end -}}

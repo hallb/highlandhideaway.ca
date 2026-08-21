@@ -107,6 +107,15 @@ $sans:  "Public Sans", system-ui, -apple-system, sans-serif;
     padding: 48px;
     max-width: 1080px;
     margin: 0 auto;
+
+    // deviation: the same grid with the rail column removed, for the home page
+    // (ISS-35), which has no rail. The measure is capped rather than left to
+    // fill the full 1080px -- the article column it stands in for is 712px
+    // wide, and matching it keeps the line length the design was set at.
+    &--solo {
+      grid-template-columns: minmax(0, 712px);
+      justify-content: center;
+    }
   }
 
   // ---- Article typography ----

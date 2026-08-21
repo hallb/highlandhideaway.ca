@@ -3,6 +3,10 @@ title: "Highland Hideaway"
 description: "A three-bedroom cottage on 23 acres of forest near Haliburton, Ontario."
 featuredImage: "/images/dock-autumn.jpg"
 featuredImagePreview: "/images/dock-autumn-preview.jpg"
+# Describes the photograph, not the cottage. Without it the hero falls back to
+# the description above, which describes the property and tells a screen reader
+# nothing about the image it stands in for.
+heroAlt: "The dock on Drag Lake, looking across still water to a far shore of maples in full autumn colour."
 draft: false
 hiddenFromHomePage: false
 lightgallery: false
