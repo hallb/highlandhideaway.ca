@@ -75,7 +75,10 @@ export default {
     if (url.pathname === "/go/airbnb") {
       const source = url.searchParams.get("src") || "unknown";
       // Which CTA on the page: "inline" for the {{< book >}} shortcode,
-      // "rail" for the sticky card on every post.
+      // "rail" for the sticky card beside the article above 900px, and "bar"
+      // for the strip pinned to the bottom of the viewport below it (ISS-33).
+      // The three are mutually exclusive on any given viewport, which is what
+      // makes them comparable in the dashboard.
       const position = url.searchParams.get("pos") || "unknown";
       recordClick(env, request, source, position);
       return new Response(null, {

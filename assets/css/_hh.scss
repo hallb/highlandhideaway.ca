@@ -250,6 +250,63 @@ $sans:  "Public Sans", system-ui, -apple-system, sans-serif;
 }
 
 // ============================================================
+//  Mobile booking bar
+// ============================================================
+// ISS-33. Below 900px the rail collapses to the foot of the page, which put the
+// first booking control 75-86% down every post. This is the replacement: a slim
+// strip pinned to the bottom of the viewport for the length of the article.
+//
+// sticky rather than fixed, as the last child of .hh-post. A sticky element
+// only travels inside its own parent, so it rides the bottom of the viewport
+// while the post is on screen and then comes to rest at the end of .hh-post,
+// above the footer. Fixed would have needed padding on the footer to stop the
+// bar covering it, on every page, whether or not the bar was rendered there.
+//
+// Hidden above 900px: up there the rail card is the booking control and this
+// would be a second one. Rendered on every post regardless, so the placement
+// is a CSS decision in one file rather than a template one.
+.hh-bookbar { display: none; }
+
+@media (max-width: 900px) {
+  .hh-bookbar {
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;   // under DoIt's header (150) and its mobile menu (200)
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 20px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--hh-surface);
+    border-top: 1px solid var(--hh-border);
+
+    &__meta {
+      display: flex;
+      gap: 12px;
+      margin: 0;
+      font-family: $sans;
+      font-size: 13px;
+      color: var(--hh-muted);
+    }
+
+    &__btn {
+      flex: none;
+      background: var(--hh-btn-bg);
+      color: var(--hh-btn-fg);
+      font-family: $sans;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 1.2;
+      padding: 12px 18px;
+      text-decoration: none;
+      border: 0;
+      &:hover { filter: brightness(1.05); }
+    }
+  }
+}
+
+// ============================================================
 //  Responsive: collapse rail below the article
 // ============================================================
 @media (max-width: 900px) {
@@ -259,4 +316,10 @@ $sans:  "Public Sans", system-ui, -apple-system, sans-serif;
   }
   .hh-cards { grid-template-columns: 1fr; }   // deviation: follows .hh-cards out of .hh-post
   .hh-book { position: static; }
+  // The card itself goes with it (ISS-33). The bar above now carries the
+  // booking action down here, so leaving the card would put a second CTA on the
+  // page -- and it would still report ?pos=rail, mixing mobile clicks into the
+  // desktop bucket the dashboard groups on. The ask line is kept: it is the
+  // only route to the contact page from the foot of a post.
+  .hh-book__card { display: none; }
 }

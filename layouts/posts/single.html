@@ -102,5 +102,12 @@
 
             {{- partial "booking-cta.html" . -}}
         </div>
+
+        {{- /* The mobile booking bar (ISS-33). Outside .hh-grid and last inside
+               .hh-post because it sticks to the bottom of the viewport, and a
+               sticky element can only travel inside its own parent -- see the
+               .hh-bookbar block in _hh.scss. Above 900px it is display: none
+               and the rail card in .hh-grid is the booking control. */ -}}
+        {{- partial "booking-bar.html" . -}}
     </div>
 {{- end -}}

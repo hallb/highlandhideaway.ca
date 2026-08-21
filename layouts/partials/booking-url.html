@@ -7,8 +7,11 @@
          ?src=  the page the click came from, which is what the Grafana
                 dashboard groups on (blob1) -- it must stay exactly the page
                 path or every existing panel loses its history.
-         &pos=  where on the page the link was, so the inline shortcode and the
-                sticky rail can be told apart (blob4).
+         &pos=  where on the page the link was, so the three placements can be
+                told apart (blob4): "inline" for the shortcode in the prose,
+                "rail" for the sticky card above 900px, "bar" for the mobile
+                strip below it. A new placement needs a new value here -- see
+                the note in partials/booking-bar.html.
 
        Call with a dict: {"Page" $page "Position" "rail"} */ -}}
 {{- $url := site.Params.booking.url | default "https://airbnb.ca/h/hideaway-near-haliburton" -}}
