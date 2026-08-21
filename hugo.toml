@@ -143,6 +143,9 @@ languageCode = 'en-us'
     # The sticky rail card on every post. Figures are from docs/current_content.md.
     railText = "Check dates on Airbnb"
     railTitle = "Your basecamp for all of this"
+    # The mobile bar (ISS-33). Its own, shorter label: the bar is 390px wide
+    # with the room counts beside it, and railText wraps to two lines there.
+    barText = "Check dates"
     pitch = "A three-bedroom cottage on 23 private acres, dock across the road. Sleeps up to six."
     bedrooms = 3
     bathrooms = 1
