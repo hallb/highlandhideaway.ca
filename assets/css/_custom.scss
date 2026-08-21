@@ -160,6 +160,23 @@ body {
   }
 }
 
+// -- Mobile menu button --------------------------------------------------
+// The hamburger is a <button> rather than DoIt's <div> (ISS-13). It needs no
+// reset: Tailwind's preflight, which head/link.html loads first as css/main.css,
+// already zeroes a button's border, padding, margin and background and sets
+// font and colour to inherit -- so the element renders exactly as the div did,
+// and the theme's own .menu-toggle rules land on it unchanged because they are
+// class selectors that do not care what they are attached to.
+//
+// What it does need is a focus ring, because a div was never focusable and so
+// the theme never drew one. Same ink and offset as the site's other focus
+// rings below; --hh-surface is what sits behind the bar in both palettes, and
+// --hh-ink is dark on one and light on the other.
+.menu-toggle:focus-visible {
+  outline: 3px solid var(--hh-ink);
+  outline-offset: 3px;
+}
+
 // -- Focus and motion ----------------------------------------------------
 // target.scss ships no focus styles. --hh-ink is dark on the light palette and
 // light on the dark one, and the 3px offset puts the ring on --hh-surface
