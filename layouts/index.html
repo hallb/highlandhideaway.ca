@@ -1,0 +1,67 @@
+{{- /*
+    Home page. A purpose-built layout, not a copy of themes/DoIt/layouts/index.html
+    -- the same relationship layouts/posts/single.html has with the theme's post
+    layout, and the note at the top of that file explains why a copy would be the
+    worse trade. What to check after a theme update is the list of partials called
+    below and the class contract in assets/css/_hh.scss.
+
+    It replaces DoIt's home for two reasons, one per issue:
+
+      ISS-34: DoIt's home renders content/_index.md and then paginates the posts
+      underneath it, one <h1> per summary. Eleven <h1> on the page most likely to
+      rank for the brand, and ~8300px of blogroll under 900px of curated cards
+      that already link every post worth linking. Nothing here renders that list.
+
+      That is only half of it, and the half that is easy to get wrong: this file
+      stops the list being *drawn*, but baseof.html calls head/paginator.html
+      before any layout runs, and that still paginates the home page and
+      publishes /page/1/, /page/2/ and /page/3/ -- each a full copy of whatever
+      this file renders. params.home.posts.enable = false in hugo.toml is what
+      stops that, and it has to stay.
+
+      ISS-35: the home page opened on the site avatar and the words "A peaceful
+      retreat". It now opens on the photograph, through the same partial the
+      posts use.
+
+    Deliberately not rendered, and why:
+      - home/profile.html: the avatar, the site title and the subtitle. The hero
+        now carries the title, and the page is allowed exactly one <h1>.
+      - the paginator: see ISS-34 above.
+      - the "title" block: baseof.html already defaults it to .Site.Title, which
+        is what the theme's own define resolved to on a home page with no
+        pagination.
+*/ -}}
+
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+
+    <div class="hh-post">
+        {{- /* The photograph is content/_index.md's featuredImage, which is the
+               same one the welcome post leads with -- the two are meant to
+               match, so the first thing a visitor sees is the first thing the
+               opening guide shows them. `hero` overrides it, as on a post; the
+               theme lowercases front matter keys, hence $params.featuredimage.
+
+               The eyebrow is the region alone. A post's is "Category · Region",
+               and the home page has no category. */ -}}
+        {{- dict
+            "Page" .
+            "Image" ($params.hero | default $params.featuredimage)
+            "Eyebrow" site.Params.region
+            "Title" .Title
+            "Alt" ($params.heroalt | default .Description)
+            "Anchor" ($params.heroanchor | default "Smart")
+            | partial "hero.html" -}}
+
+        {{- /* .hh-grid--solo is the same grid with the rail column removed: the
+               booking rail belongs to a post, and the home page makes its own
+               booking case through the {{< book >}} shortcode in the content.
+               id="content" is kept for initLightGallery(), which binds to it by
+               id. */ -}}
+        <div class="hh-grid hh-grid--solo">
+            <div class="hh-body" id="content">
+                {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+            </div>
+        </div>
+    </div>
+{{- end -}}
