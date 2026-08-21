@@ -119,16 +119,21 @@ languageCode = 'en-us'
     title = "Highland Hideaway"
     subtitle = "A peaceful retreat"
 
-  # ISS-34. DoIt's home layout renders content/_index.md and then paginates the
-  # posts beneath it, one <h1> per post: eleven <h1> on the page most likely to
-  # rank for the brand, and ~8300px of blogroll under 900px of curated cards.
-  # The cards in content/_index.md already link every post worth linking, in
-  # three edited groups, so the list is duplication at ten times the height.
+  # ISS-34. Two separate things stop DoIt's blogroll, and it takes both:
   #
-  # Turned off through the theme's own flag rather than a layouts/index.html
-  # override: the override would be a copy of the theme's home to keep in step
-  # with it forever (see the note at the top of layouts/posts/single.html for
-  # what that costs), and this is the whole of the change.
+  #   layouts/index.html is the home page now, and it never draws the post list.
+  #
+  #   This flag stops head/paginator.html -- which baseof.html calls on every
+  #   page, before any layout runs -- from paginating the home page. Without it
+  #   Hugo publishes /page/1/, /page/2/ and /page/3/ even though nothing renders
+  #   a paginator, each one a full copy of the home page at its own URL. Three
+  #   near-duplicates of the page most likely to rank for the brand, days before
+  #   Search Console's first crawl (ISS-27), so it is not cosmetic. Measured:
+  #   removing this line brings all three back.
+  #
+  # The [params.home.profile] block above is no longer drawn -- the hero carries
+  # the title now -- but is left in place so that deleting layouts/index.html
+  # restores the previous home page exactly. See that file's header (ISS-35).
   [params.home.posts]
     enable = false
   

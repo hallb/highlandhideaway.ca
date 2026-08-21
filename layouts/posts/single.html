@@ -46,40 +46,18 @@
         {{- end -}}
         {{- $eyebrow := delimit $parts " · " -}}
 
-        {{- with $image -}}
-            {{- /* .hh-hero is 420px tall (300px under 900px) with object-fit:
-                   cover, so the sources are filled to ~3:1 -- cover then trims
-                   the sides on wide screens instead of letterboxing. Smart is
-                   Hugo's entropy anchor, which is what keeps the portrait
-                   featured images usable as a landscape hero. */ -}}
-            {{- $anchor := $params.heroanchor | default "Smart" -}}
-            {{- $optim := slice
-                (dict "Process" (printf "fill 800x267 %v webp q80" $anchor) "descriptor" "800w")
-                (dict "Process" (printf "fill 1200x400 %v webp q80" $anchor) "descriptor" "1200w")
-                (dict "Process" (printf "fill 1600x533 %v webp q80" $anchor) "descriptor" "1600w")
-            -}}
-            {{- /* Height/Width are passed explicitly: plugin/image.html otherwise
-                   reports the *source* dimensions, which are the wrong aspect
-                   once the sources have been filled to 3:1, and the browser
-                   would reserve the wrong box. */ -}}
-            <div class="hh-hero">
-                {{- dict "Src" . "Alt" $.Description "Resources" $.Resources "Loading" "eager" "Sizes" "100vw" "Width" "1600" "Height" "533" "OptimConfig" $optim | partial "plugin/image.html" -}}
-                <div class="hh-hero__caption">
-                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
-                    <h1 class="hh-hero__title">{{ $.Title }}</h1>
-                </div>
-            </div>
-        {{- else -}}
-            {{- /* No image to fall back on, so the title still needs a home.
-                   _custom.scss gives --textonly a warm band and ink-on-paper
-                   colours in place of the photo and its gradient. */ -}}
-            <div class="hh-hero hh-hero--textonly">
-                <div class="hh-hero__caption">
-                    {{- with $eyebrow }}<p class="hh-hero__eyebrow">{{ . }}</p>{{ end -}}
-                    <h1 class="hh-hero__title">{{ .Title }}</h1>
-                </div>
-            </div>
-        {{- end -}}
+        {{- /* The markup lives in partials/hero.html, shared with the home page
+               since ISS-35. `heroAlt` in front matter describes the photograph;
+               without it the alt falls back to the page description, which is
+               what every post relies on today. */ -}}
+        {{- dict
+            "Page" .
+            "Image" $image
+            "Eyebrow" $eyebrow
+            "Title" .Title
+            "Alt" ($params.heroalt | default .Description)
+            "Anchor" ($params.heroanchor | default "Smart")
+            | partial "hero.html" -}}
 
         <div class="hh-grid">
             {{- /* id="content" is kept for initLightGallery(), which binds to it
