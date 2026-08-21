@@ -71,7 +71,7 @@ jobs:
         run: htmltest
 
       - name: Upload site
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site
           path: public
