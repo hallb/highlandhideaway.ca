@@ -26,10 +26,14 @@
 #       none. Actions deploys; leave Git integration disconnected.
 #
 #   Redirect Rule    (Rules → Redirect Rules)
-#       www → apex, 301, preserving path and query. *** NOT CREATED ***
-#       Both this file and the header of hugo.toml have described this rule
-#       as though it existed since 2026-08-18. It does not: www currently
-#       returns 200 and serves the site. Tracked in ISS-27.
+#       "Redirect from WWW to root [Template]": wildcard pattern
+#       https://www.* -> https://${1}, 301, preserve query string. Created
+#       and verified 2026-08-21 (ISS-27). Also required: SSL/TLS -> Edge
+#       Certificates -> "Always Use HTTPS", enabled the same day -- the
+#       rule's pattern only matches an https:// request, so plain
+#       http://www traffic needs that separate upgrade first (two 301 hops:
+#       http://www -> https://www -> https://apex). https://www requests,
+#       which is the common case, get a single hop straight to the apex.
 #
 #   Web Analytics    (Analytics → Web analytics → highlandhideaway.ca)
 #       Set to "Enable, excluding visitor data in the EU". Cloudflare
