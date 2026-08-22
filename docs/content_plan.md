@@ -127,6 +127,61 @@ published studio tour post, so it should link there rather than repeat it.
 
 Out of scope: Haliburton Forest Trail Race (12 Sept) — that weekend is booked.
 
+## 🏁 Upcoming Posts — Events, Autumn/Winter 2026
+
+Four event posts, outlined but not written. Each has its own brief in
+`docs/` and its own MDP issue in the planner repo. Read the brief before
+touching the draft; every one of them separates verified facts from
+assumptions, and the assumptions are the part that will embarrass us.
+
+| Post | Event date | Brief | Issue |
+|---|---|---|---|
+| `corduroy-enduro.md` | 17–20 Sept 2026, Gooderham | [`corduroy_enduro_brief.md`](corduroy_enduro_brief.md) | ISS-46 |
+| `stanhope-fall-colours-fly-in.md` | Sat 26 Sept 2026, Stanhope Airport | [`stanhope_fly_in_brief.md`](stanhope_fly_in_brief.md) | ISS-47 |
+| `haliburton-watercross.md` | 26–27 Sept 2026, Pinestone | [`watercross_brief.md`](watercross_brief.md) | ISS-48 |
+| `haliburton-christmas-market.md` | Sat 21 Nov 2026, A.J. LaRue Arena | [`haliburton_nov_dec_events_brief.md`](haliburton_nov_dec_events_brief.md) | ISS-49 |
+
+**The fly-in and the watercross are the same Saturday.** That is the good
+case, not a problem. Two events and two search intents feeding one
+weekend raises the chance it fills and gives room on price. Cross-link
+them as a pair: "there are two things on that Saturday" is a better
+reason to book a whole weekend than either event is alone.
+
+The one thing to keep apart is the queries. Keep each title and H1 on
+its own event name so the two pages do not split a generic "what is on
+in Haliburton that weekend" query between them.
+
+**The Corduroy weekend is 17–20 September**, the weekend after the
+Haliburton Forest Trail Race weekend already noted above as booked. So
+September runs: 12th booked, 19th–20th Corduroy, 26th–27th fly-in and
+watercross. Three posts across two sellable weekends.
+
+**The scarce resource is drafting time, not inventory.** All three want
+to be live in early September and each needs field verification first.
+If only two ship, Corduroy goes ahead of the second of the 26–27 pair —
+it is the only post covering its weekend, so it adds more than a second
+page on a weekend already covered.
+
+**Publishing windows.** All three September posts want to be live in
+early September; a page published in the final week before an event
+rarely indexes in time to catch the search. The Christmas market post
+wants to be live before mid-October. After the event date each page is
+worth nothing until it is re-cut for the following year.
+
+**URLs carry no year.** These events recur. Re-cut the dates on the same
+page each year rather than starting a new one and orphaning the links.
+
+**What is missing from all four:** measured drive times, and availability
+checks for the weekends the CTAs point at. No proximity claim goes on any
+of these pages until somebody has measured it, and the Corduroy post also
+needs the property facts riders book on — trailer parking, bike washing,
+gear drying, connectivity, fuel storage.
+
+The November/December brief proposes three further posts beyond the
+Christmas market: a film festival weekend post (blocked, no 2026 dates
+published), two monthly roundup pages updated in place, and an
+early-December weekend post. None is started. See ISS-49.
+
 ## 💡 CTA Integration
 
 - [ ] Create `layouts/shortcodes/booknow.html`
