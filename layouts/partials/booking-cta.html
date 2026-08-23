@@ -12,7 +12,7 @@
         {{- with $b.pitch }}
         <p class="hh-book__pitch">{{ . }}</p>
         {{- end }}
-        <a class="hh-book__btn" href="{{ $url }}" data-cta="booking" rel="noopener">
+        <a class="hh-book__btn" href="{{ $url }}" data-cta="booking" rel="sponsored nofollow noopener">
             {{- $b.railText | default $b.text | default "Check dates on Airbnb" -}}
         </a>
         <div class="hh-book__meta">

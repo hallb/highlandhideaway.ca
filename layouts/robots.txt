@@ -1,0 +1,78 @@
+{{- /* Project override of themes/DoIt/layouts/robots.txt. Identical to the
+       theme's file except for the Disallow on /go/ in the catch-all group
+       below -- if the theme's bot list is ever updated, re-copy it and
+       re-apply that one rule. */ -}}
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Block SISTRIX
+User-agent: SISTRIX Crawler
+Disallow: /
+User-agent: sistrix
+Disallow: /
+User-agent: 007ac9
+Disallow: /
+User-agent: 007ac9 Crawler
+Disallow: /
+
+# Block Uptime robot
+User-agent: UptimeRobot/2.0
+Disallow: /
+
+# Block Ezooms Robot
+User-agent: Ezooms Robot
+Disallow: /
+
+# Block Perl LWP
+User-agent: Perl LWP
+Disallow: /
+
+# Block netEstate NE Crawler (+http://www.website-datenbank.de/)
+User-agent: netEstate NE Crawler (+http://www.website-datenbank.de/)
+Disallow: /
+
+# Block WiseGuys Robot
+User-agent: WiseGuys Robot
+Disallow: /
+
+# Block Turnitin Robot
+User-agent: Turnitin Robot
+Disallow: /
+
+# Block Heritrix
+User-agent: Heritrix
+Disallow: /
+
+# Block pricepi
+User-agent: pimonster
+Disallow: /
+
+User-agent: SurdotlyBot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: *
+# /go/ is the booking redirect in src/worker.js, not a page. Crawling it costs
+# twice over. Search Console reported it on 2026-08-23 under both "Page with
+# redirect" and "Redirect error": Googlebot follows /go/airbnb out to the
+# listing and Airbnb answers a crawler with 403, so the chain fails at an
+# endpoint we do not own and cannot fix. And every crawler that follows a
+# booking CTA writes a row to booking_clicks -- measured at roughly 16% of
+# rows over two weeks in ISS-36, which is why blob5 classifies them. This
+# stops those rows being written at all; blob5 stays, because it is the only
+# thing that separates bots in the history already recorded.
+#
+# The CTAs also carry rel="sponsored nofollow", which is the signal for a
+# well-behaved crawler that reads the link but not this file.
+Disallow: /go/
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absURL }}
