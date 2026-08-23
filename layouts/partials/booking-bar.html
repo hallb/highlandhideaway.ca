@@ -23,7 +23,7 @@
         {{- with $b.bedrooms }}<span>{{ . }} bed</span>{{ end -}}
         {{- with $b.guests }}<span>Sleeps {{ . }}</span>{{ end -}}
     </p>
-    <a class="hh-bookbar__btn" href="{{ $url }}" data-cta="booking" rel="noopener">
+    <a class="hh-bookbar__btn" href="{{ $url }}" data-cta="booking" rel="sponsored nofollow noopener">
         {{- $b.barText | default $b.railText | default $b.text | default "Check dates" -}}
     </a>
 </div>

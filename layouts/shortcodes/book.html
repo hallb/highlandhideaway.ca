@@ -4,5 +4,5 @@
 {{- $url := dict "Page" .Page "Position" "inline" | partial "booking-url.html" -}}
 {{- $text := .Get "text" | default (site.Params.booking.text | default "Book now on Airbnb") -}}
 <p class="book-cta">
-  <a class="book-cta__link" href="{{ $url }}" data-cta="booking" rel="noopener">{{ $text }}<span aria-hidden="true"> &rsaquo;</span></a>
+  <a class="book-cta__link" href="{{ $url }}" data-cta="booking" rel="sponsored nofollow noopener">{{ $text }}<span aria-hidden="true"> &rsaquo;</span></a>
 </p>
