@@ -1,135 +1,95 @@
 ---
 title: "Snowmobiles on Open Water: Watercross at Pinestone"
 description: "The OWRA season finishes on the pond in front of Pinestone in late September. What it is and what it is like to watch."
-date: 2026-08-22
+date: 2026-08-24
 categories: ["Events"]
 tags: ["watercross", "owra", "pinestone", "motorsport", "events", "area"]
-featuredImage: "/images/dock-autumn.jpg"
-draft: true
+featuredImage: "/images/watercross-sled.jpg"
+draft: false
 ---
 
-<!-- OUTLINE ONLY. Structure and the OWRA-sourced facts are here. Times,
-     prices, and parking are not, because none of them are published.
+<!-- Ben emailed OWRA on 2026-08-24 asking for spectator admission, start
+     times and the daily schedule, parking at Pinestone, whether food
+     service runs alongside the racing, and whether puddle jump is on the
+     card at this round. None of it is published anywhere we could find,
+     so the prose states none of it. Add it when the reply lands; do not
+     fill any of it in from memory.
 
-     Brief: docs/watercross_brief.md.
+     The plan is to publish without those answers and update after, since
+     the page is worth nothing after 27 September.
 
-     Event is 26-27 September 2026 at Pinestone Resort, Haliburton, the
-     final round of the OWRA season. Value decays to zero on 28
-     September. Publish early September or hold for 2027.
+     Internal links to [fall colours] and [Stanhope] were removed before
+     publishing, because both are still drafts and the links would have
+     404ed. Put them back when those posts go live: fall colours belongs
+     in "A weekend around it" and under Related, and the Stanhope
+     mention in "A weekend around it" currently points at the township
+     airport events page instead. Both drafts carry a matching note.
 
-     Voice: neutral and factual unless Ben has actually been to one. If
-     he has not, this is written as a local pointing something out, not
-     as a memoir. Do not fake having attended.
+     No link to OWRA on the page, deliberately: their site is thin and
+     carries little the post does not already say. Ben's call,
+     2026-08-24. -->
 
-     Before flipping draft: false --
+On the last weekend of September, snowmobiles will cross the pond in front of
+Pinestone Resort at more than 100 km/h. There is no snow and no ice. The sleds
+stay on the surface because (or if) they are moving fast enough not to sink.
 
-     1. Confirm the round is still on. Email
-        ontariowatercrossassociation@gmail.com. The OWRA site lists the
-        schedule on its homepage while its events widget says "no
-        upcoming events" and its registration page says "not yet open",
-        so the site cannot be trusted on its own.
-     2. Spectator admission. A 2022 Haliburton Echo piece said the
-        Pinestone round was free to watch. That is four years old.
-     3. Start times and the daily schedule. Not published anywhere
-        found. Better to write "check the OWRA page for start times"
-        than to invent one.
-     4. Parking for spectators at Pinestone.
-     5. Whether Pinestone runs food service or the Stone 21 restaurant
-        alongside the racing.
-     6. Whether puddle jump specifically runs at this round.
-     7. Measure the drive from here to Pinestone. It is on County Road
-        21 between Minden and Haliburton, so it is close, but the number
-        on the page has to be a measured one.
-     8. Check availability for 26-27 September before the CTA goes live.
-        Note that this is the same Saturday as the Stanhope fly-in.
-     9. featuredImage is a placeholder shared with other posts. -->
-
-## The hook
-
-<!-- Open on the image: snowmobiles at full speed across open water, in
-     late September, on the pond in front of a resort. The absurdity is
-     the hook.
-
-     Do not open with "Haliburton is a beautiful place in autumn".
-
-     Verified: sleds pass 100 km/h on the straights. A local racer
-     interviewed by the Haliburton Echo described the worst case as
-     sinking and having to pull the sled out, which simply ends that
-     racer's run. Cornering is closer to motorcycle racing than to
-     snowmobiling -- get low, sit to the inside. -->
+This is the Ontario Watercross Racing Association's last round of the 2026
+season, on Saturday 26 and Sunday 27 September. Pinestone is on County Road 21
+between Minden and Haliburton, and the racing happens on the water directly in
+front of the resort.
 
 ## What watercross actually is
 
-<!-- Short explainer, then straight into the specifics. Concrete detail
-     is the whole differentiator here, because the general description
-     is available everywhere and the specifics are not.
+Snowmobiles, raced across open water, in a straight line or around a marked
+course. On the straights they pass 100 km/h. In the corners the technique
+looks closer to motorcycle racing than to anything you would do on snow: the
+rider gets low and puts their weight on the inside of the sled.
 
-     Puddle jump rules, from the OWRA site: racer is 16 or older; no
-     flotation on the sled, a buoy excepted and not required; lifejacket
-     or floater suit worn; snowmobile helmet on at all times when on the
-     sled; a working tether cord on the racer's wrist whenever the sled
-     is running; working brakes; the track in safe condition.
-
-     Classes: Stock (pump gas only, stock clutch cover, at most three
-     studs per bar and studs optional, seats and gauges may come off,
-     twin pipes fine on pump gas, carbide-tipped snow studs that must
-     not be sharpened). Mod (any sled, race or pump gas, stock-or-better
-     clutch cover, chisels with no per-bar limit, two skis and one track
-     only). No Stud (any sled with no studs, pump or race fuel).
-
-     Sinking is normal rather than catastrophic. Say so early; it
-     changes how the whole thing reads to somebody who has never seen
-     it. -->
+Sinking happens and it's not a disaster. A local racer interviewed by the
+Haliburton Echo described the worst case as sinking and then having to pull
+the sled back out. That ends their run for the day. It is worth knowing before
+you watch, because the first time a sled goes down it looks like something has
+gone badly wrong, and mostly it has not.
 
 ## Watching it
 
-<!-- The section carrying the SEO value. Anybody searching this event
-     wants exactly this and cannot currently find it anywhere.
+The pond sits in front of the resort, so the racing is close and you can see
+the whole course from the bank. You just need somewhere to sit.
 
-     Where the pond is relative to the resort, where to stand, what to
-     bring -- folding chairs and layers, it is a pond in late September
-     -- how the two days differ, whether it suits children.
+Bring a folding chair. Bring more layers than the forecast suggests, because
+you will be standing beside open water in late September. Sunglasses help
+more than you would expect off the water.
 
-     TODO: all of it. Every line here needs confirming before it goes
-     up. No invented times, prices, or parking. -->
+It suits children who like loud machines, and it is over quickly enough in
+each heat that nobody has to concentrate for long. There is nothing subtle
+happening. A sled either makes it across or it doesn't.
 
 ## A weekend around it
 
-<!-- Late September in the Highlands: colour beginning to turn, the
-     lakes quiet, the village not yet busy with the Thanksgiving
-     traffic that arrives a fortnight later.
+Late September is a good week to be here for reasons that have nothing to do
+with snowmobiles. The colour is usually starting to turn without having
+peaked, the lakes have gone quiet, and the village has not yet filled up with
+the Thanksgiving traffic that arrives a fortnight later.
 
-     Natural handoff to [fall colours]. Do not promise colour timing;
-     link the trackers.
-
-     Sequencing note for whoever publishes: 26-27 September sits in the
-     gap before the Studio Tour weekends of 3-4 and 10-11 October, so it
-     fills soft inventory rather than competing with the Thanksgiving
-     long weekend. -->
+If you are weighing dates, the 26th and 27th sit in the gap before the Studio
+Tour weekends of 3-4 and 10-11 October. The
+[Stanhope fall colours fly-in](https://www.algonquinhighlands.ca/explore-play/stanhope-municipal-airport/airport-events/)
+is the same Saturday, so that is two things in one day if you are willing to
+drive between them.
 
 ## Staying nearby
 
-<!-- Pinestone will fill with racers and crews. The addressable audience
-     is spectators and families.
+Pinestone itself tends to fill with racers and crews for a race weekend.
 
-     The pitch: a kitchen and room to spread out, a short drive from the
-     pond, for people making a weekend of it rather than driving up for
-     an afternoon.
-
-     Narrative, not a banner. Here is what is happening, here is how to
-     make a weekend of it, here is where to book. -->
+We are a fifteen minute drive from Pinestone, on the same road. The cottage
+has three bedrooms, a kitchen, and enough room that a group watching racing
+in the cold all day can come back and spread out rather than sit on top of
+each other. That is the case for making a weekend of it instead of driving
+up for the afternoon and driving home again.
 
 {{< book >}}
 
-<!-- Local colour, if it is wanted and if it checks out: a 2022
-     Haliburton Echo piece profiled Tyler Charity, a Haliburton
-     Highlands Secondary School alumnus who races locally. Useful as
-     background on the event's local roots. Do not present him as a 2026
-     entrant without checking, and consider whether naming a private
-     individual on a commercial page is wanted at all. -->
-
 ## Related
 
-- [Fall colours on the property](/posts/fall-colours/)
 - [The 2026 Studio Tour](/posts/haliburton-studio-tour/)
 - [What is nearby](/posts/whats-nearby/)
