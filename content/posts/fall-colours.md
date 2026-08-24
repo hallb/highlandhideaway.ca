@@ -168,6 +168,16 @@ If you would rather have the gold and the quiet, come the week after.
 
 {{< book >}}
 
+<!-- Cross-link both ways once this publishes.
+     /posts/haliburton-watercross/ went live on 2026-08-24. It used to
+     link here twice, in "A weekend around it" and under Related, but
+     both were removed before it shipped so it would not publish with
+     404s. Restore them when this post goes live.
+
+     Going the other way, add watercross to Related below. Its weekend,
+     26-27 September, is the one before the turn gets going, which is an
+     audience this post does not otherwise serve. -->
+
 ## Related
 
 - [The grounds](/posts/the-grounds/)

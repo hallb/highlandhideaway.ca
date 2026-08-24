@@ -45,7 +45,17 @@ draft: true
      6. Decide whether Event schema markup is worth adding, and whether
         the theme supports it. The township page has none, so it is a
         cheap way to stand out in event results.
-     7. featuredImage is a placeholder shared with other posts. -->
+     7. featuredImage is a placeholder shared with other posts.
+     8. Cross-link with /posts/haliburton-watercross/, which went live on
+        2026-08-24. Its "A weekend around it" section names the fly-in
+        but points at the township airport events page, because this
+        post was still a draft when it shipped. Repoint it here once
+        this publishes. Going the other way, add watercross to Related
+        below and consider a line in the body: the fly-in and the
+        watercross round are both on Saturday 26 September, a few
+        minutes apart on the same day, which is a genuine reason for
+        somebody to book the whole weekend rather than drive up for one
+        afternoon. -->
 
 ## The essentials
 

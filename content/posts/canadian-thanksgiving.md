@@ -58,6 +58,13 @@ Spend Thanksgiving somewhere worth being thankful for.
 
 {{< book >}}
 
+<!-- Cross-link: /posts/haliburton-watercross/ is drafted and waiting to
+     publish. It covers the OWRA watercross round at Pinestone on 26-27
+     September 2026, two weekends before this one. Add it to Related, and
+     consider a line in "The weekend itself" for anyone deciding between
+     late September and the long weekend. Do not link it before it is
+     live. -->
+
 ## Related
 
 - [The grounds](/posts/the-grounds/)
