@@ -1,160 +1,145 @@
 ---
 title: "The Stanhope Fall Colours Fly-In, 2026"
 description: "A one-day fly-in at the township airport at Stanhope, with cars, food, and scenic flights over the colour."
-date: 2026-08-22
+date: 2026-08-24
 categories: ["Events"]
 tags: ["fly-in", "stanhope", "aviation", "autumn", "events", "area"]
-featuredImage: "/images/forest-road-autumn.jpg"
-draft: true
+featuredImage: "/images/aircraft-autumn.jpg"
+events:
+  - name: "Stanhope Fall Colours Fly-In"
+    startDate: "2026-09-26T10:00:00-04:00"
+    endDate: "2026-09-26T15:00:00-04:00"
+    description: "A one-day fly-in at Stanhope Municipal Airport, with a classic car display, scenic flights over the autumn colour, food trucks, live music, and artists and artisans."
+    url: "https://www.algonquinhighlands.ca/explore-play/stanhope-municipal-airport/airport-events/"
+    free: true
+    location:
+      name: "Stanhope Municipal Airport"
+      street: "1168 Stanhope Airport Road"
+      locality: "Algonquin Highlands"
+      region: "ON"
+      postalCode: "K0M 1J1"
+draft: false
 ---
 
-<!-- OUTLINE ONLY. Structure and the township-verified facts are here.
-     Everything read off the event flyer is marked and none of it is
-     confirmed for 2026.
+<!-- featuredImage is aircraft-autumn.jpg, by Jerms on Pexels:
+     www.pexels.com/@jerms-427136/. Not a photograph of this event or this
+     airport. Deliberately no visible credit on the page, Ben's call
+     2026-08-24; the Pexels licence does not require attribution.
 
-     Brief: docs/stanhope_fly_in_brief.md.
+     Sourcing, resolved 2026-08-24:
+     - The flyer is the 2026 edition. "Saturday, September 26th" fits 2026,
+       and the township's airport events page carries the same date and the
+       10am-3pm hours.
+     - The flyer's line-up is what to expect, so the post follows the flyer
+       and NOT the township's 2024 write-ups. The 2024 beer garden, aviation
+       careers booth and firefighting displays are not in here and must not
+       be added without a current source.
+     - Camping is left out entirely. It is pilots-only on the flyer and the
+       audience for this page is not pilots.
+     - Drive time measured: 20 minutes, Highway 118 through Haliburton.
+     - The property is free that weekend.
 
-     The event is Saturday 26 September 2026 and search traffic for it
-     climbs through the fortnight before. A page published in the final
-     week will not be indexed in time. Publish in early September or not
-     at all this year.
+     Still not published anywhere, so still not on the page: parking
+     arrangements, scenic flight prices, and whether there is a rain date
+     or a weather cancellation policy. Do not fill these in from memory.
 
-     URL carries no year on purpose. The event recurs; re-cut the page
-     each year rather than starting a new one. On 27 September this page
-     stops being useful, so either turn it into a short recap with a
-     "2027 date not yet announced" line, or put the 2027 date on it as
-     soon as the township publishes one. Do not leave a stale 2026 date
-     on a permanent URL.
+     Two deliberate omissions. The airport coordinator's phone number is
+     not here: two different numbers circulate for the same named person
+     and the township contact page stays right if she changes role. And
+     nothing on the page claims any connection to the township, the
+     airport, or the advisory committee, because there is none.
 
-     Before flipping draft: false --
+     Do not merge the airport address with the township office at 1123
+     North Shore Road, K0M 1S0. Different place, different postal code.
 
-     1. Confirm the flyer Ben supplied is the 2026 edition. It prints no
-        year anywhere on it.
-     2. Confirm the 2026 feature line-up against a current township
-        page. The flyer and the township's prior-year write-ups list
-        completely different attractions, so at most one of them
-        describes 2026.
-     3. Confirm the camping note and find the pre-registration deadline.
-        The flyer restricts camping to pilots. Telling readers they can
-        camp when they cannot is the second worst thing this page could
-        do, after getting the date wrong.
-     4. Measure the drive from here to 1168 Stanhope Airport Road. No
-        proximity claim goes on the page until somebody has.
-     5. Check the property is actually free on 25-26 September before
-        pointing a booking CTA at that weekend.
-     6. Decide whether Event schema markup is worth adding, and whether
-        the theme supports it. The township page has none, so it is a
-        cheap way to stand out in event results.
-     7. featuredImage is a placeholder shared with other posts.
-     8. Cross-link with /posts/haliburton-watercross/, which went live on
-        2026-08-24. Its "A weekend around it" section names the fly-in
-        but points at the township airport events page, because this
-        post was still a draft when it shipped. Repoint it here once
-        this publishes. Going the other way, add watercross to Related
-        below and consider a line in the body: the fly-in and the
-        watercross round are both on Saturday 26 September, a few
-        minutes apart on the same day, which is a genuine reason for
-        somebody to book the whole weekend rather than drive up for one
-        afternoon. -->
+     URL carries no year on purpose. The event recurs, so re-cut this page
+     each year rather than starting a new one. On 27 September it stops
+     being useful: either cut it back to a recap with a "2027 date not yet
+     announced" line, or put the 2027 date on as soon as the township
+     publishes one. Do not leave a stale 2026 date on a permanent URL.
+
+     Cross-links done on publishing: watercross points here rather than
+     at the township airport page, and carries this post under Related.
+     The fall colours link came out of Related because that post is still
+     a draft; put it back when it publishes.
+
+     Brief: docs/stanhope_fly_in_brief.md. -->
 
 ## The essentials
 
-<!-- Date, time, venue, address, admission. Four or five lines, or a
-     short table. Put it at the top: the intent behind an event query is
-     logistics, and anyone who has to scroll past scene-setting to find
-     the start time leaves.
+Saturday 26 September 2026, 10am to 3pm, at Stanhope Municipal Airport,
+1168 Stanhope Airport Road. Admission is free.
 
-     Verified against algonquinhighlands.ca on 22 Aug 2026:
-       - Saturday 26 September 2026
-       - 10:00am to 3:00pm
-       - Stanhope Municipal Airport, 1168 Stanhope Airport Road,
-         Algonquin Highlands, ON K0M 1J1
-       - owned and operated by the Township of Algonquin Highlands
-       - registered as CND4 in the Canada Flight Supplement
-
-     Free admission comes off the flyer, not the township site. Confirm
-     it, and confirm whether parking is free too -- the flyer is silent
-     on parking.
-
-     Two addresses are easy to confuse. K0M 1S0 at 1123 North Shore Road
-     is the township office, not the airport. Do not merge them.
-
-     Do not publish the airport coordinator's phone number. Two
-     different numbers are in circulation for the same named person and
-     it is not clear which reaches her. Link the township contact page
-     instead; it stays correct if she changes role. -->
+The airport is owned and run by the Township of Algonquin Highlands. It is a
+working airfield that opens itself up for an afternoon, not a fairground with
+aeroplanes parked at the edge.
 
 ## What is on
 
-<!-- Prose or a short list, not a dump of the flyer.
+Aircraft fly in for the day and park where you can walk up to them. Alongside
+that there is a display of classic and unusual cars, food trucks, a barbecue
+run by the airport committee, live music, artists and artisans, and airport
+merchandise. An aviation author is scheduled to appear. Face painting runs by
+donation.
 
-     From the flyer, all unconfirmed for 2026: classic and unusual cars,
-     scenic flights by helicopter and aeroplane, food trucks, the airport
-     committee barbecue, live music, an aviation author, artists and
-     artisans, face painting by donation, airport merchandise.
-
-     Township write-ups from earlier years instead mention a beer garden
-     run by Haliburton Highlands Brewing, an aviation careers booth, and
-     firefighting equipment displays. Those are 2024 details. They must
-     not appear here as 2026 facts.
-
-     The two lists do not overlap at all, which is the point: pick the
-     one that a current township source supports, and cut the rest. -->
+It is a small event and you can see all of it in an hour, or you can stay the
+full five hours and talk with pilots about their aircraft.
 
 ## The scenic flights
 
-<!-- Its own short section. Foliage from the air is the distinctive
-     thing about this event and probably a search in its own right.
+The distinctive thing here is that you can go up. Scenic flights run over the
+Highlands during the event, by helicopter and by aeroplane, for a fee.
 
-     No prices. Prior-year sources say flights run "for a fee" and give
-     no figure. Confirm the flights are running in 2026 at all. -->
+Late September puts the colour somewhere in the early part of the turn, and
+seeing it from a few hundred feet is a different thing from seeing it from a
+dock. The lakes read as a chain rather than as separate bodies of water, and
+the mixed bush shows its patchiness in a way that is invisible from the
+ground.
 
 ## Getting there and what to expect
 
-<!-- Directions, parking, what to bring, weather. This is also where the
-     geography naturally establishes where the cottage sits relative to
-     the airport, without a hard sell.
+The airport is twenty minutes from the cottage, out on Highway 118 on the
+other side of Haliburton. It is signed off the highway.
 
-     TODO: the drive time, once measured. Nothing like "minutes away"
-     goes in until then.
+It is a working airfield in late September, which means open ground, no
+shelter to speak of, and wind. Dress for colder than the forecast and bring
+sunglasses.
 
-     TODO: does the event have a rain date or a weather cancellation
-     policy? Nothing found. -->
+Parking, and whether there is a rain date, are not published anywhere we can
+find. The township's
+[airport events page](https://www.algonquinhighlands.ca/explore-play/stanhope-municipal-airport/airport-events/)
+is the authority on both, and on any change to the day, so check it before
+you drive out. For anything else, the township's
+[contact page](https://www.algonquinhighlands.ca/municipal-services/contact-us/)
+will route you to the airport coordinator.
 
 ## Staying the night
 
-<!-- The camping note first, with its pilots-only qualifier if that
-     holds, then the accommodation angle.
+The fly-in starts at 10am, which is early enough that anybody coming from
+Toronto or the GTA is either leaving before six or staying the night before.
 
-     The hook is that people are already planning to arrive the night
-     before for a 10am start. If camping turns out to be pilots-only,
-     the angle still works, it just becomes "travelling in for an early
-     start" rather than "campers who would rather not camp".
-
-     Place this after the reader has decided they are going. -->
+We are twenty minutes away, with three bedrooms, a kitchen, and space to put
+a family down properly the night before an early start. The property is free
+that weekend as things stand.
 
 {{< book >}}
 
 ## More autumn in the Highlands
 
-<!-- Two or three sentences into [fall colours] and the [studio tour].
-     The event page catches the search; the seasonal pages do the
-     conversion work.
+The same weekend, the Ontario Watercross Racing Association runs the last
+round of its season on the pond at Pinestone, on the Minden side of
+Haliburton. (Snowmobiles, on open water, at more than 100 km/h!) The two
+events are close to Haliburton and the racing runs all weekend. See
+[watercross at Pinestone](/posts/haliburton-watercross/).
 
-     26 September is also the OWRA watercross weekend at Pinestone, so
-     there are two things on that Saturday. Sell it that way. Link
-     /posts/haliburton-watercross/ and say plainly that somebody
-     driving up for one can watch the other, which is a better argument
-     for a whole weekend than either event makes alone. -->
+Make it a weekend rather than a day trip. Two events over two days, and the
+colour starting to come in across the whole drive.
 
-<!-- Close with a line pointing at the township's own page as the
-     authority on changes. Honest, useful, and it covers us if the
-     details move after publication. Say plainly that this is a local
-     business writing about a public event, with no connection to the
-     township, the airport, or the advisory committee. -->
+The Studio Tour follows the weekend after, on 3-4 and 10-11 October. See
+[the 2026 Studio Tour](/posts/haliburton-studio-tour/).
 
 ## Related
 
-- [Fall colours on the property](/posts/fall-colours/)
 - [The 2026 Studio Tour](/posts/haliburton-studio-tour/)
+- [Watercross at Pinestone](/posts/haliburton-watercross/)
 - [What is nearby](/posts/whats-nearby/)

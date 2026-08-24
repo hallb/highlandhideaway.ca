@@ -38,3 +38,10 @@
 {{- if in (slice "taxonomy" "term") .Kind -}}
 <meta name="robots" content="noindex, follow">
 {{- end -}}
+
+{{- /*
+    Event JSON-LD for the event posts. Lives in its own partial rather than
+    in head/seo.html, which is theme code we would have to fork wholesale to
+    add one block to. Inert on any page with no `events` front matter key.
+*/ -}}
+{{- partial "head/event-schema.html" . -}}

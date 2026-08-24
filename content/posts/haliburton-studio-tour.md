@@ -3,6 +3,30 @@ title: "The 2026 Studio Tour - Haliburton Highlands"
 description: "Two October weekends when the studios open their doors, and what it's like to walk into one."
 date: 2026-08-19
 featuredImage: "/images/forest-road-autumn.jpg"
+# Two entries, not one. The tour runs two separate weekends and a single
+# Event from 3 to 11 October would claim nine days of continuous opening.
+# The location is the region rather than a street address because the tour
+# is spread over twenty-five-odd studios from Tory Hill to Carnarvon.
+# No `free:` key: the tour is very likely free to walk into, but nothing we
+# have says so, and structured data is the wrong place to guess. Add it if
+# thestudiotour.ca states admission.
+events:
+  - name: "Haliburton Highlands Studio Tour - first weekend"
+    startDate: "2026-10-03T10:00:00-04:00"
+    endDate: "2026-10-04T17:00:00-04:00"
+    description: "A self-guided tour of more than twenty-five artists' studios across the Haliburton Highlands."
+    url: "https://www.thestudiotour.ca/"
+    location:
+      name: "Haliburton Highlands"
+      region: "ON"
+  - name: "Haliburton Highlands Studio Tour - second weekend"
+    startDate: "2026-10-10T10:00:00-04:00"
+    endDate: "2026-10-11T17:00:00-04:00"
+    description: "A self-guided tour of more than twenty-five artists' studios across the Haliburton Highlands."
+    url: "https://www.thestudiotour.ca/"
+    location:
+      name: "Haliburton Highlands"
+      region: "ON"
 categories: ["Events"]
 tags: ["art", "studio tour", "events", "area"]
 draft: false
