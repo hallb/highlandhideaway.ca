@@ -1,0 +1,136 @@
+{{- /*
+    Event JSON-LD, emitted alongside the BlogPosting block that the theme's
+    head/seo.html already writes. Two ld+json scripts on one page is fine;
+    search engines read every block they find.
+
+    Why it lives here rather than in seo.html: overriding a partial in Hugo
+    replaces it wholesale, and seo.html is 245 lines of theme code we would
+    then have to diff on every theme update. head/meta.html is already
+    forked (see its header, ISS-5), so it calls this file and this file is
+    ours outright.
+
+    Driven entirely by front matter. A post with no `events` key emits
+    nothing, so this is inert everywhere except the event posts:
+
+        events:
+          - name: "Stanhope Fall Colours Fly-In"
+            startDate: "2026-09-26T10:00:00-04:00"
+            endDate: "2026-09-26T15:00:00-04:00"
+            url: "https://example.org/the-organiser-page/"
+            organizer: "Ontario Watercross Racing Association"
+            free: true
+            location:
+              name: "Stanhope Municipal Airport"
+              street: "1168 Stanhope Airport Road"
+              locality: "Algonquin Highlands"
+              region: "ON"
+              postalCode: "K0M 1J1"
+
+    It is a list because one post can legitimately describe several dated
+    occurrences -- the Studio Tour runs two separate weekends, and a single
+    Event spanning 3 to 11 October would claim eight days of continuous
+    opening that do not exist.
+
+    Only `name`, `startDate` and `location.name` are required. Every other
+    key is omitted from the output when absent rather than emitted empty,
+    because a wrong or blank value in structured data is worse than a
+    missing one: it is machine-readable, so nobody eyeballs it.
+
+    `free: true` emits an Offer at price 0 CAD. Leave it unset when
+    admission is unconfirmed -- do NOT default it to free.
+
+    Dates are written with an explicit offset (-04:00 is EDT, which is what
+    Ontario is on through September and October). Without an offset the
+    time is read as UTC and every listed start time moves by four hours.
+
+    The output is built as a map and passed through jsonify, so quoting and
+    escaping are handled by Hugo rather than by hand.
+*/ -}}
+
+{{- with .Params.events -}}
+    {{- $graph := slice -}}
+
+    {{- range . -}}
+        {{- $event := dict
+            "@context" "https://schema.org"
+            "@type" "Event"
+            "name" .name
+            "startDate" .startDate
+            "eventStatus" "https://schema.org/EventScheduled"
+            "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+        -}}
+
+        {{- with .endDate -}}
+            {{- $event = merge $event (dict "endDate" .) -}}
+        {{- end -}}
+        {{- with .description -}}
+            {{- $event = merge $event (dict "description" .) -}}
+        {{- end -}}
+        {{- with .url -}}
+            {{- $event = merge $event (dict "url" .) -}}
+        {{- end -}}
+        {{- with .organizer -}}
+            {{- $event = merge $event (dict "organizer" (dict "@type" "Organization" "name" .)) -}}
+        {{- end -}}
+
+        {{- /* Place, with a PostalAddress only when there are parts to put in it.
+               An event spread across a region (the Studio Tour) gets a named
+               Place and no street address, which is honest and still valid. */ -}}
+        {{- with .location -}}
+            {{- $place := dict "@type" "Place" "name" .name -}}
+            {{- $addr := dict "@type" "PostalAddress" "addressCountry" "CA" -}}
+            {{- $hasAddr := false -}}
+            {{- with .street -}}
+                {{- $addr = merge $addr (dict "streetAddress" .) -}}
+                {{- $hasAddr = true -}}
+            {{- end -}}
+            {{- with .locality -}}
+                {{- $addr = merge $addr (dict "addressLocality" .) -}}
+                {{- $hasAddr = true -}}
+            {{- end -}}
+            {{- with .region -}}
+                {{- $addr = merge $addr (dict "addressRegion" .) -}}
+                {{- $hasAddr = true -}}
+            {{- end -}}
+            {{- with .postalCode -}}
+                {{- $addr = merge $addr (dict "postalCode" .) -}}
+                {{- $hasAddr = true -}}
+            {{- end -}}
+            {{- if $hasAddr -}}
+                {{- $place = merge $place (dict "address" $addr) -}}
+            {{- end -}}
+            {{- $event = merge $event (dict "location" $place) -}}
+        {{- end -}}
+
+        {{- /* The post's featured image, resolved to an absolute URL. Google
+               wants an absolute URL here and ignores a relative one. */ -}}
+        {{- with $.Params.featuredImage -}}
+            {{- $event = merge $event (dict "image" (slice (. | absURL))) -}}
+        {{- end -}}
+
+        {{- if .free -}}
+            {{- $offer := dict
+                "@type" "Offer"
+                "price" "0"
+                "priceCurrency" "CAD"
+                "availability" "https://schema.org/InStock"
+            -}}
+            {{- with .url -}}
+                {{- $offer = merge $offer (dict "url" .) -}}
+            {{- end -}}
+            {{- $event = merge $event (dict "offers" $offer) -}}
+        {{- end -}}
+
+        {{- $graph = $graph | append $event -}}
+    {{- end -}}
+
+    {{- /* safeJS is load-bearing. Inside a <script> element Go's contextual
+           auto-escaping treats a plain string as a JS value and emits it as a
+           quoted string literal, which double-encodes the whole block into
+           valid-but-meaningless JSON. */ -}}
+    {{- range $graph }}
+<script type="application/ld+json">
+{{ jsonify (dict "indent" "  ") . | safeJS }}
+</script>
+    {{- end -}}
+{{- end -}}

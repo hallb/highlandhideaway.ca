@@ -5,6 +5,20 @@ date: 2026-08-24
 categories: ["Events"]
 tags: ["watercross", "owra", "pinestone", "motorsport", "events", "area"]
 featuredImage: "/images/watercross-sled.jpg"
+# Date-only start and end: OWRA has not published daily start times, and a
+# made-up time would be a machine-readable lie. No `free:` key either, since
+# admission is exactly what we are waiting on them to confirm. Add both when
+# they reply. See layouts/partials/head/event-schema.html.
+events:
+  - name: "OWRA Watercross - Haliburton Round"
+    startDate: "2026-09-26"
+    endDate: "2026-09-27"
+    description: "The final round of the Ontario Watercross Racing Association season, raced on the pond in front of Pinestone Resort."
+    organizer: "Ontario Watercross Racing Association"
+    location:
+      name: "Pinestone Resort & Conference Centre"
+      locality: "Haliburton"
+      region: "ON"
 draft: false
 ---
 
@@ -18,12 +32,14 @@ draft: false
      The plan is to publish without those answers and update after, since
      the page is worth nothing after 27 September.
 
-     Internal links to [fall colours] and [Stanhope] were removed before
-     publishing, because both are still drafts and the links would have
-     404ed. Put them back when those posts go live: fall colours belongs
-     in "A weekend around it" and under Related, and the Stanhope
-     mention in "A weekend around it" currently points at the township
-     airport events page instead. Both drafts carry a matching note.
+     Stanhope published on 2026-08-24, so the fly-in link in "A weekend
+     around it" now points there rather than at the township airport
+     page, and it is under Related too.
+
+     [fall colours] is still a draft. Its links were removed from here
+     before publishing so this post would not go live with 404s: put them
+     back in "A weekend around it" and under Related when it publishes.
+     That draft carries a matching note.
 
      No link to OWRA on the page, deliberately: their site is thin and
      carries little the post does not already say. Ben's call,
@@ -73,9 +89,9 @@ the Thanksgiving traffic that arrives a fortnight later.
 
 If you are weighing dates, the 26th and 27th sit in the gap before the Studio
 Tour weekends of 3-4 and 10-11 October. The
-[Stanhope fall colours fly-in](https://www.algonquinhighlands.ca/explore-play/stanhope-municipal-airport/airport-events/)
-is the same Saturday, so that is two things in one day if you are willing to
-drive between them.
+[Stanhope fall colours fly-in](/posts/stanhope-fall-colours-fly-in/) is the
+same Saturday, so that is two things in one day if you are willing to drive
+between them.
 
 ## Staying nearby
 
@@ -91,5 +107,6 @@ up for the afternoon and driving home again.
 
 ## Related
 
+- [The Stanhope fall colours fly-in](/posts/stanhope-fall-colours-fly-in/)
 - [The 2026 Studio Tour](/posts/haliburton-studio-tour/)
 - [What is nearby](/posts/whats-nearby/)
