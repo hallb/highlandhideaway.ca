@@ -194,12 +194,17 @@ languageCode = 'en-us'
   # on the page and double-count every view. Do not set it while automatic
   # injection is on.
   #
-  # Injection is conditional on the request looking like a browser, so a
-  # plain curl will not show the beacon and its absence there proves
-  # nothing. Check with a browser User-Agent:
+  # Injection is conditional, so the beacon's absence from a plain curl
+  # proves nothing. The gate is the Accept header, NOT the User-Agent: a
+  # curl sending a Chrome User-Agent and no Accept header still gets a
+  # page with no beacon in it, which is a good way to conclude analytics
+  # is broken when it is fine. To check by hand:
   #
-  #   curl -s https://highlandhideaway.ca/ -H "User-Agent: Mozilla/5.0 ..." \
+  #   curl -s https://highlandhideaway.ca/ -H "Accept: text/html" \
   #     | grep -o "data-cf-beacon='[^']*'"
+  #
+  # script/monitor beacon does that against three pages and also asserts
+  # the token above, and runs daily from .github/workflows/monitor.yml.
   #
   # Booking conversions do not run through any analytics product. They are
   # counted server-side by src/worker.js.
