@@ -39,13 +39,17 @@
 #       Set to "Enable, excluding visitor data in the EU". Cloudflare
 #       injects the beacon at the edge, so it does not appear in ./public
 #       and hugo.toml sets no beacon of its own -- setting one would put a
-#       second beacon on the page and double-count. Injection only fires
-#       for requests that look like a browser, and never for EU visitors,
-#       who are therefore absent from the numbers entirely.
+#       second beacon on the page and double-count. Injection fires only
+#       for requests that advertise Accept: text/html, and never for EU
+#       visitors, who are therefore absent from the numbers entirely.
 #
 #       Do not switch this to "Enable with JS Snippet installation". That
 #       turns edge injection off and expects a manual tag, which this repo
 #       deliberately does not carry -- page analytics would stop silently.
+#       That is a dashboard click with no commit here to notice it, which
+#       is why script/monitor beacon checks the live pages daily, and why
+#       it pins the token: a recreated Web Analytics site issues a new one
+#       and the views then land somewhere the Grafana queries do not look.
 #
 #       Two different identifiers, easily confused:
 #         beacon token  2e7e343f80d04a2d9f9d49013c3c2d92  (in page source)

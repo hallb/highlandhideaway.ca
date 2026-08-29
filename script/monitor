@@ -2,10 +2,11 @@
 #
 # Production monitoring for highlandhideaway.ca.
 #
-# Three checks, each answering a question CI on ./public cannot:
+# Four checks, each answering a question CI on ./public cannot:
 #
 #   redirect  Does /go/airbnb still 302 to the listing, from Cloudflare?
 #   canary    Does a click actually land a row in booking_clicks?
+#   beacon    Is the Cloudflare Web Analytics beacon still on the pages?
 #   listing   Does the Airbnb listing URL still resolve to something live?
 #
 # The canary is the reason this exists. src/worker.js swallows write
@@ -14,7 +15,13 @@
 # for real traffic cannot tell those apart; a synthetic click can, because
 # it knows a row is owed.
 #
-# Usage: script/monitor [redirect|canary|listing|all]
+# The beacon check is the same argument applied to the other half of the
+# funnel. Views are counted by a script Cloudflare injects at the edge from
+# a dashboard setting, so that half can be switched off in a UI without a
+# commit here, and low traffic is exactly the condition under which nobody
+# notices. Between the two, both numbers in a conversion rate are watched.
+#
+# Usage: script/monitor [redirect|canary|beacon|listing|all]
 #
 # Environment:
 #   CF_ACCOUNT_ID  Cloudflare account ID            (canary only)
@@ -100,6 +107,57 @@ ae_query() {
     -H "Authorization: Bearer $CF_AE_TOKEN" --data "$1"
 }
 
+# --- beacon -----------------------------------------------------------------
+# Is the page-view side still collecting?
+#
+# The canary covers conversions. Nothing covered views until this check, and
+# views are the more fragile half: the beacon is injected at the edge from a
+# dashboard setting, so it can be switched off by a click in a UI, with no
+# commit here to notice. Switching Web Analytics to "Enable with JS Snippet
+# installation" expects a manual tag this repo deliberately does not carry --
+# page views would stop dead with every other check in this file still green.
+#
+# Two things are asserted, not one. Presence alone is not enough: if the Web
+# Analytics site is deleted and recreated, the beacon comes back carrying a
+# new token and the views land under a site the Grafana queries do not filter
+# for. Pinning the token turns that into a failure instead of a flat graph.
+#
+# The token lives here rather than in hugo.toml on purpose. hugo.toml must not
+# set params.analytics.cloudflare.token -- that would put a second beacon on
+# the page and double-count every view -- so there is no config value to read,
+# and this constant is the only copy a check can compare against.
+#
+# Injection is gated on the request advertising Accept: text/html, NOT on the
+# User-Agent. A curl sending a Chrome UA and no Accept header gets a page with
+# no beacon in it, which looks exactly like the outage this check exists to
+# find. Hence the explicit header on every request below.
+#
+# curl never executes the script, so running this adds nothing to the numbers.
+BEACON_TOKEN="2e7e343f80d04a2d9f9d49013c3c2d92"
+# Home, the section index, and one post: the three layouts that render most of
+# the site. Edge injection is per-response, so a layout is the plausible unit
+# of partial failure, not an individual page.
+BEACON_PATHS=("/" "/posts/" "/posts/welcome/")
+
+check_beacon() {
+  local path body absent="" wrong=""
+  for path in "${BEACON_PATHS[@]}"; do
+    body="$(curl -sS -A "$UA" -H "Accept: text/html,application/xhtml+xml" \
+      --max-time 20 "$SITE$path")" || fail "could not fetch $SITE$path"
+
+    if ! printf '%s' "$body" | grep -q 'data-cf-beacon'; then
+      absent="$absent $path"
+    elif ! printf '%s' "$body" | grep -q "\"token\":\"$BEACON_TOKEN\""; then
+      wrong="$wrong $path($(printf '%s' "$body" |
+        grep -o '"token":"[a-f0-9]*"' | head -1 | cut -d'"' -f4))"
+    fi
+  done
+
+  [ -z "$absent" ] || fail "no beacon on:$absent -- page views are not being counted"
+  [ -z "$wrong" ] || fail "beacon token is not $BEACON_TOKEN on:$wrong -- views are landing under a different Web Analytics site"
+  ok "beacon present on ${#BEACON_PATHS[@]} pages, token $BEACON_TOKEN"
+}
+
 # --- listing ----------------------------------------------------------------
 # Airbnb bot-blocks datacenter IPs, so a 403 from a GitHub runner says
 # nothing about the listing and must not page anyone. Only a 404 or 410 --
@@ -122,14 +180,18 @@ main() {
   case "$target" in
     redirect) check_redirect ;;
     canary)   check_canary ;;
+    beacon)   check_beacon ;;
     listing)  check_listing ;;
     all)
+      # The canary is last because it sleeps for CANARY_WAIT; everything
+      # else has reported by the time that wait starts.
       check_redirect || rc=1
+      check_beacon   || rc=1
       check_listing  || rc=1
       check_canary   || rc=1
       return $rc
       ;;
-    *) echo "usage: script/monitor [redirect|canary|listing|all]" >&2; return 2 ;;
+    *) echo "usage: script/monitor [redirect|canary|beacon|listing|all]" >&2; return 2 ;;
   esac
 }
 

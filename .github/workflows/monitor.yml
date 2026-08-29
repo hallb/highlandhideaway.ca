@@ -11,6 +11,11 @@
 # to say months later. A synthetic click knows a row is owed, so the failure
 # becomes an email instead of a silence.
 #
+# The beacon check in the endpoints job is the same reasoning applied to page
+# views, which are collected by a script Cloudflare injects at the edge from a
+# dashboard setting -- switchable off in a UI, with nothing in this repo to
+# notice. It needs no secret, so unlike the canary it cannot skip itself.
+#
 # Cadence: endpoints daily, links weekly. Both crons fire on Sunday; the links
 # job filters itself to the weekly one.
 #
@@ -39,14 +44,19 @@ env:
 
 jobs:
   endpoints:
-    name: Redirect and listing
+    name: Redirect, beacon, and listing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - name: Check the booking redirect and the listing
+      - name: Check the booking redirect, the beacon, and the listing
+        # Each on its own line so a failure names which one broke, and so
+        # the beacon check still runs when the listing is having a bad day.
         run: |
-          script/monitor redirect
-          script/monitor listing
+          rc=0
+          script/monitor redirect || rc=1
+          script/monitor beacon   || rc=1
+          script/monitor listing  || rc=1
+          exit $rc
 
   canary:
     name: Booking-clicks canary
