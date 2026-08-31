@@ -1,14 +1,14 @@
 ---
 title: "Fall Colours in the Haliburton Highlands"
 description: "When the Highlands turn, why the turn is staggered across the county, and where to look from."
-date: 2026-08-31
+date: 2026-08-30
 categories: ["Seasons"]
 tags: ["autumn", "fall colours", "trees", "nature", "haliburton"]
 featuredImage: "/images/forest-road-autumn.jpg"
 draft: false
 ---
 
-<!-- PUBLISHED 2026-08-31. Text is finished; photography is borrowed.
+<!-- PUBLISHED 2026-08-30. Text is finished; photography is borrowed.
 
      Rewritten 2026-08-31 at Ben's direction: the subject is now fall
      colour in the Haliburton Highlands, not colour on the 23 acres. The
@@ -21,7 +21,7 @@ draft: false
      the property at three points in the turn -- is not what an area post
      needs.
 
-     Published 2026-08-31 without new photography, deliberately: the
+     Published 2026-08-30 without new photography, deliberately: the
      indexing lead time before peak was worth more than the picture.
      featuredImage is forest-road-autumn.jpg and the inline shot is
      dock-autumn.jpg, both already on file and both reused from elsewhere.
@@ -133,7 +133,7 @@ once the season starts:
 
 Check one of them in the week before you travel.
 
-<!-- This post is dated 31 August 2026 and the 15 October projection was
+<!-- This post is dated 30 August 2026 and the 15 October projection was
      made on that date. Re-date or revise the projection each year rather
      than leaving a stale number on the page. -->
 
