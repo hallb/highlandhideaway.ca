@@ -5,11 +5,10 @@ date: 2026-08-31
 categories: ["Events"]
 tags: ["corduroy enduro", "motorsport", "gooderham", "events", "area"]
 featuredImage: "/images/forest-road-autumn.jpg"
-draft: true
+draft: false
 ---
 
-<!-- DRAFT FOR REVIEW, 2026-08-31. Prose written for every section except
-     Basecamp, which is entirely property facts and is still marked.
+<!-- PUBLISHED 2026-08-31, aimed at spectators rather than racers.
 
      Brief: docs/corduroy_enduro_brief.md.
 
@@ -57,15 +56,12 @@ draft: true
      nearby] mentions hardware in Haliburton; that is not a parts
      supplier and this page does not imply one.
 
-     Before flipping draft: false --
+     Still outstanding, neither blocking:
 
-     1. Set the minimum stay for 17-20 September. The page states three
-        nights, which is the listing minimum since 2026-08-25, and says
-        Thursday to Sunday works. If that weekend is set differently, the
-        sentence is wrong.
-     2. Spectator maps and the full schedule were still unpublished as of
-        2026-08-31. Add them once they are up.
-     3. featuredImage is forest-road-autumn.jpg, shared with the fall
+     1. Spectator maps and the full schedule were still unpublished as of
+        2026-08-31. Add them once they are up. The event is 17-20
+        September, so the window for that is short.
+     2. featuredImage is forest-road-autumn.jpg, shared with the fall
         colours post. Swap it if an original exists.
 
      Constraints, per ISS-46: no affiliation with the event, no logo, no
@@ -223,12 +219,10 @@ top of each other. See
 Bring your own towels and linens. That one catches people out. See
 [what to bring](/posts/what-to-bring/).
 
-The cottage is available for the 2026 race weekend. The minimum stay is
-three nights, so Thursday to Sunday works as a booking.
+The cottage is available for the 2026 race weekend.
 
 The driveway is gravel and steep. Any car will make it in September, and
-there is room to park without blocking the turnaround, but we make no
-promises about anything towing a trailer. See
+there is room to park without blocking the turnaround. See
 [getting here and parking](/posts/getting-here-and-parking/).
 
 <!-- Rewritten from "Basecamp for the weekend" on 2026-08-31. Every fact
@@ -237,13 +231,13 @@ promises about anything towing a trailer. See
      towels and linens from [what to bring], the gravel driveway and the
      turnaround from [getting here and parking]. Nothing new is promised.
 
-     The trailer sentence is a disclaimer rather than a claim, and it is
-     here because riders will read this page whatever it is aimed at, and
-     silence would be read as a yes. Cut it if you would rather say
-     nothing at all.
+     Trailers are not mentioned at all, Ben's call on 2026-08-31. A
+     disclaimer was drafted and cut: silence is the decision, not an
+     oversight, so do not add one back.
 
-     The three-night minimum is the listing minimum since 2026-08-25.
-     Confirm it holds for 17-20 September before this publishes. -->
+     No minimum stay anywhere on this page, also his call. The Airbnb
+     minimum is likely to be tweaked again and the website should not
+     carry a number that goes stale the moment it changes. -->
 
 {{< book >}}
 
