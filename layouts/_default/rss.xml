@@ -1,0 +1,42 @@
+{{- /*  Hugo's internal RSS template was rendering the term and taxonomy feeds
+        (the per-tag and per-category index.xml files). DoIt's taxonomy/rss.xml
+        does not match the layout lookup for those kinds on Hugo 0.159, so
+        they fell through to the built-in, which emits .Summary and carried
+        the site's editorial HTML comments out with it.
+
+        This is the same leak ISS-31 assumed could not happen: --minify strips
+        the comments from the pages, but the feeds are a separate output
+        format. Found 2026-08-31.
+
+        Nothing clever here. It routes these feeds through the same
+        rss/item.html partial the rest of the site uses, which is where the
+        comments are stripped.  */ -}}
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>
+            {{- .Title }} - {{ .Site.Title -}}
+        </title>
+        <link>
+            {{- .Permalink -}}
+        </link>
+        <description>
+            {{- .Title }} - {{ .Site.Title -}}
+        </description>
+        <generator>Hugo -- gohugo.io</generator>
+        {{- with .Site.LanguageCode -}}
+            <language>{{ . }}</language>
+        {{- end -}}
+        {{- with .Site.Copyright -}}
+            <copyright>{{ . }}</copyright>
+        {{- end -}}
+        {{- if not .Date.IsZero -}}
+            <lastBuildDate>
+                {{- .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" -}}
+            </lastBuildDate>
+        {{- end -}}
+        <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+        {{- range .Pages | first (.Site.Params.list.rss | default 10) -}}
+            {{- dict "Page" . "Site" .Site | partial "rss/item.html" -}}
+        {{- end -}}
+    </channel>
+</rss>

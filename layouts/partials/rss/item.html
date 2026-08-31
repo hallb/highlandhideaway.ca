@@ -1,0 +1,94 @@
+{{- $params := .Page.Params | merge .Site.Params.Page | merge (dict "author" .Site.Params.Author.name) -}}
+{{- $image := $params.featuredImagePreview | default $params.featuredImage -}}
+{{- with .Page.Resources.GetMatch (printf "%s" ($image)) -}}
+    {{- $image = .RelPermalink -}}
+{{- end -}}
+{{- with .Page.Resources.GetMatch "featured-image" -}}
+    {{- $image = .RelPermalink -}}
+{{- end -}}
+{{- with .Page.Resources.GetMatch "featured-image-preview" -}}
+    {{- $image = .RelPermalink -}}
+{{- end -}}
+<item>
+    <title>
+        {{- .Page.Title -}}
+    </title>
+    <link>
+        {{- .Page.Permalink -}}
+    </link>
+    <pubDate>
+        {{- .Page.Date.Format "Mon, 02 Jan 2006 15:04:05 -0700"  -}}
+    </pubDate>
+    {{- if .Page.Params.authors -}}
+    {{- $lang := ( .Page.Language.Lang | default $.Lang ) -}}
+        {{- range $i, $name := .Page.Params.authors -}}
+            {{- if $.Site.Data.authors -}}
+                {{- with partial "function/author.html" (dict "name" $name "author" (index $.Site.Data.authors $name) "lang" $lang) -}}
+                    <author>
+                        <name>{{- .name -}}</name>
+                        {{- if .absLink -}}
+                            <uri>{{ .absLink | absURL }}</uri>
+                        {{- else -}}
+                            <uri>{{ .link | absURL }}</uri>
+                        {{- end -}}
+                        {{- if .email -}}
+                            <email>{{ .email }}</email>
+                        {{- end -}}
+                    </author>
+                {{- end -}}
+            {{- else -}}
+                <author>
+                    <name>{{- $name -}}</name>
+                </author>
+            {{- end -}}
+        {{- end -}}
+    {{- else -}}
+    <author>
+        <name>{{- $params.author | default (T "author") -}}</name>
+    </author>
+    {{- end -}}
+    <guid>
+        {{- .Page.Permalink -}}
+    </guid>
+    <description>
+        {{- "<![CDATA[" | safeHTML -}}
+        {{- with $image -}}
+            <div class="featured-image">
+                <img src="{{ . }}" referrerpolicy="no-referrer">
+            </div>
+        {{- end -}}
+        {{/*  Overrides themes/DoIt/layouts/partials/rss/item.html.
+
+              The site marks facts only the owner knows with HTML comments in
+              the Markdown (see ISS-31). --minify strips those from the built
+              pages, so nothing leaks there, but the feeds are a separate
+              output format and the comment text was going through them.
+              Found 2026-08-31 while publishing the Corduroy post. ISS-31's
+              note that "nothing leaks to visitors" was only ever verified
+              against the HTML.
+
+              Two paths leaked, and stripping comments at the end fixed only
+              one of them. .Page.Content carries the comments intact, so a
+              regex clears them. .Page.Summary does not: Hugo derives it by
+              stripping tags, which removes the <!-- --> markers and leaves
+              the text behind, so by the time the partial sees it there is no
+              comment left to match. So both paths are now built here from a
+              cleaned copy of .Page.Content rather than from .Summary.
+
+              (?s) makes . match newlines; the comments are multi-line.  */}}
+        {{- $clean := .Page.Content | replaceRE `(?s)<!--.*?-->` "" -}}
+        {{- $content := .Page.Description -}}
+        {{- if $params.rssFullText -}}
+            {{- $content = dict "Content" $clean "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" -}}
+        {{- else -}}
+            {{/*  Tags become a space rather than nothing, so a heading does
+                  not run into the paragraph under it.  */}}
+            {{- $flat := $clean | replaceRE `<[^>]+>` " " | htmlUnescape | replaceRE `\s+` " " -}}
+            {{- with $flat | truncate 300 -}}
+                {{- $content = . -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $content | safeHTML -}}
+        {{- "]]>" | safeHTML -}}
+    </description>
+</item>
