@@ -136,7 +136,9 @@ rather than planning a second trip. See
 
 ## Booking it
 
-The minimum stay is three nights, so Thursday to Sunday works as a booking.
+<!-- No minimum stay stated here, Ben's call on 2026-08-31: the Airbnb
+     minimum is likely to be tweaked again and the website should not
+     carry a number that goes stale the moment it changes. -->
 
 {{< book >}}
 
