@@ -36,10 +36,9 @@ draft: false
      around it" now points there rather than at the township airport
      page, and it is under Related too.
 
-     [fall colours] is still a draft. Its links were removed from here
-     before publishing so this post would not go live with 404s: put them
-     back in "A weekend around it" and under Related when it publishes.
-     That draft carries a matching note.
+     [fall colours] published on 2026-08-31, so the two links removed from
+     here before this post shipped are restored: one in "A weekend around
+     it" and one under Related.
 
      No link to OWRA on the page, deliberately: their site is thin and
      carries little the post does not already say. Ben's call,
@@ -83,9 +82,9 @@ happening. A sled either makes it across or it doesn't.
 ## A weekend around it
 
 Late September is a good week to be here for reasons that have nothing to do
-with snowmobiles. The colour is usually starting to turn without having
-peaked, the lakes have gone quiet, and the village has not yet filled up with
-the Thanksgiving traffic that arrives a fortnight later.
+with snowmobiles. The [colour](/posts/fall-colours/) is usually starting to turn
+without having peaked, the lakes have gone quiet, and the village has not yet
+filled up with the Thanksgiving traffic that arrives a fortnight later.
 
 If you are weighing dates, the 26th and 27th sit in the gap before the Studio
 Tour weekends of 3-4 and 10-11 October. The
@@ -108,5 +107,6 @@ up for the afternoon and driving home again.
 ## Related
 
 - [The Stanhope fall colours fly-in](/posts/stanhope-fall-colours-fly-in/)
+- [Fall colours in the Haliburton Highlands](/posts/fall-colours/)
 - [The 2026 Studio Tour](/posts/haliburton-studio-tour/)
 - [What is nearby](/posts/whats-nearby/)
