@@ -1,6 +1,6 @@
 ---
 title: "Where to Stay for the Corduroy Enduro"
-description: "The Cord runs out of Gooderham every September. Notes for riders, crews, and the people who come to watch."
+description: "The Cord runs out of Gooderham every September. Where to watch it, and where to stay while you do."
 date: 2026-08-31
 categories: ["Events"]
 tags: ["corduroy enduro", "motorsport", "gooderham", "events", "area"]
@@ -26,26 +26,46 @@ draft: true
      URL is permanent and carries no year. Re-cut the dates and figures
      each spring rather than starting a new page.
 
-     Answered since the outline:
-     - Gooderham is 22 minutes. Ben, 2026-08-31, replacing the "30
-       minutes" the brief carried as a client assertion.
+     Answered since the outline, all Ben on 2026-08-31:
+     - Gooderham is 22 minutes, replacing the "30 minutes" the brief
+       carried as an unverified client assertion.
      - LCBO in both Gooderham and Haliburton, Haliburton better stocked.
-       Ben, 2026-08-31.
+     - Full grocery is the two in Haliburton, Foodland and Todd's Your
+       Independent Grocer, both already described in [what is nearby].
+     - The cottage is available for 17-20 September.
+     - No CORD26 code. Airbnb does not make discount codes easy, so the
+       attribution signal for this page is the booking-click count the
+       Worker already records per page, not a code.
+
+     AUDIENCE CHANGED 2026-08-31, Ben's call. This post is aimed at people
+     coming to watch the event, not at racers and crews. If riders book
+     off it, good, but the page promises them nothing. Removed on that
+     instruction, and not to be reinstated without him:
+       - trailer and truck parking, and any claim about getting a trailer
+         up the driveway
+       - outdoor water for washing a bike down
+       - anywhere for wet or dirty gear to dry. He does not want it in
+         the cottage
+       - the 5am-start, 9pm-return framing of the kitchen
+     "Basecamp for the weekend" is now "Staying nearby", it is built only
+     from facts already published elsewhere on the site, and it has moved
+     from third section to last, immediately before the booking call to
+     action. Everything ahead of it is useful to somebody who never books,
+     which is the same order the watercross post uses.
+
+     No claims about fuel or parts suppliers, also his call. [What is
+     nearby] mentions hardware in Haliburton; that is not a parts
+     supplier and this page does not imply one.
 
      Before flipping draft: false --
 
-     1. Ben supplies the Basecamp facts. Every one is a booking promise
-        and none can be guessed. This is the only section with no prose.
-     2. Availability and the minimum stay for 17-20 Sept are set before
-        the page is live. The page drives traffic into whatever is
-        configured that day.
-     3. Decide on the CORD26 discount code. It doubles as the attribution
-        signal for this page.
-     4. Nearest fuel, nearest full grocery, nearest parts supplier. The
-        LCBO half of this is answered; the rest is not.
-     5. Spectator maps and the full schedule were still unpublished as of
+     1. Set the minimum stay for 17-20 September. The page states three
+        nights, which is the listing minimum since 2026-08-25, and says
+        Thursday to Sunday works. If that weekend is set differently, the
+        sentence is wrong.
+     2. Spectator maps and the full schedule were still unpublished as of
         2026-08-31. Add them once they are up.
-     6. featuredImage is forest-road-autumn.jpg, shared with the fall
+     3. featuredImage is forest-road-autumn.jpg, shared with the fall
         colours post. Swap it if an original exists.
 
      Constraints, per ISS-46: no affiliation with the event, no logo, no
@@ -60,12 +80,10 @@ kilometres of trail through the Haliburton Highlands for a $13,500 pro
 purse and a Cord Log. Riders come from across North America. In 2026 it
 runs 17 to 20 September, out of Gooderham.
 
-Gooderham is a village. The race is far larger than the place it starts
-from, and what a rider actually needs for the weekend is somewhere to put a
-trailer, water to wash a bike, somewhere for wet gear to dry, and a kitchen
-that works at five in the morning and again at nine at night. That is an
-accommodation problem rather than a village problem, and it is worth
-solving before entries close rather than after.
+Gooderham is a village, and the course runs through the country around it
+rather than through the village itself. Watching the Cord means driving out
+to a test, standing in the woods for a few hours, and driving back. Doing
+that for a weekend goes a great deal better with somewhere to come back to.
 
 We are 22 minutes from Gooderham.
 
@@ -74,8 +92,9 @@ We are 22 minutes from Gooderham.
 
      The pivot deliberately does not claim Gooderham has no lodging, and
      does not say motels fill a year out. Both were invented in
-     conversation and neither was researched, so the pivot runs on what a
-     rider needs instead of on scarcity we cannot evidence. -->
+     conversation and neither was researched. It also no longer runs on
+     rider needs, per the audience change above: it runs on what watching
+     the event is actually like. -->
 
 ## The 2026 event
 
@@ -103,32 +122,6 @@ to the event. This page is about where to sleep.
      the Promation Prologue or the Friday GP, because the site lists both
      and it is unresolved whether they are one thing or two. Conflict B.
      Name them once somebody checks corduroyenduro.ca/blank-5-1. -->
-
-## Basecamp for the weekend
-
-<!-- NOT WRITTEN. This is the conversion section and it is entirely
-     property facts, none of which are guessable and every one of which is
-     a promise to a paying guest. An inaccurate claim about trailer
-     parking produces an angry rider at seven in the morning.
-
-     Frame each one as the answer to a rider's problem rather than as a
-     feature list. Generic cottage copy is invisible to this audience.
-
-     From Ben, all still open:
-       - trailer and truck parking: does it exist, what length fits, is
-         there room to turn around
-       - outdoor water for washing a bike down
-       - where wet gear dries. Name the actual space
-       - the kitchen, for 5am starts and 9pm returns
-       - sleeping capacity and bed configuration. Crews split the cost,
-         so the number matters more here than on other pages
-       - cell and wifi, stated honestly. Riders and crews follow live
-         timing, and an overstated signal is a guaranteed complaint
-       - the policy on storing fuel or jerry cans, checked against the
-         insurance before it goes on the page
-       - pet policy
-
-     See docs/corduroy_enduro_brief.md section 4 for the full list. -->
 
 ## Watching it
 
@@ -178,20 +171,28 @@ which is the page to check in the week before you travel.
 ## Getting there and stocking up
 
 Gooderham is 22 minutes from us. Haliburton is closer, under ten minutes,
-and it is where almost everything you will want is. See
-[what is nearby](/posts/whats-nearby/).
+and it is where almost everything you will want is.
 
 There is an LCBO in Gooderham and another in Haliburton. The Haliburton one
 is better stocked, so if the order matters, do that stop on the way in
 rather than on the way to the course.
 
-<!-- 22 minutes, both LCBOs and the stocking difference are Ben's, given
-     2026-08-31.
+For food, Haliburton has two full grocery stores, Foodland on the main
+strip and Todd's Your Independent Grocer on the far side of town, with a
+good butcher next to the second one. Buy for the weekend on the way in.
+Standing outside all day makes people hungrier than they expect, and
+Gooderham is not where you want to discover that. See
+[what is nearby](/posts/whats-nearby/) and
+[the cottage pantry guide](/posts/cottage-pantry-guide/).
 
-     TODO: nearest fuel, nearest full grocery, nearest hardware or parts
-     supplier. Most of this can point at [what is nearby] rather than
-     repeat it, but somebody has to confirm what is actually there and
-     what its hours are on a race weekend. -->
+<!-- 22 minutes, both LCBOs, the stocking difference and the two groceries
+     are Ben's, given 2026-08-31. The grocery detail is already written up
+     in [what is nearby] and [the cottage pantry guide], so this points at
+     them rather than repeating the addresses.
+
+     Deliberately no fuel station and no parts supplier, per Ben. [What is
+     nearby] mentions hardware in Haliburton; that is not a motorcycle
+     parts supplier and this page does not imply one. -->
 
 ## Making a weekend of it
 
@@ -207,6 +208,42 @@ How far along the colour is that particular weekend is not something anyone
 can promise in advance. See
 [fall colours in the Haliburton Highlands](/posts/fall-colours/) for what
 turns when and which reports to check in the week before you travel.
+
+## Staying nearby
+
+We are 22 minutes from Gooderham and under ten minutes from Haliburton, so
+the cottage sits between the course and everything you will need to buy.
+
+There are three bedrooms, each with a queen bed, and one bathroom, so room
+for six. There is a kitchen, and enough space that a group who have been
+standing outside all day can come back and spread out rather than sit on
+top of each other. See
+[sleeping arrangements](/posts/sleeping-arrangements/).
+
+Bring your own towels and linens. That one catches people out. See
+[what to bring](/posts/what-to-bring/).
+
+The cottage is available for the 2026 race weekend. The minimum stay is
+three nights, so Thursday to Sunday works as a booking.
+
+The driveway is gravel and steep. Any car will make it in September, and
+there is room to park without blocking the turnaround, but we make no
+promises about anything towing a trailer. See
+[getting here and parking](/posts/getting-here-and-parking/).
+
+<!-- Rewritten from "Basecamp for the weekend" on 2026-08-31. Every fact
+     here is already published elsewhere on the site: the three queen
+     bedrooms and the single bathroom from [sleeping arrangements], the
+     towels and linens from [what to bring], the gravel driveway and the
+     turnaround from [getting here and parking]. Nothing new is promised.
+
+     The trailer sentence is a disclaimer rather than a claim, and it is
+     here because riders will read this page whatever it is aimed at, and
+     silence would be read as a yes. Cut it if you would rather say
+     nothing at all.
+
+     The three-night minimum is the listing minimum since 2026-08-25.
+     Confirm it holds for 17-20 September before this publishes. -->
 
 {{< book >}}
 
