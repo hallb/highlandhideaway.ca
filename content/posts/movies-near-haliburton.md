@@ -2,7 +2,8 @@
 title: "Where to Watch a Movie Near Haliburton"
 description: "A monthly film night ten minutes away, a five-screen cinema built into a house in Kinmount, a festival in November, and the TV in the living room."
 date: 2026-08-31
-featuredImage: "/images/living-room.jpg"
+featuredImage: "/images/cinema-seats.jpg"
+heroAlt: "Rows of empty red seats in a darkened cinema, the screen lit at the far right"
 categories: ["Area"]
 tags: ["movies", "film", "hiff", "thursdays with tom", "kinmount", "rainy day", "events", "area"]
 # One Event only. The festival runs three consecutive days at a single
@@ -144,8 +145,24 @@ draft: false
         corroborated by five films listed in each of the last two weekly
         schedules, which is why it is in the post. Drop it if that stops
         being true.
-     4. featuredImage is living-room.jpg, shared with [a cozy night in].
-        A photograph of the Kinmount marquee would be better.
+     4. featuredImage is cinema-seats.jpg, by Tima Miroshnichenko on
+        Pexels: www.pexels.com/@tima-miroshnichenko/. Resized to 1600px
+        and stripped of EXIF. Not a photograph of Highlands Cinemas, the
+        pavilion, or anywhere in the Highlands, and the alt text says
+        only what is in the frame so it does not imply otherwise.
+
+        No visible credit on the page, following the same call Ben made
+        for the fly-in post's aircraft-autumn.jpg on 2026-08-24: the
+        Pexels licence does not require attribution. The credit lives
+        here instead. Flagged to Ben on 2026-08-31 in case he wants a
+        visible one; that needs a slot in partials/hero.html and a rule
+        in _hh.scss, since the hero has nowhere to put a caption today.
+
+        It also becomes the HIFF Event's schema image, which is how the
+        fly-in post already works. Worth knowing that the event image in
+        structured data is now a cinema that is not the venue. A
+        photograph of the Kinmount marquee or the pavilion would fix
+        both that and the hero.
      5. Re-date the front matter at publish. Live before the end of
         September to index ahead of the November searches.
 
