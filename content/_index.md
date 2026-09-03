@@ -165,7 +165,7 @@ We rent through Airbnb. This site is where the guides live.
 {{< cards >}}
 {{< card title="Welcome and overview" href="/posts/welcome/" meta="What the cottage is, and who it suits" >}}
 {{< card title="Getting here and parking" href="/posts/getting-here-and-parking/" meta="The driveway is steep — read this one" >}}
-{{< card title="Sleeping arrangements" href="/posts/sleeping-arrangements/" meta="Three queens, plus a cot and a trundle" >}}
+{{< card title="Sleeping arrangements" href="/posts/sleeping-arrangements/" meta="Three queens, plus a folding bed and a trundle" >}}
 {{< card title="What to bring" href="/posts/what-to-bring/" meta="Bedding and towels are not provided" >}}
 {{< /cards >}}
 
