@@ -19,9 +19,11 @@ The kitchen is set up for cooking real meals, not just reheating them.
 - An island with counter space and seating around the kitchen table
 - A propane BBQ on the deck outside the kitchen (propane provided)
 
-<!-- TODO: the meal plan suggests BBQ chicken and burgers, but no barbecue
-     is listed here. If there is one, say where it is and whether it is
-     propane or charcoal, and whether you supply the fuel. -->
+<!-- The barbecue question (ISS-37) was answered in the same commit that
+     raised it: bd783ae added the propane BBQ line above, which says where it
+     is, what it burns and who supplies the fuel. Confirmed by Ben on
+     2026-09-02. The meal plan's BBQ chicken and burgers are therefore
+     cookable, which unblocks ISS-42. -->
 
 There is no dishwasher. Washing up is by hand, and the drying rack lives
 under the sink.
