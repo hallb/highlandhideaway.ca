@@ -29,7 +29,12 @@ is damp, which it often is in spring.
 ## The swing
 
 There is a round net swing hung from a maple at the edge of the clearing.
-<!-- TODO: state a weight or rider limit if the swing has one. -->
+Nothing is posted on it and we do not know what it will hold, so use some
+judgement about who gets on it and how many at once.
+
+<!-- The swing has no known weight or rider limit. Ben, 2026-09-02: "There
+     may be a limit, but I don't know what it is. Just be careful." Closes
+     ISS-40. Do not invent a number. -->
 
 {{< image src="/images/swing-sunset.jpg" alt="A net swing hanging in the woods with the sun low behind the trees" caption="The swing, late in the day" >}}
 
