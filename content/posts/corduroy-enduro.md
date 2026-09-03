@@ -205,6 +205,37 @@ can promise in advance. See
 [fall colours in the Haliburton Highlands](/posts/fall-colours/) for what
 turns when and which reports to check in the week before you travel.
 
+The same four days also carry Hike Haliburton. It has run since 2003, the
+organisers call it Canada's largest hiking festival, and it has nothing to do
+with the Cord beyond the coincidence of the dates. Somebody who does not want
+to spend a day standing in the woods watching motorcycles can spend it walking
+through them instead.
+
+The guided hikes have to be registered for, and registration opened in August,
+so the popular ones may already be gone. Check what is left at
+[Hike Haliburton](https://myhaliburtonhighlands.com/hike-haliburton/) before
+anyone counts on a place.
+
+<!-- Hike Haliburton added 2026-09-02, at Ben's request, after he found the
+     festival page. ISS-54.
+
+     The collision is real and was checked at source: myhaliburtonhighlands.com
+     gives the 2026 festival as 17, 18, 19 and 20 September, which is the Cord
+     weekend exactly. It is run by the county tourism organisation, the same
+     people whose event calendar the November and December research came from.
+
+     "Canada's largest hiking festival" is attributed rather than asserted,
+     the same way the event's own "Canada's National Enduro" is handled at the
+     top of this page. 2003 is their founding date, from the same page.
+
+     No claim that a reader can still get a place. Registration opened
+     2026-08-17 through PheedLoop and nobody has checked what is left, so the
+     page sends them to look rather than telling them. Do not turn this into
+     an availability claim without checking first.
+
+     Independence is stated because the no-affiliation constraint on this post
+     covers the Cord, and adding a second event should not blur it. -->
+
 ## Staying nearby
 
 We are 22 minutes from Gooderham and under ten minutes from Haliburton, so
