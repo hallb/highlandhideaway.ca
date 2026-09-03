@@ -33,10 +33,14 @@ canoe, a paddleboard, and a cart for getting them down there. See the
 
 ## Worth knowing
 
-Cell service is limited. There is internet at the cottage and it is good
-enough to stream, but not on several devices at once.
+Cell service is limited, and which network you are on makes a difference.
+Rogers and Fido do better here. Bell works, but we have found it weaker.
+There is internet at the cottage and it is good enough to stream, but not on
+several devices at once.
 
-<!-- TODO: confirm which carriers get a signal at the cottage, if any. -->
+<!-- Carriers are Ben's, given 2026-09-02, closing ISS-38. He named Rogers,
+     Fido and Bell only, so no other network is mentioned in either
+     direction. -->
 
 ## Getting oriented
 

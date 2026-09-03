@@ -48,11 +48,14 @@ The lake freezes hard enough for tracks across it.
 
 {{< image src="/images/lake-frozen.jpg" alt="A frozen lake with snowmobile tracks running into the distance" caption="Drag Lake in February" >}}
 
-Ice is never guaranteed. Check with someone local before walking out on it,
-and do not take a vehicle onto it.
+The lake is not part of the property, and the ice is never guaranteed. Check
+with someone local before walking out on it, and do not take a vehicle onto
+it.
 
-<!-- TODO: confirm you are comfortable with guests on the ice at all, and
-     say so either way. -->
+<!-- Ben, 2026-09-02, closing ISS-41: he has no objection to guests going out
+     on the ice, as long as the page does not read as encouragement. The lake
+     is not his and the ice is not his to vouch for. Wording left close to
+     what was already here, with the ownership point added. -->
 
 ## What to bring
 
