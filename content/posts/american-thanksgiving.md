@@ -120,9 +120,11 @@ The kitchen is the part of this post that decides whether a group books.
      finding out on the day.
 
      Q11: what is in the kitchen for it -- roasting pan, thermometer,
-     carving knife, enough plates and cutlery, and how many the dining
-     table actually seats. See /posts/sleeping-arrangements/ for the
-     sleeping side; there is no equivalent for the table. -->
+     carving knife, enough plates and cutlery. The seating half of this
+     question is answered: six at the dining table and six in The
+     Sanctuary, more if people crowd in, per Ben on 2026-09-02. It is
+     stated in /posts/cooking-at-the-cottage/ and has been since
+     2026-08-18. Only the equipment half is still open. -->
 
 For the shopping, the village is the last real stop. Stock up on the way in
 rather than planning a second trip. See
