@@ -57,6 +57,44 @@
 #       The siteTag is what filters rumPageloadEventsAdaptiveGroups. The
 #       account holds other sites, so an unfiltered query mixes them.
 #
+#   Email Routing   (Email -> Email Routing)
+#       stay@highlandhideaway.ca forwards to Ben's inbox. It is published on
+#       /posts/contact/ because My Haliburton Highlands will not list the
+#       cottage without owner contact details on the site (ISS-56).
+#
+#       It is an alias, not a mailbox, and it is disposable on purpose: if it
+#       gets harvested, add a second alias, change the one line on the contact
+#       page, then delete this routing rule. The personal address behind it
+#       never appears in public and never has to move.
+#
+#       Enabled 2026-09-03. It added five records the dashboard then marks
+#       Locked, meaning protected from edits, not blocked: three MX to
+#       route1-3.mx.cloudflare.net, one SPF TXT
+#       (v=spf1 include:_spf.mx.cloudflare.net ~all), and a DKIM key at
+#       cf2024-1._domainkey, which Cloudflare signs forwarded mail with. The
+#       zone carried no MX records before that date, so nothing was displaced.
+#       Anything that later wants to receive mail on this domain has to go
+#       through Email Routing rather than alongside it.
+#
+#       Do not hand-write an SPF record here. The DNS page recommends an
+#       Email Record Creator that writes "v=spf1 -all" along with DMARC and a
+#       null DKIM key. A domain may hold only one SPF record, so adding that
+#       one either collides with the record above or stops Email Routing
+#       activating. DMARC is the only part of that wizard worth having, and it
+#       goes in by hand as a separate _dmarc TXT record.
+#
+#       Leave the catch-all off -- it is Disabled, action Drop. Mail to any
+#       other local part is then refused, which keeps a dictionary attack on
+#       the domain out of the destination inbox and holds the blast radius to
+#       the one address published on the site.
+#
+#       The destination is a plus-addressed Gmail, so the tag is a filter
+#       handle on the receiving side. It appears only in the headers of the
+#       forwarded message and never to anyone writing in.
+#
+#       Inbound only. Email Routing does not send, so replies leave from
+#       Ben's own address unless send-as is configured through a provider.
+#
 # Break-glass local deploy from the repo root:
 #   hugo --minify && npx wrangler deploy
 name = "highlandhideaway"

@@ -16,6 +16,23 @@ one thread.
 
 {{< book text="Message us on Airbnb" >}}
 
+If you would rather email, that is <stay@highlandhideaway.ca>.
+
+<!-- The email address was added 2026-09-03 under ISS-56. My Haliburton
+     Highlands require "contact information for the owner or property manager"
+     on the site before they will list the cottage, and they list that
+     separately from the requirement for a site standalone from Airbnb, so
+     Airbnb messaging alone was unlikely to satisfy it.
+
+     stay@ is a Cloudflare Email Routing alias forwarding to Ben's inbox, not
+     a mailbox. It is published rather than a personal address so that it can
+     be thrown away: if it gets harvested, add a new alias, change the line
+     above, delete the routing rule for this one. See wrangler.toml for the
+     dashboard settings it depends on.
+
+     Airbnb stays first on the page. It is still the better route for a
+     booking question and it keeps the thread where the booking is. -->
+
 If you are already staying with us and something needs attention, message
-us the same way. Our contact details are also in the House Manual, the
+us through Airbnb. Our contact details are also in the House Manual, the
 white book on the bookshelf. See [guest access](/posts/guest-access/).
