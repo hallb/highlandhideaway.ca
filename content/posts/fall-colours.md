@@ -23,10 +23,14 @@ draft: false
 
      Published 2026-08-30 without new photography, deliberately: the
      indexing lead time before peak was worth more than the picture.
-     featuredImage is forest-road-autumn.jpg and the inline shot is
-     dock-autumn.jpg, both already on file and both reused from elsewhere.
-     An original from the Skyline lookout in the first half of October is
-     still wanted, and it is the one section nothing on the site covers.
+     featuredImage is forest-road-autumn.jpg and the inline shot under
+     "From the water" is dock-autumn.jpg, both already on file and both
+     reused from elsewhere. exterior-autumn.jpg was added under "Booking
+     it" on 2026-09-07 and is original: the property belongs in that
+     section, which is where the post turns from the area to us, and
+     nowhere above it. An original from the Skyline lookout in the first
+     half of October is still wanted, and it is the one section nothing on
+     the site covers.
 
      The drive to Skyline Park is ten minutes, on Ben's word (2026-08-31).
      The west-facing view and the sunset line follow from the park sitting
@@ -196,6 +200,8 @@ Thanksgiving both fall inside that window. See
 [Thanksgiving at the Hideaway](/posts/canadian-thanksgiving/).
 
 If you would rather have the gold and the quiet, come the week after.
+
+{{< image src="/images/exterior-autumn.jpg" alt="The cottage in autumn, the open end of its screened deck facing a yard, an orange maple beside it under a blue sky" caption="The cottage on 29 September, the maples beside it already turning" >}}
 
 {{< book >}}
 
