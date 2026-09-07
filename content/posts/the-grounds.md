@@ -26,6 +26,14 @@ shed.
 See [how to start a campfire](/posts/how-to-start-a-campfire/) if the wood
 is damp, which it often is in spring.
 
+{{< image src="/images/fire-pit-dusk.jpg" alt="The fire pit at dusk, a string of lights hung above it and a Canadian flag on a pole beside it" caption="The fire pit, once the sun is down" >}}
+
+<!-- Photographed 2026-09-05. The string lights over the pit are deliberately
+     not described in the prose: nobody has confirmed whether they stay up
+     year round or go up only for the summer. A guest arriving in April to
+     no lights would have been promised them here. Caption and alt text
+     describe the photograph, which is safe, rather than the amenity. -->
+
 ## The swing
 
 There is a round net swing hung from a maple at the edge of the clearing.

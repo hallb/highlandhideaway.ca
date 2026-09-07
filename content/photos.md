@@ -38,6 +38,8 @@ The screened-in deck, off the cottage.
 
 {{< image src="/images/fire-pit-benches.jpg" alt="A fire pit ringed with stones and wooden benches" caption="The fire pit" >}}
 
+{{< image src="/images/fire-pit-dusk.jpg" alt="The fire pit at dusk, a string of lights hung above it and a Canadian flag on a pole beside it" caption="The same spot, once the sun is down" >}}
+
 {{< image src="/images/swing-woods-01.jpg" alt="A round net swing hanging from a tree in the woods" caption="The swing" >}}
 
 {{< image src="/images/garden-bench.jpg" alt="A red wood and black metal garden bench beside a cedar hedge" caption="A place to sit" >}}
