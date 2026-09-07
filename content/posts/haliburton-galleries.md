@@ -4,6 +4,12 @@ description: "Galleries and studios in the Haliburton Highlands."
 date: 2026-07-12
 categories: ["Area"]
 tags: ["art", "galleries", "area"]
+# This post was published at /posts/haliburton-gallery-tour/ from April 2025
+# until 2026-08-18, when it was pulled back to draft and renamed. That URL was
+# indexed and 404s today. The alias is inert while draft: true -- Hugo builds
+# nothing for a draft -- and the moment the flag comes off it restores the old
+# URL as a redirect rather than leaving it dead.
+aliases: ["/posts/haliburton-gallery-tour/"]
 draft: true
 ---
 
