@@ -121,9 +121,18 @@ figures come from sources that disagree. CTA is narrative, not a banner.
 intent is the whole reason they're separate. They cross-link instead — that's
 already wired up in both drafts.
 
-`haliburton-gallery-tour.md` has been renamed to `haliburton-galleries.md` and
-is still a `draft: true` stub. Its "Studio tours" section is now covered by the
-published studio tour post, so it should link there rather than repeat it.
+**The gallery post is retired.** `haliburton-gallery-tour.md` became
+`haliburton-galleries.md`, sat as a `draft: true` stub, and was deleted on
+2026-09-07. The studio tour post had already absorbed it: the arts-community
+opening, the tour and the School of Art + Design all moved across, leaving only
+an empty "Galleries" TODO that no brief in `docs/` ever supported. Its old URL
+now redirects to the studio tour post via `aliases:` there, which is what
+closed the 404 Search Console reported.
+
+This concedes the standalone "Haliburton galleries" query, deliberately: the
+studio tour post already holds the art intent. If galleries is ever wanted as
+its own page, commission it with a brief like every other post here — do not
+restore the stub.
 
 Out of scope: Haliburton Forest Trail Race (12 Sept) — that weekend is booked.
 
