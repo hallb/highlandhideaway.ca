@@ -10,6 +10,8 @@ Highland Hideaway is a cottage on 23 acres of forest near Haliburton, Ontario.
 It has three bedrooms, one bathroom, a full kitchen, and a wood stove in the
 living room. The property is private and quiet.
 
+{{< image src="/images/fire-pit-dusk.jpg" alt="The fire pit at dusk, a string of lights hung above it and a Canadian flag on a pole beside it" caption="The fire pit, on a September evening" linked=false >}}
+
 The Hideaway is not on the waterfront, but the public boat launch is directly
 across the road. The wooden dock is a great place to hang out in the sun and
 then cool off with a dip in the lake. Or you can bring down the canoe or the
