@@ -5,6 +5,16 @@ date: 2025-09-14
 categories: ["Outdoors"]
 tags: ["campfire", "fire pit", "outdoors"]
 featuredImage: "/images/campfire-night.jpg"
+# campfire-night.jpg stays as the featured image, and so as the share card:
+# it is a photograph of a fire, which is what this post is about. It is a
+# poor hero, though. The hero fills to 3:1, the source is portrait, and the
+# flames sit at roughly two thirds height, so no anchor Hugo offers frames
+# them: Smart takes the tree tops, Top the same, Bottom clips the flames off
+# and fills the band with dirt. Center on this photograph puts the lights,
+# the flagpole and the gap of sunset in the band instead.
+hero: "/images/fire-pit-dusk.jpg"
+heroAnchor: "Center"
+heroAlt: "The fire pit clearing at dusk, a string of lights lit between the trees and the last of the sunset showing through a gap on the right"
 draft: false
 ---
 
