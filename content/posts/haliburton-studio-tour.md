@@ -29,6 +29,14 @@ events:
       region: "ON"
 categories: ["Events"]
 tags: ["art", "studio tour", "events", "area"]
+# /posts/haliburton-gallery-tour/ was a published page from April 2025 until
+# 2026-08-18, when it was pulled to draft one day before this post went live.
+# This post absorbed it: the arts-community opening, the studio tour itself and
+# the School of Art + Design all came across, and the only section that did not
+# was an empty "Galleries" TODO with no research behind it. The stub is now
+# deleted, so the old URL redirects here -- the page that actually answers the
+# query -- rather than 404ing. See docs/content_plan.md.
+aliases: ["/posts/haliburton-gallery-tour/"]
 draft: false
 ---
 

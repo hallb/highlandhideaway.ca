@@ -109,10 +109,11 @@ them. See [lighting the wood stove](/posts/lighting-the-wood-stove/) and
      The three weeks and the staggered turn are from /posts/fall-colours/. The
      two October weekends and the twenty-five-odd studios are from
      /posts/haliburton-studio-tour/, which is published. Deliberately not
-     linked: /posts/haliburton-christmas-market/ and
-     /posts/haliburton-galleries/ are both still draft: true, and a previous
-     post shipped with links stripped for exactly this reason. Revisit when
-     they publish -- the market in particular belongs in this section.
+     linked: /posts/haliburton-christmas-market/ is still draft: true, and a
+     previous post shipped with links stripped for exactly this reason.
+     Revisit when it publishes -- the market belongs in this section. The
+     galleries stub that used to be named here was retired on 2026-09-07;
+     the studio tour post covers that ground now.
 
      No claim about snow, ice or ploughing. /posts/winter-at-the-hideaway/
      still carries an open question about guests on the ice, and when the
