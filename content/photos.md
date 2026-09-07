@@ -14,7 +14,7 @@ Photographs of the cottage and the property. Click any image to open it larger.
 
 ## Outside
 
-{{< image src="/images/exterior-front.jpg" alt="The front entrance of the cottage, white siding and a red metal roof" caption="The front entrance" >}}
+{{< image src="/images/exterior-front.jpg" alt="The front of the cottage, sage green siding under a red metal roof, with wooden steps and a railing up to the screen door" caption="The front entrance" >}}
 
 {{< image src="/images/exterior-porch-spring.jpg" alt="The front of the cottage and its porch in spring" caption="The porch, in spring" >}}
 
