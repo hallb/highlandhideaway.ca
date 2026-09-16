@@ -34,3 +34,10 @@ node_modules/
 /tmp/
 
 # End of https://www.toptal.com/developers/gitignore/api/hugo
+
+### Claude Code local session state ###
+# Resume checkpoints and agent worktrees are per-machine scratch, not project
+# files. Listed individually rather than ignoring .claude/ wholesale so that a
+# settings.json or a command added later still shows up in git status.
+/.claude/RESUME.md
+/.claude/worktrees/
