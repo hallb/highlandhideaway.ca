@@ -33,25 +33,69 @@ const BOT_UA =
 // was recorded in the first place. Over 2026-08-18 to 2026-09-06 the user
 // agent alone labelled 141 clicks "human" while Cloudflare RUM saw 70 real
 // visits for the same window -- a conversion numerator twice its denominator,
-// which is impossible. Reclassifying those rows by network operator found 13
-// clicks from Google LLC sending an ordinary Android Chrome string, plus a
-// long tail arriving one at a time from 40-plus countries RUM records no
-// visitors from at all. Roughly 80% of what this function called human was a
-// machine, so every conversion figure built on it was overstated about
-// fivefold.
+// which is impossible.
 //
 // People browse from consumer ISPs. Nobody books a cottage from a datacenter,
 // so the operator is a stronger signal than the string the client chooses to
-// send -- the client controls the user agent and cannot fake the network it
-// comes from.
+// send: a client picks its own user agent and cannot pick the network it
+// arrives from.
 //
-// Generic terms are in here deliberately, alongside the named operators, to
-// catch that long tail without this list having to be updated for every new
-// host. The known-false-positive cost is a guest browsing over a corporate
-// VPN or a cloud-hosted privacy relay, which is rare on a cottage booking
-// link and, unlike the machines, does not arrive thirteen at a time.
-const BOT_ASN =
-  /\b(?:google|amazon|aws|microsoft|azure|cloudflare|huawei|alibaba|aliyun|tencent|baidu|oracle|ibm|digitalocean|linode|akamai|fastly|ovh|hetzner|scaleway|vultr|choopa|contabo|leaseweb|m247|datacamp|censys|shodan|cloud|hosting|datacenter|colo|vps|server)\b|data\s*cent(?:er|re)/i;
+// The terms below were chosen against the real rows rather than from memory,
+// and they are matched as plain substrings, case-insensitively. That is not
+// laziness -- it is what makes this list identical to the `NOT ILIKE '%...%'`
+// chain the Grafana panels use, and those panels are the half of ISS-58 that
+// can be applied retroactively. Two lists that must agree are bad enough
+// without them also being written in different dialects. wrangler.toml holds
+// the SQL copy; change one, change the other.
+//
+// Two things the live data taught that a plausible-looking list got wrong:
+// "FINE GROUP SERVERS SOLUTIONS LLC" is missed by a word-boundary match on
+// "server", and "colo" as a substring matches Colombia, so the term has to be
+// "colocation". Hence substrings, but chosen ones.
+const BOT_ASN_TERMS = [
+  // Named operators, the big clouds first.
+  "google",
+  "cloud", // also catches cloudflare, huawei-cloud, and most of the long tail
+  "amazon",
+  "aws",
+  "microsoft",
+  "azure",
+  "huawei",
+  "alibaba",
+  "aliyun",
+  "tencent",
+  "baidu",
+  "oracle",
+  "digitalocean",
+  "linode",
+  "akamai",
+  "fastly",
+  "ovh", // OVH SAS, OVH GmbH, OVH Ltd and OVH Sp. z o.o. are all in the data
+  "hetzner",
+  "scaleway",
+  "vultr",
+  "choopa",
+  "contabo",
+  "leaseweb",
+  "m247",
+  "datacamp",
+  "blazing seo", // proxy seller, 22 clicks; no generic term catches it
+  "rayobyte", // the same company under its current name
+  "censys",
+  "shodan",
+  // Generic terms, to catch the tail without an entry per host.
+  "host", // hosting, hosted, bluehost, hostinger
+  "server", // and servers
+  "datacenter",
+  "data cent", // data center, data centre
+  "colocation",
+  "vps",
+];
+
+const BOT_ASN = new RegExp(
+  BOT_ASN_TERMS.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"),
+  "i",
+);
 
 function classifyAgent(ua, asOrg) {
   // No User-Agent at all is not a browser. Every one of them sends something.

@@ -146,24 +146,33 @@ BOOKING_URL = "https://airbnb.ca/h/hideaway-near-haliburton"
 # the traffic changing. Treat blob5 before 2026-09-15 as a floor on the bot
 # count rather than a measurement of it.
 #
-# The panels themselves should exclude datacenter operators on blob7 rather
-# than trusting blob5 alone, because that filter applies retroactively to
-# rows already written and blob5 cannot be recomputed. Roughly:
+# The panels themselves also exclude datacenter operators on blob7, rather
+# than trusting blob5 alone, because that filter applies retroactively to rows
+# already written and blob5 cannot be recomputed. It lives in the planner repo
+# at grafana/dashboards/booking-clicks.json, as a chain of
 #
-#   WHERE blob5 = 'human'
-#     AND lower(blob7) NOT LIKE '%google%'
-#     AND lower(blob7) NOT LIKE '%cloudflare%'
-#     AND lower(blob7) NOT LIKE '%huawei%'
-#     AND lower(blob7) NOT LIKE '%amazon%'
-#     AND lower(blob7) NOT LIKE '%microsoft%'
-#     AND lower(blob7) NOT LIKE '%cloud%'
-#     AND lower(blob7) NOT LIKE '%hosting%'
-#     AND lower(blob7) NOT LIKE '%data cent%'
+#   AND blob7 NOT ILIKE '%google%'
+#   AND blob7 NOT ILIKE '%cloud%'
+#   ... one line per term ...
 #
-# src/worker.js BOT_ASN is the same list kept in one place; when one changes,
-# change the other. That duplication is deliberate -- the Worker cannot read
-# a Grafana panel and the panel cannot call the Worker -- but it is the kind
-# that rots, so the shared list is short on purpose.
+# whose terms are the same list as BOT_ASN_TERMS in src/worker.js. Change one,
+# change the other. The duplication is unavoidable -- the Worker cannot read a
+# Grafana panel and the panel cannot call the Worker -- so the list is kept
+# short and matched as plain substrings in both places, which is why the
+# Worker side uses substrings rather than the tidier word boundaries.
+#
+# Analytics Engine's SQL dialect is a subset and it does not have `match` or
+# `positionCaseInsensitive`; both return "unknown function call". `ILIKE` and
+# `lower() ... LIKE` both work. Verified against the SQL API on 2026-09-15.
+#
+# What this filter does NOT do is make the conversion rate defensible on its
+# own. Over 2026-08-18 to 2026-09-06 it takes the numerator from 140 to 121
+# against 70 RUM visits, so the numerator still exceeds the denominator. The
+# residue is scrapers on consumer ISPs in countries RUM records no visitors
+# from; restricting to CA/US as well takes it to 23. That country filter is a
+# real decision with a real cost -- it would silently drop genuine overseas
+# visitors the day the site has any -- and is deliberately not applied here.
+# See ISS-58.
 [[analytics_engine_datasets]]
 binding = "CLICKS"
 dataset = "booking_clicks"

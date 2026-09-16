@@ -95,6 +95,13 @@ const operatorCases = [
   [CHROME, "Cloudflare, Inc.", "bot"],
   [CHROME, "Huawei-Cloud-SG", "bot"],
 
+  // Regressions from the live rows, both of which a plausible-looking list
+  // got wrong until the data was checked (ISS-58).
+  [CHROME, "FINE GROUP SERVERS SOLUTIONS LLC", "bot"], // plural, and shouting
+  [CHROME, "Blazing SEO, LLC", "bot"], // proxy seller; no generic term fits
+  [CHROME, "OVH Sp. z o. o.", "bot"], // OVH appears under four names
+  [CHROME, "Bluehost Inc", "bot"], // "host" inside a word, not beside one
+
   // The rest of the long tail, by the generic terms rather than by name.
   [CHROME, "Amazon Technologies Inc.", "bot"],
   [CHROME, "Microsoft Corporation", "bot"],
@@ -116,6 +123,12 @@ const operatorCases = [
   [DESKTOP, "Cogeco Connexion Inc.", "human"],
   [DESKTOP, "Videotron Telecom Ltee", "human"],
   [DESKTOP, "Xplornet Communications Inc.", "human"],
+  [DESKTOP, "Charter Communications Inc", "human"],
+  [DESKTOP, "CenturyLink Communications, LLC", "human"],
+  [DESKTOP, "Windstream Communications LLC", "human"],
+  // "colo" as a substring matches Colombia, which is why the term is
+  // "colocation". This is the case that caught it.
+  [DESKTOP, "INTERNEXA S.A. E.S.P Colombia", "human"],
   [DESKTOP, "Comcast Cable Communications, LLC", "human"],
   [DESKTOP, "Verizon Business", "human"],
 
