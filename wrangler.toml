@@ -137,6 +137,33 @@ BOOKING_URL = "https://airbnb.ca/h/hideaway-near-haliburton"
 #
 # Rows written before a field existed carry fewer blobs, so filter with
 # care -- blob5 = '' means "written before we classified", not "human".
+#
+# blob5 changed meaning-in-practice on 2026-09-15 (ISS-58) without changing
+# position or vocabulary. It is still "bot" or "human"; it is now computed
+# from the operator in blob7 as well as the user agent in blob6. Before that
+# date it saw the user agent only, which called roughly 80% of the machines
+# human -- so a panel spanning the date shows the rule getting better, not
+# the traffic changing. Treat blob5 before 2026-09-15 as a floor on the bot
+# count rather than a measurement of it.
+#
+# The panels themselves should exclude datacenter operators on blob7 rather
+# than trusting blob5 alone, because that filter applies retroactively to
+# rows already written and blob5 cannot be recomputed. Roughly:
+#
+#   WHERE blob5 = 'human'
+#     AND lower(blob7) NOT LIKE '%google%'
+#     AND lower(blob7) NOT LIKE '%cloudflare%'
+#     AND lower(blob7) NOT LIKE '%huawei%'
+#     AND lower(blob7) NOT LIKE '%amazon%'
+#     AND lower(blob7) NOT LIKE '%microsoft%'
+#     AND lower(blob7) NOT LIKE '%cloud%'
+#     AND lower(blob7) NOT LIKE '%hosting%'
+#     AND lower(blob7) NOT LIKE '%data cent%'
+#
+# src/worker.js BOT_ASN is the same list kept in one place; when one changes,
+# change the other. That duplication is deliberate -- the Worker cannot read
+# a Grafana panel and the panel cannot call the Worker -- but it is the kind
+# that rots, so the shared list is short on purpose.
 [[analytics_engine_datasets]]
 binding = "CLICKS"
 dataset = "booking_clicks"

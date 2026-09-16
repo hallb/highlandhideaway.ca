@@ -28,6 +28,12 @@ if (!match) {
   console.error("could not find BOT_UA / classifyAgent in src/worker.js");
   process.exit(1);
 }
+// The slice above starts at BOT_UA and ends at the close of classifyAgent, so
+// BOT_ASN comes along with it as long as it stays declared between the two.
+if (!/const BOT_ASN =/.test(match[0])) {
+  console.error("BOT_ASN is not between BOT_UA and classifyAgent in src/worker.js");
+  process.exit(1);
+}
 const { classifyAgent } = await import(
   "data:text/javascript," +
     encodeURIComponent(match[0] + "\nexport { classifyAgent };")
@@ -71,6 +77,60 @@ const cases = [
   [undefined, "bot"],
 ];
 
+// Network operator cases (ISS-58). Every user agent below is an ordinary
+// browser string, so the first argument alone would return "human" for all of
+// them and the operator is doing all the work.
+//
+// CHROME is the exact string the 13 Google LLC clicks sent over 2026-08-18 to
+// 2026-09-06. That is the case this whole test block exists for: nothing about
+// it is distinguishable from a real phone except where it came from.
+const CHROME =
+  "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Mobile Safari/537.36";
+const DESKTOP =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36";
+
+const operatorCases = [
+  // The three operators actually observed in the data.
+  [CHROME, "Google LLC", "bot"],
+  [CHROME, "Cloudflare, Inc.", "bot"],
+  [CHROME, "Huawei-Cloud-SG", "bot"],
+
+  // The rest of the long tail, by the generic terms rather than by name.
+  [CHROME, "Amazon Technologies Inc.", "bot"],
+  [CHROME, "Microsoft Corporation", "bot"],
+  [CHROME, "DigitalOcean, LLC", "bot"],
+  [CHROME, "Hetzner Online GmbH", "bot"],
+  [CHROME, "Alibaba (US) Technology Co., Ltd.", "bot"],
+  [CHROME, "OVH SAS", "bot"],
+  [CHROME, "Contabo GmbH", "bot"],
+  [CHROME, "Some Unheard-Of Hosting Ltd", "bot"],
+  [CHROME, "Example Data Centre Ltd", "bot"],
+  [CHROME, "Generic VPS Provider", "bot"],
+
+  // Consumer ISPs. A false "bot" here deletes a real booking click, which is
+  // the expensive direction to be wrong in, so the Canadian carriers our
+  // actual visitors arrive on are pinned.
+  [DESKTOP, "Bell Canada", "human"],
+  [DESKTOP, "Rogers Communications Canada Inc.", "human"],
+  [DESKTOP, "TELUS Communications Inc.", "human"],
+  [DESKTOP, "Cogeco Connexion Inc.", "human"],
+  [DESKTOP, "Videotron Telecom Ltee", "human"],
+  [DESKTOP, "Xplornet Communications Inc.", "human"],
+  [DESKTOP, "Comcast Cable Communications, LLC", "human"],
+  [DESKTOP, "Verizon Business", "human"],
+
+  // A declared bot stays a bot whoever it arrives from: the operator test is
+  // an addition to the user-agent test, never a veto over it.
+  ["lychee/0.24.2", "Bell Canada", "bot"],
+  ["", "Bell Canada", "bot"],
+
+  // A missing operator must leave the user-agent verdict standing rather than
+  // promoting anything to human.
+  [DESKTOP, "", "human"],
+  [DESKTOP, undefined, "human"],
+  ["curl/8.5.0", "", "bot"],
+];
+
 let failures = 0;
 for (const [ua, want] of cases) {
   const got = classifyAgent(ua);
@@ -80,12 +140,27 @@ for (const [ua, want] of cases) {
   }
 }
 
+for (const [ua, asOrg, want] of operatorCases) {
+  const got = classifyAgent(ua, asOrg);
+  if (got !== want) {
+    failures++;
+    console.error(
+      `FAIL want=${want} got=${got}  asOrg=${JSON.stringify(asOrg ?? null)}  ${JSON.stringify(ua ?? null)}`,
+    );
+  }
+}
+
+const total = cases.length + operatorCases.length;
 if (failures) {
-  console.error(`\n${failures} of ${cases.length} failed`);
+  console.error(`\n${failures} of ${total} failed`);
   process.exit(1);
 }
-console.log(`classifyAgent: ${cases.length} cases pass`);
+console.log(
+  `classifyAgent: ${total} cases pass (${cases.length} user agent, ${operatorCases.length} operator)`,
+);
 
-// A determined scraper sending a browser string still reads as "human" here,
-// and that is why the row also carries the raw user agent and the network
-// operator. The verdict is a convenience; those two are the evidence.
+// A scraper on a consumer ISP sending a browser string still reads as "human"
+// here. That is the residue ISS-58 leaves behind, and it is much smaller than
+// what it removed. The row still carries the raw user agent and the network
+// operator, so the next rule can be applied to this data too. The verdict is a
+// convenience; those two are the evidence.
