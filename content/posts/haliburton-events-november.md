@@ -1,13 +1,17 @@
 ---
 title: "Haliburton Highlands Events: November 2026"
-description: "A film festival, four Saturday nights of garden lights and a Christmas market, in date order, with what I could and could not confirm."
+description: "A film festival, four Saturday nights of garden lights and a Christmas market, in date order."
 date: 2026-09-20
 categories: ["Events"]
 tags: ["events", "november", "haliburton", "film festival", "christmas market", "abbey gardens", "area"]
-draft: true
+draft: false
 ---
 
-<!-- DRAFT. Concept C from docs/haliburton_nov_dec_events_brief.md, with the
+<!-- PUBLISHED 2026-09-20 on Ben's instruction, ahead of the late-October
+     window in the brief, with the open items below still open. Ben's
+     reasoning: guests do not decide to book at the last minute.
+
+     Concept C from docs/haliburton_nov_dec_events_brief.md, with the
      newer findings from ISS-49 (planner repo). Drafted 2026-09-20 from
      facts the brief, the movies post and ISS-49 mark as verified, then
      revised the same day with the Abbey Gardens poster and the Christmas
