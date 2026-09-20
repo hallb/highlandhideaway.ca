@@ -4,6 +4,9 @@ description: "A film festival, four Saturday nights of garden lights and a Chris
 date: 2026-09-20
 categories: ["Events"]
 tags: ["events", "november", "haliburton", "film festival", "christmas market", "abbey gardens", "area"]
+featuredImage: "/images/sanctuary-night.jpg"
+heroAlt: "A screened porch at night, a string of coloured paper lanterns lit under a wood-panelled ceiling"
+heroAnchor: "Center"
 draft: false
 ---
 
@@ -63,6 +66,12 @@ draft: false
      5. American Thanksgiving (Thu 26 Nov) is left out. ISS-45 Q1 asks
         whether that post is wanted at all. If it stays, add one line.
      6. Update "Last checked" whenever the page is touched.
+     7. Hero is sanctuary-night.jpg, chosen 2026-09-20 because it is lit
+        at night, shows no season and is not another post's hero.
+        exterior-night-winter.jpg was passed over: deep snow promises a
+        November that is mostly not there. No photograph of late November,
+        Abbey Gardens or the market exists. Swap one in if it does. The
+        alt text says only what is in the frame.
 
      No affiliation with any organiser. No text lifted from their sites. -->
 
