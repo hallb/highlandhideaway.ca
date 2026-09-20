@@ -91,6 +91,20 @@ quilting, and metal art.
 Some of these studios are only open to visitors on these two weekends of the
 year, so that's worth planning around.
 
+## Culture Days
+
+The first tour weekend, 3 and 4 October, is also the last weekend of Ontario
+Culture Days, which runs 18 September to 4 October 2026. The Arts Council
+Haliburton Highlands runs the Haliburton hub, and the programming includes
+studio tours, outdoor art walks, live performances and village galleries.
+
+The events are listed on the
+[Culture Days map for the Highlands](https://culturedays.ca/en/events/map?bb=44.84%2C-79.05%2C45.26%2C-77.93).
+The [Arts Council](https://www.haliburtonarts.on.ca/) can tell you more. One
+of the earlier events on it is the
+[Stanhope Fall Colours Fly-In](/posts/stanhope-fall-colours-fly-in/) on
+Saturday 26 September.
+
 For the map, the studio and artist list, and the latest information, see
 [thestudiotour.ca](https://www.thestudiotour.ca/).
 
